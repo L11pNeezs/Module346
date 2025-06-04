@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+use App\Libraries\Core\Application;
+
+require __DIR__ . '/app/autoload.php';
+
+if (PHP_SAPI !== 'cli') {
+    throw new RuntimeException('This script can only be run from the command line.');
+}
+
+$status = \App\Libraries\Core\Application::boot()->handleCommand();
+
+exit($status);
