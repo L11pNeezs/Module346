@@ -6,5 +6,9 @@ use App\Libraries\Core\Database\Model;
 
 class User extends Model
 {
+    public function getFullName():string {
+         return $this->username . ' - ' . $this->password;
+    }
+
 
 }
