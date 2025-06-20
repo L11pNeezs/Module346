@@ -1,21 +1,46 @@
-# Vanilla PHP Framework
+# LSEat (Lausanne Eat)
 
-## Overview
-Simple example of a vanilla PHP framework that uses Docker for development.
+**LSEat** is a practical web application that helps the LS Liipers decide where and what to eat. Liipers can add new restaurants, rate them, and filter the search based on various criteria such as price range and dietary preferences.
 
-## Requirements
-- Docker
+---
 
-## Installation
-1. Clone the repository
-2. `docker-compose up -d`
+## 📚 Table of Contents
 
-## Available features
-- Basic routing
-- Dependency injection
-- Model-View-Controller (MVC) structure
-- Migrations
+- [Tech Stack](#-tech-stack)
+- [Features](#-features)
+- [Contributors](#-contributors)
+- [Notes](#-notes)
 
-## Usage
-- Access the application at `http://localhost:8080`
-- Look at `routes/web.php` and route `/example` to see a basic usage
+---
+
+## 🛠 Tech Stack
+
+- **Vanilla Framework** (Provided by Arthur).
+
+- ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+
+## 🚀 Features
+
+- Add, update, and remove restaurants
+- View restaurants with their price range
+- Filter restaurants by dietary options:
+    - Vegan
+    - Vegetarian
+    - Others
+
+
+## 👥 Contributors
+
+- **Guilherme**
+- **Bayene**
+- **Ricardo**
+- **Arthur** – Developed and provided the custom Vanilla Framework
+
+## 📌 Notes
+
+This project is tailored for internal use by Lausanne office employees. It's designed to be minimal, fast, and easy to use without requiring external dependencies or a complex setup.
+
+---
