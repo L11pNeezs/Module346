@@ -77,6 +77,7 @@ abstract class Model
     public static function randomRestaurant(): string
     {
         $result = DB::select(self::getTableName())
+            ->orderBy('RANDOM()')
             ->limit(1)
             ->get()[0] ?? null;
         return $result['name'] ?? 'No restaurant found';

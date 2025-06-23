@@ -51,6 +51,11 @@ class Query
         return $this;
     }
 
+    public function hasOrderBy(): bool
+    {
+        return $this->isSelect() && ! empty($this->orderBy);
+    }
+
     public function setColumns(array $columns): static
     {
         $this->columns = $columns;

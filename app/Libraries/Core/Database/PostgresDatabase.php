@@ -3,6 +3,7 @@
 namespace App\Libraries\Core\Database;
 
 use App\Libraries\Core\Column;
+use App\Models\Restaurant;
 use PDO;
 use PDOStatement;
 use PgSql\Result;
@@ -103,6 +104,11 @@ final class PostgresDatabase extends AbstractDatabase
             }
         }
 
+        if($query->hasOrderBy()) {
+            $command = $query->getOrderBy();
+            $sql .= ' ORDER BY ' . $command[0];
+        }
+
         if ($query->hasLimit()) {
             $limit = $query->getLimit();
 
@@ -112,6 +118,7 @@ final class PostgresDatabase extends AbstractDatabase
                 $sql .= ' OFFSET ' . (int) $limit[1];
             }
         }
+
 
 
         if ($result = $this->query($sql)) {

@@ -1,10 +1,12 @@
 <?php
 
 use App\Libraries\Core\Router;
+use App\Models\Restaurant;
 use App\Models\User;
 
 Router::get('/', static function () {
-    return view('welcome');
+    return view('teaser', ['rest' => Restaurant::randomRestaurant(),
+    ]);
 });
 
 Router::group(['prefix' => 'example'], static function () {

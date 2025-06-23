@@ -1,7 +1,6 @@
 
 <?php
 $users ??= [];
-
 ?>
 
 <!doctype html>
