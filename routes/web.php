@@ -1,10 +1,7 @@
 <?php
 
 use App\Libraries\Core\Router;
-<<<<<<< HEAD
 use App\Models\Restaurant;
-=======
->>>>>>> 8c6edc4 (Resolve "Feature - limit in Query.php")
 use App\Models\User;
 
 Router::get('/', static function () {
