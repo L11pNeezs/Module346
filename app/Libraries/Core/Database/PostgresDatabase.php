@@ -3,6 +3,7 @@
 namespace App\Libraries\Core\Database;
 
 use App\Libraries\Core\Column;
+use App\Models\Restaurant;
 use PDO;
 use PDOStatement;
 use PgSql\Result;
@@ -103,6 +104,14 @@ final class PostgresDatabase extends AbstractDatabase
             }
         }
 
+<<<<<<< HEAD
+        if($query->hasOrderBy()) {
+            $command = $query->getOrderBy();
+            $sql .= ' ORDER BY ' . $command[0];
+        }
+
+=======
+>>>>>>> 8c6edc4 (Resolve "Feature - limit in Query.php")
         if ($query->hasLimit()) {
             $limit = $query->getLimit();
 
@@ -114,6 +123,10 @@ final class PostgresDatabase extends AbstractDatabase
         }
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 8c6edc4 (Resolve "Feature - limit in Query.php")
         if ($result = $this->query($sql)) {
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }

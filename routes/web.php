@@ -1,10 +1,15 @@
 <?php
 
 use App\Libraries\Core\Router;
+<<<<<<< HEAD
+use App\Models\Restaurant;
+=======
+>>>>>>> 8c6edc4 (Resolve "Feature - limit in Query.php")
 use App\Models\User;
 
 Router::get('/', static function () {
-    return view('welcome');
+    return view('teaser', ['rest' => Restaurant::randomRestaurant(),
+    ]);
 });
 
 Router::group(['prefix' => 'example'], static function () {
