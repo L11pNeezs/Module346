@@ -5,7 +5,7 @@ use App\Models\Restaurant;
 use App\Models\User;
 
 Router::get('/', static function () {
-    return view('teaser', ['rest' => Restaurant::randomRestaurant(),
+    return view('teaser', ['rest' => Restaurant::getRandomRestaurant(),
     ]);
 });
 
