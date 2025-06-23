@@ -1,6 +1,7 @@
 <?php
 
 use App\Libraries\Core\Router;
+use App\Models\User;
 
 Router::get('/', static function () {
     return view('welcome');
@@ -8,7 +9,7 @@ Router::get('/', static function () {
 
 Router::group(['prefix' => 'example'], static function () {
     Router::get('/', static function () {
-        return view('example.index', ['users' => \App\Models\User::all()]);
+        return view('example.index', ['users' => User::all()]);
     });
 
     Router::post('/create-user', static function () {
@@ -18,13 +19,11 @@ Router::group(['prefix' => 'example'], static function () {
             return view('example.index', ['error' => 'Name and password are required.']);
         }
 
-        $user = new \App\Models\User();
+        $user = new User();
         $user->username = $username;
         $user->password = password_hash($password, PASSWORD_BCRYPT);
         $user->save();
 
         return header('Location: /example');
     });
-
-
 });

@@ -20,7 +20,6 @@ $users ??= [];
         <ul>
             <?php foreach ($users as $user): ?>
                 <li><?= $user->getFullName() ?></li>
-
             <?php endforeach; ?>
         </ul>
     </div>
