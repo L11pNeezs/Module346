@@ -8,6 +8,7 @@ class Query
     protected array $columns;
     protected ?string $type;
     protected array $where = [];
+    protected array $orderBy = [];
     protected array $limit = [];
 
     public function __construct(string $tableName, ?string $type = null)
@@ -42,6 +43,12 @@ class Query
         $this->type = 'insert';
         $this->columns = $data;
         return app('database')->execute($this);
+    }
+
+    public function orderBy(string $command): static
+    {
+        $this->orderBy[] = $command;
+        return $this;
     }
 
     public function setColumns(array $columns): static
@@ -80,6 +87,11 @@ class Query
     public function getWhere()
     {
         return $this->where;
+    }
+
+    public function getOrderBy()
+    {
+        return $this->orderBy;
     }
 
     public function getLimit(): array
