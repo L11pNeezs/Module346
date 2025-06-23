@@ -9,6 +9,7 @@ class Query
     protected ?string $type;
     protected array $where = [];
     protected array $orderBy = [];
+    protected array $limit = [];
 
     public function __construct(string $tableName, ?string $type = null)
     {
@@ -30,6 +31,11 @@ class Query
     public function hasWhere(): bool
     {
         return ! $this->isInsert() && ! empty($this->where);
+    }
+
+    public function hasLimit(): bool
+    {
+        return $this->isSelect() && ! empty($this->limit);
     }
 
     public function insert(array $data): string|false
@@ -83,8 +89,24 @@ class Query
         return $this->where;
     }
 
+    public function getOrderBy()
+    {
+        return $this->orderBy;
+    }
+
+    public function getLimit(): array
+    {
+        return $this->limit;
+    }
+
     public function update(array $data)
     {
         throw new \RuntimeException('Not implemented');
+    }
+
+    public function limit(int $number): static
+    {
+        $this->limit = [$number];
+        return $this;
     }
 }
