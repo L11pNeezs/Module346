@@ -77,10 +77,6 @@ abstract class Model
     public static function randomRestaurant(): string
     {
         $result = DB::select(self::getTableName())
-<<<<<<< HEAD
-            ->orderBy('RANDOM()')
-=======
->>>>>>> 8c6edc4 (Resolve "Feature - limit in Query.php")
             ->limit(1)
             ->get()[0] ?? null;
         return $result['name'] ?? 'No restaurant found';
