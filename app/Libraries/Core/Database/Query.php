@@ -10,6 +10,8 @@ class Query
     protected array $where = [];
     protected array $limit = [];
 
+    protected array $orderBy = [];
+
     public function __construct(string $tableName, ?string $type = null)
     {
         $this->tableName = $tableName;
@@ -35,6 +37,17 @@ class Query
     public function hasLimit(): bool
     {
         return $this->isSelect() && ! empty($this->limit);
+    }
+
+    public function hasOrderBy(): bool
+    {
+        return $this->isSelect() && ! empty($this->orderBy);
+    }
+
+    public function orderBy(string $command): static
+    {
+        $this->orderBy[] = $command;
+        return $this;
     }
 
     public function insert(array $data): string|false
@@ -86,6 +99,12 @@ class Query
     {
         return $this->limit;
     }
+
+    public function getOrderBy(): array
+    {
+        return $this->orderBy;
+    }
+
 
     public function update(array $data)
     {
