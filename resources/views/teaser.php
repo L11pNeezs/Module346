@@ -17,7 +17,7 @@
         <div class="teaser">
             <p>🍽️ LSEat is almost ready!</p>
             <p>We're cooking up something tasty behind the scenes — the full app will be live soon.</p>
-            <p>But for today, we think you should eat at <strong><?= $rest ?></strong></p>
+            <p>But for today, we think you should eat at <strong><?= $restaurant ?></strong></p>
         </div>
     </div>
 </section>
