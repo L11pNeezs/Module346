@@ -103,6 +103,17 @@ final class PostgresDatabase extends AbstractDatabase
             }
         }
 
+        if ($query->hasLimit()) {
+            $limit = $query->getLimit();
+
+            $sql .= ' LIMIT ' . (int) $limit[0];
+
+            if (isset($limit[1])) {
+                $sql .= ' OFFSET ' . (int) $limit[1];
+            }
+        }
+
+
         if ($result = $this->query($sql)) {
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
