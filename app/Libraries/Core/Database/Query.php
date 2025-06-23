@@ -8,7 +8,7 @@ class Query
     protected array $columns;
     protected ?string $type;
     protected array $where = [];
-    protected array $limit = [];
+    protected array $orderBy = [];
 
     public function __construct(string $tableName, ?string $type = null)
     {
@@ -32,16 +32,17 @@ class Query
         return ! $this->isInsert() && ! empty($this->where);
     }
 
-    public function hasLimit(): bool
-    {
-        return $this->isSelect() && ! empty($this->limit);
-    }
-
     public function insert(array $data): string|false
     {
         $this->type = 'insert';
         $this->columns = $data;
         return app('database')->execute($this);
+    }
+
+    public function orderBy(string $command): static
+    {
+        $this->orderBy[] = $command;
+        return $this;
     }
 
     public function setColumns(array $columns): static
@@ -82,19 +83,8 @@ class Query
         return $this->where;
     }
 
-    public function getLimit(): array
-    {
-        return $this->limit;
-    }
-
     public function update(array $data)
     {
         throw new \RuntimeException('Not implemented');
-    }
-
-    public function limit(int $number): static
-    {
-        $this->limit = [$number];
-        return $this;
     }
 }
