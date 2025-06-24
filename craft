@@ -3,7 +3,7 @@
 
 use App\Libraries\Core\Application;
 
-require __DIR__ . '/app/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 if (PHP_SAPI !== 'cli') {
     throw new RuntimeException('This script can only be run from the command line.');

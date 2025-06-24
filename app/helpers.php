@@ -47,9 +47,9 @@ if(! function_exists('dd')) {
 }
 
 if(! function_exists('request')) {
-    function request(): \app\Libraries\Core\Http\Request
+    function request(): \App\Libraries\Core\Http\Request
     {
-        return \app\Libraries\Core\Http\Request::fromServer();
+        return \App\Libraries\Core\Http\Request::fromServer();
     }
 }
 

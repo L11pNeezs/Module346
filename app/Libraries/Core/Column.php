@@ -2,7 +2,7 @@
 
 namespace App\Libraries\Core;
 
-use app\Libraries\Core\Database\Type;
+use App\Libraries\Core\Database\Type;
 
 class Column
 {

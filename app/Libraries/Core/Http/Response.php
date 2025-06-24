@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Libraries\Core\Http;
+namespace App\Libraries\Core\Http;
 
 use JsonException;
 use RuntimeException;

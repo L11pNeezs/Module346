@@ -1,0 +1,28 @@
+{
+    "name": "liip/time-to-eat-ls",
+    "description": "description tbd",
+    "type": "project",
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "laravel/pint": "^1.22"
+    },
+    "scripts": {
+        "tests": [
+            "@cs:check",
+            "@phpstan:check"
+        ],
+        "phpstan:check": [
+            "Composer\\Config::disableProcessTimeout",
+            "composer dump-autoload",
+            "vendor/bin/phpstan analyse -v --memory-limit=-1"
+        ],
+        "cs:check": "pint --test",
+        "cs:check:verbose": "pint --test -v",
+        "cs:fix": "pint"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

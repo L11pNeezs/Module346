@@ -2,9 +2,9 @@
 
 namespace App\Libraries\Core;
 
-use app\Libraries\Core\Console\AbstractCommand;
+use App\Libraries\Core\Console\AbstractCommand;
 use App\Libraries\Core\Facades\DB;
-use app\Libraries\Core\Http\Request;
+use App\Libraries\Core\Http\Request;
 use RuntimeException;
 
 final class Application {

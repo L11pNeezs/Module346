@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use app\Libraries\Core\Console\AbstractCommand;
+use App\Libraries\Core\Console\AbstractCommand;
 use App\Libraries\Core\Database\Schema;
 use App\Libraries\Core\Facades\DB;
 use App\Models\Migration;
