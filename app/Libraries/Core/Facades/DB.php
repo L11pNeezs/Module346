@@ -17,11 +17,11 @@ final class DB
 
     public static function fromConfig(string $driver, mixed $databaseConfig): AbstractDatabase|PostgresDatabase
     {
-        if(! in_array($driver, ['pgsql', 'mysql'])) {
-            throw new RuntimeException('Unsupported database driver: ' . $driver);
+        if (! in_array($driver, ['pgsql', 'mysql'])) {
+            throw new RuntimeException('Unsupported database driver: '.$driver);
         }
 
-        return match($driver) {
+        return match ($driver) {
             'pgsql' => PostgresDatabase::fromConfig($databaseConfig),
         };
     }

@@ -1,5 +1,5 @@
 <?php
-    $users ??= [];
+$users ??= [];
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,9 +20,9 @@
 
     <h2>Users</h2>
     <ul>
-        <?php foreach ($users as $user): ?>
+        <?php foreach ($users as $user) { ?>
             <li><?= var_dump($user) ?></li>
-        <?php endforeach; ?>
+        <?php } ?>
     </ul>
 </body>
 </html>

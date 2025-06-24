@@ -3,10 +3,8 @@
 namespace App\Libraries\Core\Database;
 
 use App\Libraries\Core\Column;
-use App\Models\Restaurant;
 use PDO;
 use PDOStatement;
-use PgSql\Result;
 use RuntimeException;
 
 final class PostgresDatabase extends AbstractDatabase
@@ -27,10 +25,10 @@ final class PostgresDatabase extends AbstractDatabase
 
         /** @var Column $column */
         foreach ($columns as $column) {
-            $sql .= $column->getDefinition() . ",";
+            $sql .= $column->getDefinition().',';
         }
 
-        $sql = rtrim($sql, ',') . ");";
+        $sql = rtrim($sql, ',').');';
 
         $this->query($sql);
     }
@@ -68,10 +66,11 @@ final class PostgresDatabase extends AbstractDatabase
     {
         $tableName = $query->tableName;
         $columns = implode(', ', array_keys($query->getColumns()));
-        $values = implode(', ', array_map(fn($value) => $this->connection->quote($value), array_values($query->getColumns())));
+        $values = implode(', ', array_map(fn ($value) => $this->connection->quote($value), array_values($query->getColumns())));
 
         $sql = sprintf('INSERT INTO "%s" (%s) VALUES (%s)', $tableName, $columns, $values);
         $this->query($sql);
+
         return $this->connection->lastInsertId();
     }
 
@@ -98,28 +97,26 @@ final class PostgresDatabase extends AbstractDatabase
                     $this->connection->quote($where['value']),
                 );
                 if (++$i !== $numItems) {
-                    $sql .= ' ' . $where['logical'];
+                    $sql .= ' '.$where['logical'];
                 }
 
             }
         }
 
-        if($query->hasOrderBy()) {
+        if ($query->hasOrderBy()) {
             $command = $query->getOrderBy();
-            $sql .= ' ORDER BY ' . $command[0];
+            $sql .= ' ORDER BY '.$command[0];
         }
 
         if ($query->hasLimit()) {
             $limit = $query->getLimit();
 
-            $sql .= ' LIMIT ' . (int) $limit[0];
+            $sql .= ' LIMIT '.(int) $limit[0];
 
             if (isset($limit[1])) {
-                $sql .= ' OFFSET ' . (int) $limit[1];
+                $sql .= ' OFFSET '.(int) $limit[1];
             }
         }
-
-
 
         if ($result = $this->query($sql)) {
             return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -149,7 +146,7 @@ final class PostgresDatabase extends AbstractDatabase
                 $this->connection->quote($where['value']),
             );
             if (++$i !== $numItems) {
-                $sql .= ' ' . $where['logical'];
+                $sql .= ' '.$where['logical'];
             }
         }
         $this->query($sql);
@@ -168,7 +165,7 @@ final class PostgresDatabase extends AbstractDatabase
         }
 
         if ($query->isDelete()) {
-        return $this->executeDelete($query);
+            return $this->executeDelete($query);
         }
 
         throw new RuntimeException('Unsupported query type');

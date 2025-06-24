@@ -18,7 +18,8 @@ final class Container
 
     /**
      * @template T of object
-     * @param class-string<T>|string $id
+     *
+     * @param  class-string<T>|string  $id
      * @return T|object
      */
     public function get(string $id): mixed
@@ -28,8 +29,8 @@ final class Container
 
     /**
      * @template T of object
-     * @param class-string<T>|string $id
-     * @param mixed $instance
+     *
+     * @param  class-string<T>|string  $id
      * @return T|object
      */
     public function set(string $id, mixed $instance): mixed
@@ -47,16 +48,16 @@ final class Container
     }
 
     /**
-    * @template T of object
-    * @param class-string<T>|string $id
-    * @param array $providers
-    * @return T|object
-    */
+     * @template T of object
+     *
+     * @param  class-string<T>|string  $id
+     * @return T|object
+     */
     public function make(string $id, array $providers = []): mixed
     {
         try {
             $reflection = new ReflectionClass($id);
-            if (!$reflection->isInstantiable()) {
+            if (! $reflection->isInstantiable()) {
                 throw new RuntimeException("Class {$id} is not instantiable.");
             }
 
@@ -73,7 +74,7 @@ final class Container
                         throw new RuntimeException("Cannot resolve parameter: {$parameter->getName()}");
                     }
 
-                    if($type->isBuiltin()) {
+                    if ($type->isBuiltin()) {
                         continue;
                     }
 
@@ -90,9 +91,10 @@ final class Container
             }
 
             $this->instances[$id] = $instance;
+
             return $instance;
         } catch (ReflectionException $e) {
-            throw new RuntimeException("Error creating instance of {$id}: " . $e->getMessage());
+            throw new RuntimeException("Error creating instance of {$id}: ".$e->getMessage());
         }
     }
 }

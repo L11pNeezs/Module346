@@ -7,8 +7,11 @@ use App\Libraries\Core\Database\Type;
 class Column
 {
     public string $name;
+
     public Type $type;
+
     public bool $nullable = false;
+
     public bool $primary = false;
 
     public function __construct(string $name, Type $type, bool $nullable = false, bool $primary = false)

@@ -29,7 +29,7 @@ class Configuration
     protected function getAllConfigFiles(): array
     {
         $configFiles = [];
-        $configDir = __DIR__ . '/../../../config';
+        $configDir = __DIR__.'/../../../config';
 
         if (! is_dir($configDir)) {
             return $configFiles;
@@ -38,7 +38,7 @@ class Configuration
         $files = scandir($configDir);
         foreach ($files as $file) {
             if (pathinfo($file, PATHINFO_EXTENSION) === 'php') {
-                $configFiles[] = $configDir . '/' . $file;
+                $configFiles[] = $configDir.'/'.$file;
             }
         }
 
@@ -47,7 +47,7 @@ class Configuration
 
     protected function getConfigFileValues(string $filePath): array
     {
-        if (!file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             return [];
         }
 
@@ -55,7 +55,7 @@ class Configuration
         $configValues = [];
 
         if ($configContent) {
-            $configValues = include($filePath);
+            $configValues = include $filePath;
         }
 
         return is_array($configValues) ? $configValues : [];

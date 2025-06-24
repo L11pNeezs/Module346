@@ -8,9 +8,13 @@ use RuntimeException;
 class Request
 {
     public string $method;
+
     public string $uri;
+
     public array $headers;
+
     public array $queryParams;
+
     public array $bodyParams;
 
     private function __construct(string $method, string $uri, array $headers = [], array $queryParams = [], array $bodyParams = [])
@@ -53,8 +57,8 @@ class Request
 
     public string $path
         {
-            get => parse_url($this->uri, PHP_URL_PATH);
-        }
+        get => parse_url($this->uri, PHP_URL_PATH);
+    }
 
     public function all(): array
     {

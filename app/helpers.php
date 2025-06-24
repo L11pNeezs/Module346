@@ -7,20 +7,20 @@ use App\Libraries\Core\Container;
 use App\Libraries\Core\Debugger;
 use App\Libraries\Core\Dotenv;
 
-if(! function_exists('app')) {
+if (! function_exists('app')) {
     /**
      * @template T of object
-     * @param class-string<T>|string $id
-     * @param mixed $instance
+     *
+     * @param  class-string<T>|string  $id
      * @return T|object
      */
     function app(string $id, mixed $instance = null): mixed
     {
-        if(! $instance) {
+        if (! $instance) {
             return Container::getInstance()->get($id);
         }
 
-        if(is_callable($instance) || is_object($instance)) {
+        if (is_callable($instance) || is_object($instance)) {
             return Container::getInstance()->set($id, $instance);
         }
 
@@ -28,40 +28,42 @@ if(! function_exists('app')) {
     }
 }
 
-if(! function_exists('view')) {
+if (! function_exists('view')) {
     function view(string $view, array $data = []): string
     {
         ob_start();
         extract($data);
         $view = str_replace('.', '/', $view);
-        include __DIR__ . "/../resources/views/{$view}.php";
+        include __DIR__."/../resources/views/{$view}.php";
+
         return ob_get_clean();
     }
 }
 
-if(! function_exists('dd')) {
+if (! function_exists('dd')) {
     function dd(...$args): void
     {
         Debugger::debugAndDie(...$args);
     }
 }
 
-if(! function_exists('request')) {
+if (! function_exists('request')) {
     function request(): \App\Libraries\Core\Http\Request
     {
         return \App\Libraries\Core\Http\Request::fromServer();
     }
 }
 
-if(! function_exists('env')) {
+if (! function_exists('env')) {
     function env(string $name, mixed $default = null): mixed
     {
         $value = Dotenv::get($name);
+
         return $value !== false ? $value : $default;
     }
 }
 
-if(! function_exists('config')) {
+if (! function_exists('config')) {
     function config(string $name, mixed $default = null): mixed
     {
         return Configuration::get($name, $default);

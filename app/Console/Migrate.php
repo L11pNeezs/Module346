@@ -4,13 +4,13 @@ namespace App\Console;
 
 use App\Libraries\Core\Console\AbstractCommand;
 use App\Libraries\Core\Database\Schema;
-use App\Libraries\Core\Facades\DB;
 use App\Models\Migration;
 use RuntimeException;
 
 class Migrate extends AbstractCommand
 {
     public string $signature = 'migrate {-d} {-h}';
+
     public string $description = 'Run database migrations';
 
     public function handle(): int
@@ -22,14 +22,14 @@ class Migrate extends AbstractCommand
 
         $executedMigrations = $this->getDoneMigrations();
 
-        $migrationDir = __DIR__ . '/../../database/migrations';
-        $migrationFiles = glob($migrationDir . '/*.php');
+        $migrationDir = __DIR__.'/../../database/migrations';
+        $migrationFiles = glob($migrationDir.'/*.php');
         foreach ($migrationFiles as $file) {
             $fileName = basename($file, '.php');
 
             $migrationClass = include $file;
-            /**  @var \App\Libraries\Core\Database\Migration $migration */
-            $migration = new $migrationClass();
+            /** @var \App\Libraries\Core\Database\Migration $migration */
+            $migration = new $migrationClass;
             if (! $migration instanceof \App\Libraries\Core\Database\Migration) {
                 throw new RuntimeException("Migration in file $file is not a valid Migration class.");
             }
@@ -62,9 +62,9 @@ class Migrate extends AbstractCommand
         if (! $this->arguments()['h']) {
             return;
         }
-        echo "Usage: {$this->signature}\n" .
-            "Options:\n" .
-            "  -d    Drop the database before running migrations\n" .
+        echo "Usage: {$this->signature}\n".
+            "Options:\n".
+            "  -d    Drop the database before running migrations\n".
             "  -h    Show this help message\n";
         exit(0);
     }
@@ -75,7 +75,7 @@ class Migrate extends AbstractCommand
             return;
         }
 
-        echo 'Dropping all tables in the database...' . PHP_EOL;
+        echo 'Dropping all tables in the database...'.PHP_EOL;
         Schema::dropAllTables();
     }
 }

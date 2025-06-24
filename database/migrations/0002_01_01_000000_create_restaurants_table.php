@@ -3,10 +3,9 @@
 use App\Libraries\Core\Database\Blueprint;
 use App\Libraries\Core\Database\Migration;
 use App\Libraries\Core\Database\Schema;
-use App\Models\Restaurant;
 
-return new class extends Migration {
-
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('restaurants', function (Blueprint $table) {

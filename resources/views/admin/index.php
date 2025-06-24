@@ -16,9 +16,9 @@ $migrations ??= [];
         <h1>Admin Dashboard</h1>
         <h2>Migrations</h2>
         <ul>
-            <?php foreach ($migrations as $migration): ?>
+            <?php foreach ($migrations as $migration) { ?>
                 <li><?= htmlspecialchars($migration->name) ?></li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ul>
     </div>
 </body>

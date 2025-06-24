@@ -8,6 +8,7 @@ use App\Libraries\Core\Router;
 class ShowRoutes extends AbstractCommand
 {
     public string $signature = 'routes:show';
+
     public string $description = 'Show all registered routes';
 
     public function handle(): int
@@ -15,7 +16,7 @@ class ShowRoutes extends AbstractCommand
         $routes = app(Router::class)->getRoutes();
 
         foreach ($routes as $method => $uris) {
-            foreach ($uris as $uri=>$args) {
+            foreach ($uris as $uri => $args) {
                 echo sprintf(
                     "%s %s -> %s\n",
                     $method,

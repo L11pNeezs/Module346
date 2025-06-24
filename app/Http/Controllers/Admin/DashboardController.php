@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Models\Migration;
-use App\Models\Restaurant;
 use App\Models\User;
-
 
 class DashboardController extends AbstractController
 {
@@ -17,6 +15,7 @@ class DashboardController extends AbstractController
         ]);
 
     }
+
     public function showUsers()
     {
         return view('admin.showUsers', [

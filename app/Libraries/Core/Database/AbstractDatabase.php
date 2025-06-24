@@ -7,9 +7,13 @@ use PDO;
 abstract class AbstractDatabase
 {
     protected string $host;
+
     protected string $username;
+
     protected string $password;
+
     protected string $database;
+
     protected string $port;
 
     protected ?PDO $connection;
@@ -38,5 +42,5 @@ abstract class AbstractDatabase
 
     abstract public function execute(Query $query): mixed;
 
-    abstract function createTable(string $tableName, array $columns): void;
+    abstract public function createTable(string $tableName, array $columns): void;
 }

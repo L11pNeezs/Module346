@@ -5,6 +5,7 @@ namespace App\Libraries\Core\Console;
 abstract class AbstractCommand
 {
     public string $signature;
+
     public string $description;
 
     abstract public function handle(): int;
