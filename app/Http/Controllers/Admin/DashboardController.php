@@ -7,6 +7,7 @@ use App\Models\Migration;
 use App\Models\Restaurant;
 use App\Models\User;
 
+
 class DashboardController extends AbstractController
 {
     public function index(): string

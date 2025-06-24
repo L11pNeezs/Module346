@@ -92,4 +92,16 @@ abstract class Model
 
         return self::create($data);
     }
+
+    public function delete(): string
+    {
+        $data = $this->data;
+        if (!isset($data['id'])) {
+            Throw new RuntimeException('Failed to delete model instance.');
+        }
+
+        return DB::table(self::getTableName())
+            ->where('id', '=', $data['id'])
+            ->delete($data);
+    }
 }

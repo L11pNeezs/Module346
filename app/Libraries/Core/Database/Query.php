@@ -29,6 +29,11 @@ class Query
         return $this->type === 'insert';
     }
 
+    public function isDelete(): bool
+    {
+        return $this->type === 'delete';
+    }
+
     public function hasWhere(): bool
     {
         return ! $this->isInsert() && ! empty($this->where);
@@ -111,9 +116,10 @@ class Query
         throw new \RuntimeException('Not implemented');
     }
 
-    public function limit(int $number): static
+    public function delete($data): string
     {
-        $this->limit = [$number];
-        return $this;
+        $this->type = 'delete';
+        $this->columns = $data;
+        return app('database')->execute($this);
     }
 }
