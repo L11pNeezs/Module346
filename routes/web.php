@@ -28,4 +28,5 @@ Router::group(['prefix' => 'example'], static function () {
 
         return header('Location: /example');
     });
+
 });
