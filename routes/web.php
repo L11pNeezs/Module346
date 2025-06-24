@@ -9,6 +9,10 @@ Router::get('/', static function () {
     ]);
 });
 
+Router::get('/login', static function () {
+    return view('homepage');
+});
+
 Router::group(['prefix' => 'example'], static function () {
     Router::get('/', static function () {
         return view('example.index', ['users' => User::all()]);
