@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use app\Libraries\Core\Http\Controller\AbstractController;
+use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Models\Migration;
 use App\Models\Restaurant;
 use App\Models\User;

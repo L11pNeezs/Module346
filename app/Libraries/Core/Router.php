@@ -2,9 +2,9 @@
 
 namespace App\Libraries\Core;
 
-use app\Libraries\Core\Http\Controller\AbstractController;
-use app\Libraries\Core\Http\Request;
-use app\Libraries\Core\Http\Response;
+use App\Libraries\Core\Http\Controller\AbstractController;
+use App\Libraries\Core\Http\Request;
+use App\Libraries\Core\Http\Response;
 use App\Libraries\Core\Traits\HasSingleton;
 use Closure;
 use RuntimeException;

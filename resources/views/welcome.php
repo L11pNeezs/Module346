@@ -10,6 +10,6 @@
 </head>
 <body>
     <h1>Welcome</h1>
-    <p>This is a simple PHP application.</p>
+    <p>This is a simple PHP application test.</p>
 </body>
 </html>

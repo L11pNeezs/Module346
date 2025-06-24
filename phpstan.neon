@@ -1,0 +1,13 @@
+parameters:
+    tipsOfTheDay: false
+    level: 8
+    paths:
+        - app/
+        - resources/
+        - routes/
+    excludePaths:
+        - app/Libraries/*
+
+    bootstrapFiles:
+        - vendor/autoload.php
+
