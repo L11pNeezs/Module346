@@ -128,6 +128,35 @@ final class PostgresDatabase extends AbstractDatabase
         return [];
     }
 
+    protected function executeDelete(Query $query): string
+    {
+        $sql = sprintf(
+            'DELETE FROM %s',
+            $query->tableName,
+        );
+
+        $sql .= ' WHERE ';
+
+        $whereParameters = $query->getWhere();
+        $numItems = count($whereParameters);
+        $i = 0;
+
+        foreach ($whereParameters as $where) {
+            $sql .= sprintf(
+                '%s %s %s',
+                $where['column'],
+                $where['operator'],
+                $this->connection->quote($where['value']),
+            );
+            if (++$i !== $numItems) {
+                $sql .= ' ' . $where['logical'];
+            }
+        }
+        $this->query($sql);
+
+        return 'Deleted Successfully';
+    }
+
     public function execute(Query $query): mixed
     {
         if ($query->isInsert()) {
@@ -136,6 +165,10 @@ final class PostgresDatabase extends AbstractDatabase
 
         if ($query->isSelect()) {
             return $this->executeSelect($query);
+        }
+
+        if ($query->isDelete()) {
+        return $this->executeDelete($query);
         }
 
         throw new RuntimeException('Unsupported query type');
