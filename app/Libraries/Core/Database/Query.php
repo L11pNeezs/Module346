@@ -124,10 +124,9 @@ class Query
         throw new \RuntimeException('Not implemented');
     }
 
-    public function delete($data): string
+    public function delete(): string
     {
         $this->type = 'delete';
-        $this->columns = $data;
 
         return app('database')->execute($this);
     }
