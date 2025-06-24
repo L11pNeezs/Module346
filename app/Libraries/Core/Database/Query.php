@@ -122,4 +122,11 @@ class Query
         $this->columns = $data;
         return app('database')->execute($this);
     }
+
+    public function limit(int $number): static
+    {
+        $this->limit = [$number];
+        return $this;
+    }
+
 }
