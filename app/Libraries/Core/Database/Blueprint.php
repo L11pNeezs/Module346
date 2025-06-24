@@ -8,6 +8,7 @@ use App\Libraries\Core\Facades\DB;
 class Blueprint
 {
     private string $tableName;
+
     private array $columns = [];
 
     public function __construct(string $tableName)

@@ -25,9 +25,9 @@ class Dotenv
 
     protected function getEnvFileValues(?string $filePath = null): array
     {
-        $filePath ??= __DIR__ . '/../../../.env';
+        $filePath ??= __DIR__.'/../../../.env';
 
-        if(! file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             return [];
         }
 

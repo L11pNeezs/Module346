@@ -21,7 +21,7 @@ Router::group(['prefix' => 'example'], static function () {
             return view('example.index', ['error' => 'Name and password are required.']);
         }
 
-        $user = new User();
+        $user = new User;
         $user->username = $username;
         $user->password = password_hash($password, PASSWORD_BCRYPT);
         $user->save();

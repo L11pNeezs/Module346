@@ -17,9 +17,9 @@ $users ??= [];
         <h1>Admin Dashboard</h1>
         <h2>Users</h2>
         <ul>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($users as $user) { ?>
                 <li><?= $user->getFullName() ?></li>
-            <?php endforeach; ?>
+            <?php } ?>
         </ul>
     </div>
 </body>

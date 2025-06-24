@@ -5,7 +5,6 @@ namespace App\Libraries\Core;
 use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Libraries\Core\Http\Request;
 use App\Libraries\Core\Http\Response;
-use App\Libraries\Core\Traits\HasSingleton;
 use Closure;
 use RuntimeException;
 
@@ -29,9 +28,9 @@ class Router
         if (is_array($route)) {
             [$controller, $action] = $route;
 
-            $controller = new $controller();
-            if(! $controller instanceof AbstractController) {
-                throw new RuntimeException('Class '. $controller::class . ' is not a valid Controller');
+            $controller = new $controller;
+            if (! $controller instanceof AbstractController) {
+                throw new RuntimeException('Class '.$controller::class.' is not a valid Controller');
             }
 
             $response = $controller->$action();
@@ -43,7 +42,7 @@ class Router
             return Response::fromString($response);
         }
 
-        if(is_array($response)) {
+        if (is_array($response)) {
             return Response::fromArray($response);
         }
 
@@ -58,7 +57,6 @@ class Router
     {
         app(self::class)->setGroup($options, $routes);
     }
-
 
     public static function get($url, array|Closure $route): void
     {
@@ -95,7 +93,7 @@ class Router
             }
 
             if ($option === 'prefix') {
-                $this->groupOptions['prefix'] .= '/' . $options[$option];
+                $this->groupOptions['prefix'] .= '/'.$options[$option];
             }
         }
 
@@ -107,10 +105,10 @@ class Router
     protected function addRoute(string $method, string $url, array|Closure $route): void
     {
         if ($this->groupOptions['prefix']) {
-            $url = $this->groupOptions['prefix'] . $url;
+            $url = $this->groupOptions['prefix'].$url;
         }
 
-        if($url !== '/' && str_ends_with($url, '/')) {
+        if ($url !== '/' && str_ends_with($url, '/')) {
             $url = substr($url, 0, -1);
         }
 
@@ -119,7 +117,7 @@ class Router
 
     protected function getRoute(string $method, string $path): array|Closure|null
     {
-        return self::$routes[$method][$path] ?? self::$routes[$method][$path . '/'] ?? null;
+        return self::$routes[$method][$path] ?? self::$routes[$method][$path.'/'] ?? null;
     }
 
     public function getRoutes(): array

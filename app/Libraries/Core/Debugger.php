@@ -19,8 +19,8 @@ class Debugger
     {
         set_exception_handler(static function ($exception) {
             echo '<pre>';
-            echo 'Uncaught Exception: ' . $exception->getMessage() . "\n";
-            echo 'Stack trace:' . "\n";
+            echo 'Uncaught Exception: '.$exception->getMessage()."\n";
+            echo 'Stack trace:'."\n";
             echo $exception->getTraceAsString();
             echo '</pre>';
             exit;

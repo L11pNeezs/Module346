@@ -11,7 +11,7 @@ class Migration extends Model
     public static function createIfNotExists(): void
     {
         $isTableExists = Schema::hasTable(self::getTableName());
-        if($isTableExists) {
+        if ($isTableExists) {
             return;
         }
 

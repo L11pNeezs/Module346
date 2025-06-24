@@ -8,7 +8,6 @@ class User extends Model
 {
     public function getFullName(): string
     {
-         return $this->name . ' - ' . $this->surname;
+        return $this->name.' - '.$this->surname;
     }
-
 }

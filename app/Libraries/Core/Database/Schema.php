@@ -7,9 +7,7 @@ use Closure;
 
 class Schema
 {
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function create(string $table, Closure $callback): void
     {
@@ -24,12 +22,13 @@ class Schema
         $tables = DB::select('information_schema.tables')
             ->where('table_schema', '=', 'public')
             ->get();
-        return array_map(static fn($table) => $table['table_name'], $tables);
+
+        return array_map(static fn ($table) => $table['table_name'], $tables);
     }
 
     public static function hasTable(string $name): bool
     {
-        return array_any(self::getAllTables(), static fn($table) => $table['table_name'] === $name);
+        return array_any(self::getAllTables(), static fn ($table) => $table['table_name'] === $name);
     }
 
     public static function dropAllTables(): void

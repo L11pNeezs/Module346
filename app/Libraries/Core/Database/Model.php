@@ -2,7 +2,6 @@
 
 namespace App\Libraries\Core\Database;
 
-use AllowDynamicProperties;
 use App\Libraries\Core\Facades\DB;
 use ReflectionClass;
 use RuntimeException;
@@ -10,6 +9,7 @@ use RuntimeException;
 abstract class Model
 {
     protected array $data = [];
+
     public bool $timestamps = true;
 
     public function __get(string $name): mixed
@@ -17,9 +17,9 @@ abstract class Model
         return $this->data[$name] ?? null;
     }
 
-    public function __set(string $name, mixed $value):void
+    public function __set(string $name, mixed $value): void
     {
-      $this->data[$name] = $value;
+        $this->data[$name] = $value;
     }
 
     public function __isset(string $name): bool
@@ -30,7 +30,8 @@ abstract class Model
     public static function getTableName(): string
     {
         $class = new ReflectionClass(static::class)->getShortName();
-        return sprintf("%ss", strtolower($class));
+
+        return sprintf('%ss', strtolower($class));
     }
 
     public static function all(): array
@@ -38,10 +39,11 @@ abstract class Model
         $results = DB::select(self::getTableName())->get();
 
         return array_map(static function ($result) {
-            $model = new static();
+            $model = new static;
             foreach ($result as $key => $value) {
                 $model->{$key} = $value;
             }
+
             return $model;
         }, $results);
     }
@@ -56,10 +58,11 @@ abstract class Model
             return null;
         }
 
-        $model = new static();
+        $model = new static;
         foreach ($result as $key => $value) {
             $model->{$key} = $value;
         }
+
         return $model;
     }
 
@@ -73,7 +76,6 @@ abstract class Model
 
         return self::find($id);
     }
-
 
     public function save(): self
     {
@@ -96,8 +98,8 @@ abstract class Model
     public function delete(): string
     {
         $data = $this->data;
-        if (!isset($data['id'])) {
-            Throw new RuntimeException('Failed to delete model instance.');
+        if (! isset($data['id'])) {
+            throw new RuntimeException('Failed to delete model instance.');
         }
 
         return DB::table(self::getTableName())

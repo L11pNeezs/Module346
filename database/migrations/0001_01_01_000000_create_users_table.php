@@ -3,7 +3,6 @@
 use App\Libraries\Core\Database\Blueprint;
 use App\Libraries\Core\Database\Migration;
 use App\Libraries\Core\Database\Schema;
-use App\Models\User;
 
 return new class extends Migration
 {

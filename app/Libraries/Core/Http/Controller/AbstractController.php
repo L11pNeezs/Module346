@@ -2,7 +2,4 @@
 
 namespace App\Libraries\Core\Http\Controller;
 
-abstract class AbstractController
-{
-
-}
+abstract class AbstractController {}

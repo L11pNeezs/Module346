@@ -5,9 +5,13 @@ namespace App\Libraries\Core\Database;
 class Query
 {
     public string $tableName;
+
     protected array $columns;
+
     protected ?string $type;
+
     protected array $where = [];
+
     protected array $limit = [];
 
     protected array $orderBy = [];
@@ -52,6 +56,7 @@ class Query
     public function orderBy(string $command): static
     {
         $this->orderBy[] = $command;
+
         return $this;
     }
 
@@ -59,12 +64,14 @@ class Query
     {
         $this->type = 'insert';
         $this->columns = $data;
+
         return app('database')->execute($this);
     }
 
     public function setColumns(array $columns): static
     {
         $this->columns = $columns;
+
         return $this;
     }
 
@@ -86,12 +93,14 @@ class Query
             'value' => $value,
             'logical' => 'AND',
         ];
+
         return $this;
     }
 
     public function get(): array
     {
         $this->type = 'select';
+
         return app('database')->execute($this);
     }
 
@@ -110,7 +119,6 @@ class Query
         return $this->orderBy;
     }
 
-
     public function update(array $data)
     {
         throw new \RuntimeException('Not implemented');
@@ -120,13 +128,14 @@ class Query
     {
         $this->type = 'delete';
         $this->columns = $data;
+
         return app('database')->execute($this);
     }
 
     public function limit(int $number): static
     {
         $this->limit = [$number];
+
         return $this;
     }
-
 }

@@ -7,8 +7,8 @@ use App\Libraries\Core\Facades\DB;
 use App\Libraries\Core\Http\Request;
 use RuntimeException;
 
-final class Application {
-
+final class Application
+{
     private Container $container;
 
     public function __construct(
@@ -26,7 +26,7 @@ final class Application {
     {
         $container = Container::getInstance();
         $app = $container->make(self::class, [
-            Container::class => fn() => $container
+            Container::class => fn () => $container,
         ]);
 
         $app->loadRoutes();
@@ -34,9 +34,9 @@ final class Application {
         app('database', static function () {
             $defaultDatabase = config('database.default', 'pgsql');
             $databaseConfig = config("database.connections.$defaultDatabase", []);
+
             return DB::fromConfig($defaultDatabase, $databaseConfig);
         });
-
 
         return $app;
     }
@@ -57,15 +57,15 @@ final class Application {
 
     public function handleCommand(): int
     {
-        $dir = __DIR__ . '/../../Console';
+        $dir = __DIR__.'/../../Console';
         $files = scandir($dir);
         $commands = [];
         foreach ($files as $file) {
-            if (! is_file($dir . '/' . $file) || pathinfo($file, PATHINFO_EXTENSION) !== 'php') {
+            if (! is_file($dir.'/'.$file) || pathinfo($file, PATHINFO_EXTENSION) !== 'php') {
                 continue;
             }
 
-            $className = 'App\\Console\\' . pathinfo($file, PATHINFO_FILENAME);
+            $className = 'App\\Console\\'.pathinfo($file, PATHINFO_FILENAME);
             $instance = $this->container->make($className);
             if (! $instance instanceof AbstractCommand) {
                 continue;
@@ -75,7 +75,7 @@ final class Application {
 
         $command = $_SERVER['argv'][1] ?? null;
 
-        if(! array_key_exists($command, $commands)) {
+        if (! array_key_exists($command, $commands)) {
             throw new RuntimeException('Command not found');
         }
 
@@ -84,12 +84,12 @@ final class Application {
 
     private function loadHelpers(): void
     {
-        require_once __DIR__ . '/../../helpers.php';
+        require_once __DIR__.'/../../helpers.php';
     }
 
     private function loadRoutes(): void
     {
-        require_once __DIR__ . '/../../../routes/web.php';
-        require_once __DIR__ . '/../../../routes/admin.php';
+        require_once __DIR__.'/../../../routes/web.php';
+        require_once __DIR__.'/../../../routes/admin.php';
     }
 }
