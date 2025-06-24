@@ -104,6 +104,6 @@ abstract class Model
 
         return DB::table(self::getTableName())
             ->where('id', '=', $data['id'])
-            ->delete($data);
+            ->delete();
     }
 }
