@@ -114,7 +114,7 @@ final class PostgresDatabase extends AbstractDatabase
         );
 
         if (!$query->hasWhere()) {
-            Throw new RuntimeException('Query condition missing!');
+            throw new RuntimeException('Query condition missing!');
         }
 
         $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
@@ -144,6 +144,38 @@ final class PostgresDatabase extends AbstractDatabase
         return $sql;
     }
 
+    protected function executeUpdate(Query $query): string
+    {
+        $sql = sprintf(
+            'UPDATE %s SET ',
+            $query->tableName,
+        );
+
+        $columns = array_keys($query->getColumns());
+        $values = array_map(fn ($value) => $this->connection->quote($value), array_values($query->getColumns()));
+        $assignments = array_combine($columns, $values);
+        $numAssignments = count($assignments);
+        $i = 0;
+
+        foreach ($assignments as $column => $value) {
+            $sql .= sprintf(
+                '%s = %s',
+                $column,
+                $value,
+            );
+            if (++$i !== $numAssignments) {
+                $sql .= ', ';
+            }
+        }
+
+        if (!$query->hasWhere()) {
+            throw new RuntimeException('Query condition missing!');
+        }
+
+        $this->hydrateWhere($sql, $query);
+        return 'Updated Successfully';
+    }
+
     public function execute(Query $query): mixed
     {
         if ($query->isInsert()) {
@@ -156,6 +188,10 @@ final class PostgresDatabase extends AbstractDatabase
 
         if ($query->isDelete()) {
             return $this->executeDelete($query);
+        }
+
+        if ($query->isUpdate()) {
+            return $this->executeUpdate($query);
         }
 
         throw new RuntimeException('Unsupported query type');

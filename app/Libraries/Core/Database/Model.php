@@ -77,7 +77,7 @@ abstract class Model
         return self::find($id);
     }
 
-    public function save(): self
+    public function save(): self|string
     {
         $data = $this->data;
         if ($this->timestamps) {

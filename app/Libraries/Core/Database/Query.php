@@ -39,6 +39,11 @@ class Query
         return $this->type === 'delete';
     }
 
+    public function isUpdate(): bool
+    {
+        return $this->type === 'update';
+    }
+
     public function hasWhere(): bool
     {
         return ! $this->isInsert() && ! empty($this->where);
@@ -132,7 +137,10 @@ class Query
 
     public function update(array $data)
     {
-        throw new \RuntimeException('Not implemented');
+        $this->type = 'update';
+        $this->columns = $data;
+
+        return app('database')->execute($this);
     }
 
     public function delete(): string
