@@ -83,7 +83,7 @@ final class PostgresDatabase extends AbstractDatabase
         );
 
         if ($query->hasWhere()) {
-            $this->hydrateWhere($sql, $query);
+            $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
         }
 
         if ($query->hasOrderBy()) {
@@ -117,17 +117,17 @@ final class PostgresDatabase extends AbstractDatabase
             Throw new RuntimeException('Query condition missing!');
         }
 
-        $this->hydrateWhere($sql, $query);
+        $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+        $this->query($sql);
         return 'Deleted Successfully';
     }
 
-    private function hydrateWhere(string $sql, Query $query): void
+    private function getWhereProcessedConditions(Query $query): string
     {
-        $sql .= ' WHERE ';
-
         $whereParameters = $query->getWhere();
         $numItems = count($whereParameters);
         $i = 0;
+        $sql = '';
 
         foreach ($whereParameters as $where) {
             $sql .= sprintf(
@@ -140,7 +140,8 @@ final class PostgresDatabase extends AbstractDatabase
                 $sql .= ' ' . $where['logical'];
             }
         }
-        $this->query($sql);
+
+        return $sql;
     }
 
     public function execute(Query $query): mixed
