@@ -172,7 +172,8 @@ final class PostgresDatabase extends AbstractDatabase
             throw new RuntimeException('Query condition missing!');
         }
 
-        $this->hydrateWhere($sql, $query);
+        $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+        $this->query($sql);
         return 'Updated Successfully';
     }
 
