@@ -12,7 +12,8 @@ class Query
 
     protected array $where = [];
 
-    protected array $limit = [];
+    protected ?int $limit = null;
+    protected ?int $offset = null;
 
     protected array $orderBy = [];
 
@@ -45,7 +46,12 @@ class Query
 
     public function hasLimit(): bool
     {
-        return $this->isSelect() && ! empty($this->limit);
+        return $this->isSelect() && $this->limit !== null;
+    }
+
+    public function hasOffset(): bool
+    {
+        return $this->isSelect() && $this->offset !== null;
     }
 
     public function hasOrderBy(): bool
@@ -109,9 +115,14 @@ class Query
         return $this->where;
     }
 
-    public function getLimit(): array
+    public function getLimit(): ?int
     {
         return $this->limit;
+    }
+
+    public function getOffset(): ?int
+    {
+        return $this->offset;
     }
 
     public function getOrderBy(): array
@@ -133,7 +144,14 @@ class Query
 
     public function limit(int $number): static
     {
-        $this->limit = [$number];
+        $this->limit = $number;
+
+        return $this;
+    }
+
+    public function offset(int $number): static
+    {
+        $this->offset = $number;
 
         return $this;
     }

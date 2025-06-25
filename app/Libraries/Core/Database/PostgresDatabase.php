@@ -25,10 +25,10 @@ final class PostgresDatabase extends AbstractDatabase
 
         /** @var Column $column */
         foreach ($columns as $column) {
-            $sql .= $column->getDefinition().',';
+            $sql .= $column->getDefinition() . ',';
         }
 
-        $sql = rtrim($sql, ',').');';
+        $sql = rtrim($sql, ',') . ');';
 
         $this->query($sql);
     }
@@ -88,16 +88,14 @@ final class PostgresDatabase extends AbstractDatabase
 
         if ($query->hasOrderBy()) {
             $command = $query->getOrderBy();
-            $sql .= ' ORDER BY '.$command[0];
+            $sql .= ' ORDER BY ' . implode(', ', $command);
         }
 
         if ($query->hasLimit()) {
-            $limit = $query->getLimit();
+            $sql .= ' LIMIT ' . (int)$query->getLimit();
 
-            $sql .= ' LIMIT '.(int) $limit[0];
-
-            if (isset($limit[1])) {
-                $sql .= ' OFFSET '.(int) $limit[1];
+            if ($query->hasOffset()) {
+                $sql .= ' OFFSET ' . (int)$query->getOffset();
             }
         }
 
@@ -139,7 +137,7 @@ final class PostgresDatabase extends AbstractDatabase
                 $this->connection->quote($where['value']),
             );
             if (++$i !== $numItems) {
-                $sql .= ' '.$where['logical'];
+                $sql .= ' ' . $where['logical'];
             }
         }
         $this->query($sql);
