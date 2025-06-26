@@ -58,6 +58,7 @@ final class PostgresDatabase extends AbstractDatabase
             Type::VarChar => 'VARCHAR',
             Type::Text => 'TEXT',
             Type::Timestamp => 'TIMESTAMP',
+            Type::Bool => 'BOOL',
             default => throw new RuntimeException('Unsupported column type'),
         };
     }
