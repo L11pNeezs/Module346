@@ -52,4 +52,13 @@ class Blueprint
             'nullable' => true,
         ]);
     }
+
+    public function bool(string $columnName): void
+    {
+        $this->columns[$columnName] = Column::fromArray([
+            'name' => $columnName,
+            'type' => Type::Bool,
+            'nullable' => true,
+        ]);
+    }
 }

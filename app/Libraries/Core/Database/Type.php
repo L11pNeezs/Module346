@@ -9,4 +9,5 @@ enum Type
     case Int;
     case BigIncrement;
     case Timestamp;
+    case Bool;
 }
