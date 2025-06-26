@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->string('price_tier');
-            $table->string('diet');
+            $table->string('concept');
+            $table->bool('veggie_option');
             $table->timestamps();
         });
     }
