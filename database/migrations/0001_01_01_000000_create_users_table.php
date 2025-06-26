@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email');
+            $table->bool('is_logged');
             $table->timestamps();
         });
     }
