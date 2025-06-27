@@ -1,5 +1,5 @@
 /** Reset CSS **/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Archivo');
 
 * {
     box-sizing: border-box;
@@ -7,7 +7,7 @@
     font: inherit;
     vertical-align: baseline;
     font-size: 12px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Archivo', sans-serif;
 }
 
 html {
@@ -24,12 +24,15 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-size: 30vw;
 }
 
 main {
     text-align: justify;
     display: flex;
+    flex-direction: column;
     flex: 1;
+    padding: 2vw;
 }
 
 .title-container {
@@ -37,18 +40,13 @@ main {
     align-items: center;
 }
 
-.title {
-    font-size: 1.5vw;
-    margin-left: 1.5vw;
-    font-weight: lighter;
-    margin-block: 0;
-}
 
 ol, ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 h1 {
     margin: 0;
 }
@@ -60,23 +58,27 @@ a {
 
 }
 
-button, input, textarea, select {
+.login-button, input, textarea, select {
     font: inherit;
     color: white;
     background: black;
     appearance: none;
     border-radius: 5px;
     cursor: pointer;
+    padding-inline: 7vw;
+    height: 3vh;
+
+    align-self: center;
 }
 
 
+.logo {
+    max-width: 7vh;
 
-img, svg {
-    width: 100%;
-    height: 50%;
-}
-.logo{
-    max-width: 4vh;
+    img {
+        width: 100%;
+
+    }
 }
 
 header {
@@ -84,82 +86,278 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 0.5rem;
+    padding-top: 1vh;
     padding-bottom: 3.5rem;
-    padding-inline: 4rem;
-    .logo {
-        width: 2vh;
+    padding-inline: 1vw;
+
+    a {
+        font-size: 3em;
+    }
+
+    .title {
+        font-size: 5vw;
+    }
+
+}
+
+
+.logo {
+    max-width: 7vh;
+
+    img {
+        width: 100%;
+
+    }
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1vh;
+    padding-bottom: 3.5rem;
+    padding-inline: 1vw;
+
+    a {
+        font-size: 3em;
+    }
+
+    .title {
+        font-size: 5vw;
     }
 
 }
 
 .nav-bar {
+    font-size: 2vw;
     display: flex;
     flex-direction: row;
     padding: 0;
     margin: 0;
+
     a {
-        font-size: 0.5vw;
+        font-size: 0.75vw;
     }
+
     li {
-        margin-inline: 2.5vh;
-    }
-    ul{
-        height: auto;
+        padding-inline: 2vw;
     }
 
+    ul {
+        padding-right: 3vw;
+    }
 }
 
-.nav-bar-link{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
 
+.logo {
+    max-width: 7vh;
+
+    img {
+        width: 100%;
+
+    }
 }
 
-footer {
+header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-block: 5rem;
-    padding-inline: 4rem;
+    padding-top: 1vh;
+    padding-bottom: 3.5rem;
+    padding-inline: 1vw;
+
+    a {
+        font-size: 3em;
+    }
+
+    .title {
+        font-size: 5vw;
+    }
+
+}
+
+.nav-bar {
+    font-size: 2vw;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
 
     a {
         font-size: 0.75vw;
-        font-weight: 1000;
-        padding: 0;
+    }
+
+    li {
+        padding-inline: 2vw;
+    }
+
+    ul {
+        padding-right: 3vw;
+    }
+
+}
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    padding-block: 5rem;
+    padding-inline: 4rem;
+
+    .title {
+        font-size: 7vw;
+    }
+
+    ul {
+        text-align: center;
+    }
+
+    a {
+
+    }
+
+    li {
+        padding: 1.5vw;
         margin: 0;
     }
-    li {
-        margin-inline: 2.5vh;
 
+    .logo {
+        max-width: 10vh;
+    }
+
+    .title-container {
+        padding-bottom: 2vh;
     }
 
 }
 
-.footer-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media screen and (min-width: 768px) {
+
+    header {
+        padding-bottom: 10vh;
+        padding-top: 1vw;
+        padding-inline: 4vw;
+
+        .login-button {
+            height: 5vw;
+            padding-inline: 4vw;
+            font-size: 1rem;
+        }
+
+        .title {
+            font-size: 4vw;
+        }
+
+        .logo {
+            width: 15vw;
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            font-size: 2vw;
+        }
+
+        ul {
+            text-align: start;
+            display: flex;
+            align-items: flex-start;
+        }
+    }
 }
 
-span {
-    color: #000000;
-    font-size: 0.75vw;
+@media screen and (min-width: 1024px) {
+
+    header {
+        .logo {
+            width: 20vw;
+        }
+
+        .login-button {
+            height: 3vw;
+            padding-inline: 3vw;
+        }
+
+        .title {
+            padding-left: 2vw;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        a {
+            padding-inline: 2vw;
+            font-size: 5rem;
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-block: 5rem;
+        padding-inline: 4rem;
+
+        .title {
+            font-size: 4rem;
+            padding-left: 2vw;
+        }
+
+        ul {
+            border-left: 2px solid green;
+            margin-left: 2vw;
+            position: relative;
+            /*border: 1px solid red;*/
+        }
+
+        ul:after {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            margin-top: -10px;
+            width: 5px;
+            height: 20px;
+            background: green;
+        }
+
+        li {
+            a {
+                font-size: 0.75vw;
+                font-weight: 1000;
+                padding: 0;
+                margin: 0;
+            }
+
+        }
+
+        .title-container {
+            justify-content: start;
+        }
+
+        .title-container {
+            justify-content: start;
+        }
+
+        footer .span-container {
+            display: flex;
+            justify-content: end;
+        }
+    }
+
+    .left-footer {
+        display: flex;
+    }
+
 }
 
-.log-button {
-    padding-inline: 2.25vw;
-    padding-block: 1vh;
-    font-size: 0.5vw;
-}
-
-/*table {*/
-/*    border-collapse: collapse;*/
-/*    border-spacing: 0;*/
-/*}*/
-
-/*:focus {*/
-/*    outline: 0;*/
-/*}*/
