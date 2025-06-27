@@ -1,6 +1,6 @@
-# LSEat (Lausanne Eat)
+# Koa-La
 
-**LSEat** is a practical web application that helps the LS Liipers decide where and what to eat. Liipers can add new restaurants, rate them, and filter the search based on various criteria such as price range and dietary preferences.
+**Koa-La** is a practical web application that helps the LS Liipers decide where and what to eat. Liipers can add new restaurants, rate them, and filter the search based on various criteria such as price range and dietary preferences.
 
 ---
 

@@ -1,6 +1,4 @@
-
-
-# Set-up TTE project 
+# Set-up Koa-La project 
 
 ## Requirements
 - Docker 
