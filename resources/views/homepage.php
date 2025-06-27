@@ -17,6 +17,5 @@ if (isset($_SESSION['id'])) {
 
 ?>
 
-
 <?php require __DIR__ . '/../Templates/footer.php'; ?>
 
