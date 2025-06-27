@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Restaurant\RestaurantController;
 use App\Http\Controllers\User\UserController;
 use App\Libraries\Core\Router;
 use App\Models\Restaurant;
 use App\Models\User;
 
 Router::get('/', static function () {
-    return view('homepage', ['restaurant' => Restaurant::getRandomRestaurant(),
+    return view('teaser', ['restaurant' => Restaurant::getRandomRestaurant(),
     ]);
 });
 
@@ -44,5 +45,8 @@ Router::group(['prefix' => 'example'], static function () {
 
         return header('Location: /example');
     });
+});
 
+Router::group(['prefix' => 'restaurants'], static function () {
+    Router::get('/', [RestaurantController::class, 'displayAll']);
 });
