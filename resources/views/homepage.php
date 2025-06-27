@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/../Templates/header.php'; ?>
 <?php
 use App\Models\User;
 
@@ -9,13 +10,13 @@ if (isset($_SESSION['id'])) {
     }
 }
 ?>
-<?php require __DIR__ . '/../Templates/header.php'; ?>
 
 <?php
 
 //CONTENT
 
 ?>
+
 
 <?php require __DIR__ . '/../Templates/footer.php'; ?>
 

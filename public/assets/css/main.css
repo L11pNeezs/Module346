@@ -58,21 +58,21 @@ a {
 
 }
 
-.login-button, input, textarea, select {
+.login-logout-button , input, textarea, select {
     font: inherit;
     color: white;
     background: black;
     appearance: none;
     border-radius: 5px;
     cursor: pointer;
-    padding-inline: 7vw;
-    height: 3vh;
+    padding-inline: 6vw;
+    padding-block: 2vw;
     align-self: center;
 }
 
 
 .logo {
-    max-width: 7vh;
+  width: 7vh;
 
     img {
         width: 100%;
@@ -89,44 +89,12 @@ header {
     padding-bottom: 3.5rem;
     padding-inline: 1vw;
 
-    a {
-        font-size: 3em;
-    }
-
     .title {
-        font-size: 5vw;
+        font-size: 2em;
     }
 
 }
 
-
-.logo {
-    max-width: 7vh;
-
-    img {
-        width: 100%;
-
-    }
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1vh;
-    padding-bottom: 3.5rem;
-    padding-inline: 1vw;
-
-    a {
-        font-size: 3em;
-    }
-
-    .title {
-        font-size: 5vw;
-    }
-
-}
 
 .nav-bar {
     font-size: 2vw;
@@ -149,74 +117,21 @@ header {
 }
 
 
-.logo {
-    max-width: 7vh;
-
-    img {
-        width: 100%;
-
-    }
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1vh;
-    padding-bottom: 3.5rem;
-    padding-inline: 1vw;
-
-    a {
-        font-size: 3em;
-    }
-
-    .title {
-        font-size: 5vw;
-    }
-
-}
-
-.nav-bar {
-    font-size: 2vw;
-    display: flex;
-    flex-direction: row;
-    padding: 0;
-    margin: 0;
-
-    a {
-        font-size: 0.75vw;
-    }
-
-    li {
-        padding-inline: 2vw;
-    }
-
-    ul {
-        padding-right: 3vw;
-    }
-
-}
 
 
 footer {
     display: flex;
     flex-direction: column;
-
     align-items: center;
     padding-block: 5rem;
     padding-inline: 4rem;
 
     .title {
-        font-size: 7vw;
+        font-size: 2rem;
     }
 
     ul {
         text-align: center;
-    }
-
-    a {
-
     }
 
     li {
@@ -229,7 +144,9 @@ footer {
     }
 
     .title-container {
-        padding-bottom: 2vh;
+        display: flex;
+
+        padding-bottom: 3vh;
     }
 
 }
@@ -238,21 +155,21 @@ footer {
 
     header {
         padding-bottom: 10vh;
-        padding-top: 1vw;
         padding-inline: 4vw;
 
-        .login-button {
-            height: 5vw;
-            padding-inline: 4vw;
-            font-size: 1rem;
-        }
-
         .title {
-            font-size: 4vw;
+            font-size: 2em;
         }
 
         .logo {
-            width: 15vw;
+            width: 10vw;
+        }
+        .nav-bar {
+            font-size: 1em;
+        }
+        .login-logout-button {
+            padding-block: 2vh;
+            padding-inline: 5vw;
         }
     }
 
@@ -269,23 +186,32 @@ footer {
             display: flex;
             align-items: flex-start;
         }
+        .title-container {
+            justify-content: center;
+            flex-direction: column;
+        }
     }
 }
 
 @media screen and (min-width: 1024px) {
 
     header {
-        .logo {
-            width: 20vw;
-        }
 
-        .login-button {
-            height: 3vw;
-            padding-inline: 3vw;
+        padding-inline: 2vw;
+        .logo {
+            width: 14vh;
+        }
+        .nav-bar {
+            font-size: 1vw;
+        }
+        .login-logout-button  {
+            padding-block: 2vh;
+            padding-inline: 4vw;
         }
 
         .title {
-            padding-left: 2vw;
+            font-size: 3em;
+            padding-left: 1vw;
         }
 
         ul {
@@ -302,8 +228,12 @@ footer {
     }
 
     footer {
+        .footer-bar {
+            align-items: center;
+        }
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: center;
         padding-block: 5rem;
         padding-inline: 4rem;
@@ -317,7 +247,7 @@ footer {
             border-left: 2px solid green;
             margin-left: 2vw;
             position: relative;
-            /*border: 1px solid red;*/
+
         }
 
         ul:after {
@@ -341,14 +271,13 @@ footer {
         }
 
         .title-container {
-            justify-content: start;
+            padding: 0;
+            flex-direction: row;
         }
 
-        .title-container {
-            justify-content: start;
-        }
 
-        footer .span-container {
+
+    .span-container {
             display: flex;
             justify-content: end;
         }
@@ -356,6 +285,7 @@ footer {
 
     .left-footer {
         display: flex;
+        justify-content: space-between;
     }
 
 }
