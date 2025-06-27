@@ -52,4 +52,11 @@ class UserController extends AbstractController
         exit;
     }
 
+    public function logout()
+    {
+        unset($_SESSION['id']);
+        header('Location: /');
+        exit;
+    }
+
 }
