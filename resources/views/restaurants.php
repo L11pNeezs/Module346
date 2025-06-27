@@ -1,6 +1,6 @@
 <?php
 use App\Models\Restaurant;
-require __DIR__ . '/../Templates/header.php';
+
 ?>
 
 <div class="restaurants-list-container">
@@ -15,4 +15,4 @@ require __DIR__ . '/../Templates/header.php';
     </ul>
 </div>
 
-<?php require __DIR__ . '/../Templates/footer.php'; ?>
+<?php ?>
