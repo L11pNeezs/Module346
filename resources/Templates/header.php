@@ -47,6 +47,7 @@ if (isset($_SESSION['id'])) {
             <div class="auth-buttons">
                 <?php if ($username): ?>
                     <span>Welcome, <?= $username ?></span>
+                    <a href="/logout" class="modal-btn">Log-Out</a>
                 <?php else: ?>
                     <label class="modal-btn" for="modal-toggle">Login</label>
                 <?php endif; ?>
