@@ -19,6 +19,7 @@ Router::get('/login', static function () {
 
 Router::post('/signup', [UserController::class, 'register']);
 Router::post('/login', [UserController::class, 'login']);
+Router::get('/logout', [UserController::class, 'logout']);
 
 Router::group(['prefix' => 'example'], static function () {
     Router::get('/', static function () {
