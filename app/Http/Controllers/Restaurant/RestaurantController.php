@@ -12,4 +12,9 @@ class RestaurantController extends AbstractController
         return view('restaurants', ['restaurants' => Restaurant::all()]);
     }
 
+    public function contribute(): string
+    {
+        return view('contribute');
+    }
+
 }

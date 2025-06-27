@@ -50,3 +50,5 @@ Router::group(['prefix' => 'example'], static function () {
 Router::group(['prefix' => 'restaurants'], static function () {
     Router::get('/', [RestaurantController::class, 'displayAll']);
 });
+
+Router::get('/contribute', [RestaurantController::class, 'contribute']);
