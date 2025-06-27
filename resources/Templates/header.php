@@ -1,5 +1,15 @@
 <?php
 
+use App\Models\User;
+
+$username = null;
+if (isset($_SESSION['id'])) {
+    $user = User::getById($_SESSION['id']);
+    if ($user) {
+        $username = htmlspecialchars($user->username);
+    }
+}
+
 ?>
 
 <header>
@@ -14,7 +24,11 @@
             <li><a href="contribute">Contribute</a></li>
         </ul>
         <div class="auth-buttons">
+            <?php if ($username): ?>
+            <span>Welcome, <?= $username ?></span>
+            <?php else: ?>
             <label class="modal-btn" for="modal-toggle">Login</label>
+            <?php endif; ?>
         </div>
         <div class="rt-container">
             <div class="col-rt-12">
@@ -27,20 +41,21 @@
                             <input class="radio" id="tab-1" name="tabs-name" type="radio" checked>
                             <label for="tab-1" class="table"><span>Login</span></label>
                             <div class="tabs-content">
-                                <form action="">
-                                    <input type="email" placeholder="Email" required>
-                                    <input type="password" placeholder="Password" required>
+                                <form action="/logintest" method="POST">
+                                    <input type="text" name="username" placeholder="Username" required>
+                                    <input type="password" name="password" placeholder="Password" required>
                                     <input type="submit" value="Log In">
                                 </form>
                             </div>
                             <input class="radio" id="tab-2" name="tabs-name" type="radio">
                             <label for="tab-2" class="table"><span>Sign up</span></label>
                             <div class="tabs-content">
-                                <form action="">
-                                    <input type="text" placeholder="First Name" required>
-                                    <input type="text" placeholder="Last Name" required>
-                                    <input type="email" placeholder="Email" required>
-                                    <input type="password" placeholder="Password" required>
+                                <form action="/signup" method="POST">
+                                    <input type="text" name="username" placeholder="Username" required>
+                                    <input type="text" name="name" placeholder="First Name" required>
+                                    <input type="text" name="surname" placeholder="Last Name" required>
+                                    <input type="email" name="email" placeholder="Email" required>
+                                    <input type="password" name="password" placeholder="Password" required>
                                     <input type="submit" value="Sign Up">
                                 </form>
                             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\UserController;
 use App\Libraries\Core\Router;
 use App\Models\Restaurant;
 use App\Models\User;
@@ -10,8 +11,14 @@ Router::get('/', static function () {
 });
 
 Router::get('/login', static function () {
+    if (isset($_SESSION['id'])) {
+        return view('homepage');
+    }
     return view('homepage');
 });
+
+Router::post('/signup', [UserController::class, 'register']);
+Router::post('/logintest', [UserController::class, 'login']);
 
 Router::group(['prefix' => 'example'], static function () {
     Router::get('/', static function () {
@@ -19,7 +26,11 @@ Router::group(['prefix' => 'example'], static function () {
     });
 
     Router::post('/create-user', static function () {
-        ['username' => $username, 'password' => $password] = request()->all();
+        [
+            'username' => $username,
+            'password' => $password,
+
+            ] = request()->all();
 
         if (empty($username) || empty($password)) {
             return view('example.index', ['error' => 'Name and password are required.']);
