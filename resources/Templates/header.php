@@ -1,6 +1,14 @@
 <?php
 
+use App\Models\User;
 
+$username = null;
+if (isset($_SESSION['id'])) {
+    $user = User::getById($_SESSION['id']);
+    if ($user) {
+        $username = htmlspecialchars($user->username);
+    }
+}
 
 ?>
 
@@ -18,7 +26,7 @@
 <body>
 
     <header>
-        <script src="/assets/js/hamburgerMenu.js"></script>
+<!--        <script src="/assets/js/hamburgerMenu.js"></script> TO DO LATER -->
         <div class="title-container">
             <img class="logo" src="/assets/images/koa-la-logo.png" alt="logo">
             <h1><a class="title" href="#">Koa-La</a></h1>
