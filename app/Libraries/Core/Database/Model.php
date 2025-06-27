@@ -110,7 +110,10 @@ abstract class Model
 
     public static function find(string $column, $value): ?static
     {
-        $result = DB::table(self::getTableName())->where($column, '=', $value)->limit(1)->get()[0] ?? null;
+        $result = DB::table(self::getTableName())
+            ->where($column, '=', $value)->limit(1)
+            ->get()[0] ?? null;
+
         if (!$result) {
             return null;
         }
