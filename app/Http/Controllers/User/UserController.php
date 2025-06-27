@@ -48,7 +48,7 @@ class UserController extends AbstractController
 
         $_SESSION['id'] = $user->id;
 
-        header('Location: /login');
+        header('Location: /');
         exit;
     }
 
