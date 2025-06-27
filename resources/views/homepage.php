@@ -4,6 +4,7 @@
 <body>
 <?php require __DIR__ . '/../Templates/header.php'; ?>
 <main>
+    <?= $error ?? ''?>
     <!--        Pellentesque finibus et massa non varius. Donec lobortis fringilla ligula, eu tincidunt nibh-->
     <!--        vehicula ultricies. Phasellus ac mollis eros. Suspendisse in velit maximus, bibendum sapien at,-->
     <!--        lobortis augue. Morbi eget neque massa. Nam euismod in nulla et accumsan. Vestibulum sit amet-->
@@ -24,7 +25,6 @@
     <!--        et interdum mi. Nulla sed blandit quam, eu semper neque. In fermentum et ligula in rhoncus.-->
     <!--        Morbi dignissim massa sed vehicula rutrum. Curabitur ornare interdum risus, id iaculis sem-->
     <!--        luctus quis. Fusce sed quam elit. Vivamus bibendum bibendum sem id aliquet.-->
-    <img src="../img/img.png" alt="image vide">
 </main>
 <?php require __DIR__ . '/../Templates/footer.php'; ?>
 </body>
