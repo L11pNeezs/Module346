@@ -20,7 +20,7 @@ if (isset($_SESSION['id'])) {
 
     <title>Header</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="public/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
