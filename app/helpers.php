@@ -34,9 +34,9 @@ if (! function_exists('view')) {
         ob_start();
         extract($data);
         $view = str_replace('.', '/', $view);
-        include __DIR__."/../resources/Templates/header.php";
+        include __DIR__."/../resources/templates/header.php";
         include __DIR__."/../resources/views/{$view}.php";
-        include __DIR__."/../resources/Templates/footer.php";
+        include __DIR__."/../resources/templates/footer.php";
 
         return ob_get_clean();
     }
