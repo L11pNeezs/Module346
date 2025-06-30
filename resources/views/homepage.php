@@ -17,7 +17,6 @@ $concept = null;
 $veggie_option = null;
 
 ?>
-<?php require __DIR__ . '/../templates/header.php'; ?>
 
 <section class="title">
     Today you should eat :
@@ -72,7 +71,3 @@ $veggie_option = null;
     <h3 class="discover-title">Do you want more?</h3>
     <label class="discover-button">Discover more</label>
 </section>
-
-
-<?php require __DIR__ . '/../Templates/footer.php'; ?>
-
