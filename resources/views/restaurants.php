@@ -8,7 +8,7 @@ use App\Models\Restaurant;
         <?php foreach ($restaurants as $restaurant) { ?>
             <li class="restaurants-list-item">
                 <?php
-                    echo $restaurant->getName();
+                    echo $restaurant->name;
                 ?>
             </li>
         <?php } ?>
