@@ -1,3 +1,5 @@
+@import url("main.css");
+
 /*.restaurant-suggestion*/
 /*.description*/
 /*.title-description*/
@@ -7,7 +9,13 @@
 /*.discover-title*/
     /*Title*/
 .title {
+display: flex;
 
+}
+.restaurant-suggestion {
+}
+.restaurant-name {
+    font-weight: bold;
 }
 
 /*@media screen and (min-width: 768px) {*/
