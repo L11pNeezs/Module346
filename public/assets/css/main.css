@@ -1,9 +1,10 @@
-
+@import url('cards.css');
 @import url("header-footer.css");
 @import url("login.css");
 @import url("hp.css");
 @import url("teaser.css");
 @import url('https://fonts.googleapis.com/css?family=Archivo');
+@import url('normalize.css');
 
 
 * {

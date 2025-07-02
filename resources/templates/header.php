@@ -19,7 +19,7 @@ if (isset($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Koa-la</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 
 </head>
 <body>
@@ -28,7 +28,7 @@ if (isset($_SESSION['id'])) {
         <script src="/assets/js/readmore.js"></script>
 <!--        <script src="/assets/js/hamburgerMenu.js"></script> TO DO LATER -->
         <div class="title-container">
-            <img class="logo" src="assets/images/koa-la-logo.png" alt="logo">
+            <img class="logo" src="/assets/images/koa-la-logo.png" alt="logo">
             <h1><a class="title" href="#">Koa-La</a></h1>
         </div>
         <nav class="nav-bar">
