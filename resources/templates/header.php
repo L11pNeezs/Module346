@@ -22,10 +22,12 @@ if (isset($_SESSION['id'])) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="public/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/cards.css">
 </head>
 <body>
 
     <header>
+        <script src="/assets/js/readmore.js"></script>
 <!--        <script src="/assets/js/hamburgerMenu.js"></script> TO DO LATER -->
         <div class="title-container">
             <img class="logo" src="/assets/images/koa-la-logo.png" alt="logo">
