@@ -25,7 +25,7 @@ if (isset($_SESSION['id'])) {
         <?= $restaurant->description ?>
     </div>
     <div class="learn-more-container">
-        <a class="learn-more-anchor" href="">Learn More</a>
+        <a class="learn-more-anchor" href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn More</a>
     </div>
 </section>
 
