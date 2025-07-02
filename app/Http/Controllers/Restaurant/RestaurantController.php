@@ -7,7 +7,7 @@ use App\Models\Restaurant;
 
 class RestaurantController extends AbstractController
 {
-    public function displayAll(): string
+    public function restaurants(): string
     {
         return view('restaurants', ['restaurants' => Restaurant::all()]);
     }
@@ -17,4 +17,8 @@ class RestaurantController extends AbstractController
         return view('contribute');
     }
 
+    public function keypoints(): string
+    {
+        return view('keypoints');
+    }
 }
