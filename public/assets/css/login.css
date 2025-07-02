@@ -2,7 +2,6 @@
 .modal-btn {
     padding-inline: 2.25vw;
     padding-block: 1vh;
-    font-size: 0.5vw;
     background: black;
     color: white;
     border-radius: 5px;
@@ -228,4 +227,9 @@
 }
 .tabs > .tabs-content .forgot-password label:hover {
     text-decoration: underline;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
 }
