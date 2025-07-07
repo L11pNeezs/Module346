@@ -1,0 +1,106 @@
+@media screen and (max-width: 375px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1vh;
+        padding-bottom: 1vw;
+        padding-inline: 1vw;
+
+        .title {
+            font-size: var(--font-size-xl);
+        }
+
+        img {
+            width: 25%;
+        }
+    }
+
+    header .title-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .auth-buttons {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1vh;
+        padding-bottom: 1vw;
+        padding-inline: 1vw;
+
+        .title {
+            font-size: var(--font-size-xl);
+        }
+
+        img {
+            width: 25%;
+        }
+    }
+
+    header .title-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .auth-buttons {
+        display: flex;
+    }
+
+    .nav-bar, .nav-bar-link {
+        display: flex;
+        margin: 20px;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 4rem;
+
+        .title {
+            font-size: var(--font-size-4xl);
+        }
+
+        img {
+            width: 60px;
+            max-width: 6vw;
+        }
+    }
+
+    header .title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .auth-buttons {
+        gap: 1.5rem;
+    }
+
+    .nav-bar, .nav-bar-link {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        margin: 0;
+        align-items: center;
+    }
+}

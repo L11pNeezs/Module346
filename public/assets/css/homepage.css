@@ -1,0 +1,346 @@
+@media screen and (max-width: 375px) {
+    .restaurant-suggestion,
+    .description,
+    .restaurant-options,
+    .discover-more {
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        padding: 0 8px;
+    }
+
+    .restaurant-suggestion {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .restaurant-name {
+        font-size: var(--font-size-2xl);
+        word-break: break-word;
+    }
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        padding: 0 8px;
+    }
+
+    .description-img {
+        width: 90vw !important;
+        max-width: 100%;
+        height: auto !important;
+        margin-bottom: 10px;
+    }
+
+    .restaurant-description {
+        font-size: var(--font-size-lg);
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    .learn-more-container {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .restaurant-options {
+        margin-top: 10px;
+    }
+
+    .restaurant-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 0;
+    }
+
+    .restaurant-list-item {
+        font-size: 0.95rem;
+        padding: 4px 0;
+    }
+
+    .discover-more {
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    .discover-button {
+        width: 90vw;
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon-container img {
+        width: 50%;
+    }
+
+    .icon-box {
+        text-align: center;
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        justify-content: space-around;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .box img {
+        width: 32px;
+        height: 32px;
+        max-width: 100%;
+    }
+
+    .span {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .restaurant-suggestion,
+    .description,
+    .restaurant-options,
+    .discover-more {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 16px;
+    }
+
+    .restaurant-suggestion {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .restaurant-name {
+        font-size: var(--font-size-3xl);
+        word-break: break-word;
+    }
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        padding: 0 16px;
+    }
+
+    .description-img {
+        width: 70vw !important;
+        max-width: 100%;
+        height: auto !important;
+        margin-bottom: 16px;
+    }
+
+    .restaurant-description {
+        font-size: var(--font-size-xl);
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    .learn-more-container {
+        margin-top: 12px;
+        text-align: center;
+    }
+
+    .restaurant-options {
+        margin-top: 16px;
+    }
+
+    .restaurant-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+    }
+
+    .restaurant-list-item {
+        font-size: 1.1rem;
+        padding: 8px 0;
+    }
+
+    .discover-more {
+        margin-top: 36px;
+        text-align: center;
+    }
+
+    .discover-button {
+        width: 70vw;
+        max-width: 100%;
+        font-size: 1.1rem;
+        padding: 12px 0;
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .box img {
+        width: 32px;
+        height: 32px;
+        max-width: 100%;
+    }
+
+    .span {
+        margin: 0;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .restaurant-suggestion,
+    .description-hp,
+    .restaurant-options,
+    .discover-more {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 32px;
+    }
+
+    .restaurant-suggestion {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: var(--font-size-xl);
+        text-align: left;
+        align-items: center;
+    }
+
+    .restaurant-name {
+        font-size: var(--font-size-4xl);
+    }
+
+    .description-hp {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 2rem;
+    }
+
+    .description-img {
+        width: 35vw ! important;
+        height: 35vw !important;
+        margin-bottom: 0;
+    }
+
+
+    .restaurant-description {
+        font-size: var(--font-size-xl);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 20px;
+    }
+
+    .learn-more-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .restaurant-options {
+        margin-top: 24px;
+        margin-bottom: 24px;
+    }
+
+    .restaurant-list {
+        flex-direction: row;
+        gap: 24px;
+        align-items: flex-start;
+    }
+
+    .restaurant-list-item {
+        font-size: var(--font-size-lg);
+        padding: 12px 0;
+    }
+
+    .discover-more {
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .discover-button {
+        width: 300px;
+        font-size: 1.2rem;
+        padding: 16px 0;
+    }
+
+    .icon-container {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    .icon-container img {
+        width: 60px;
+    }
+
+    .icon-box {
+        text-align: left;
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .info-container img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+}

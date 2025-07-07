@@ -7,8 +7,8 @@ $restaurant = Restaurant::getById($_GET['restaurant_id']);
 
 <h1 class="title"><?= $restaurant->name ?></h1>
 
-<section class="title-container">
-    <img src="/assets/images/<?= $restaurant->image ?>" style="width: 1000px; height: 350px;">
+<section class="hero-container">
+    <img src="<?= $restaurant->image ?>">
 </section>
 
 <h1 class="title">Keypoints</h1>

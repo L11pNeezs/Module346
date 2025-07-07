@@ -15,8 +15,6 @@
 .modal-backdrop {
     opacity: 0;
     position: fixed;
-    padding: 15px;
-    padding-top: 50px;
     z-index: -1;
     overflow: hidden;
     cursor: pointer;
@@ -24,17 +22,20 @@
 }
 
 .modal-content {
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    left: 0;
-    right: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: -1;
     height: 550px;
     max-height: 98%;
     width: 70%;
     max-width: 600px;
     text-align: center;
-    transform: translateX(125%);
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+    padding-top: 50px;
 }
 
 .modal-backdrop {
@@ -46,22 +47,11 @@
     width: 100vw;
     transform: scale(0);
 }
+
 #modal-toggle {
     display: none;
 }
 
-@media (max-width: 600px) {
-    #modal-toggle:checked ~ .modal-backdrop {
-        opacity: 0;
-    }
-
-    .modal-content {
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-    }
-}
 
 #modal-toggle:checked ~ .modal-backdrop {
     opacity: 0.5;
@@ -78,8 +68,9 @@
     pointer-events: auto;
     cursor: auto;
     z-index: 999;
-    transform: translateX(0%);
+    transform: translate(-50%, -50%);
 }
+
 .modal-close-btn {
     margin-top: 5px;
     display: inline-block;
@@ -88,13 +79,16 @@
     top: 5px;
     right: 10px;
 }
+
 .modal-close-btn svg {
     transition: 0.2s;
 }
+
 .modal-close-btn line {
     stroke-width: 5px;
     stroke: #AEEA00;
 }
+
 .modal-close-btn:hover svg {
     transform: rotate(90deg);
 }
@@ -108,9 +102,11 @@
     flex-wrap: wrap;
     margin: 10px 0;
 }
+
 .tabs > .radio {
     display: none;
 }
+
 .tabs > .radio:checked + .table + .tabs-content {
     display: block;
 }
@@ -137,15 +133,18 @@
 .tabs > .table span {
     font-weight: 600;
 }
+
 .tabs > .table:hover {
     color: #AEEA00;
     background: rgba(174, 234, 0, 0.2);
 }
+
 .tabs > .radio:checked + .table {
     color: #fff;
     background: #AEEA00;
     cursor: auto;
 }
+
 .tabs > .radio:checked + .table span {
     display: inline-block;
     font-weight: 500;
@@ -162,6 +161,7 @@
     flex-wrap: nowrap;
     justify-content: space-around;
 }
+
 .tabs > .tabs-content a {
     margin: 20px;
     margin-bottom: 0;
@@ -170,6 +170,7 @@
     text-decoration: none;
     transition: 0.2s;
 }
+
 .tabs > .tabs-content a:hover {
     transform: scale(1.1);
     filter: drop-shadow(1px 3px 2px rgba(0, 0, 0, 0.2));
@@ -178,6 +179,7 @@
 .tabs > .tabs-content {
     color: #AEEA00;
 }
+
 .tabs > .tabs-content form {
     display: -webkit-flex;
     display: -moz-flex;
@@ -200,10 +202,12 @@
     letter-spacing: 1px;
     transition: 0.1s;
 }
+
 .tabs > .tabs-content form input:focus {
     transform: translateX(10px);
     outline: none;
 }
+
 .tabs > .tabs-content input[type="submit"] {
     padding: 15px 0;
     width: 100%;
@@ -213,6 +217,7 @@
     font-size: 18px;
     cursor: pointer;
 }
+
 .tabs > .tabs-content input[type="submit"]:focus {
     transform: none;
 }
@@ -225,6 +230,7 @@
     font-size: 12px;
     line-height: 1.5;
 }
+
 .tabs > .tabs-content .forgot-password label:hover {
     text-decoration: underline;
 }
@@ -232,4 +238,32 @@
 .checkbox {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 600px) {
+    #modal-toggle:checked ~ .modal-backdrop {
+        opacity: 0.5;
+        background-color: rgba(174, 234, 0, 1);
+    }
+
+    .modal-content {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        max-width: 95vw;
+        height: auto;
+        max-height: 95vh;
+        position: fixed;
+        padding: 24px 8px 16px 8px;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .modal-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
