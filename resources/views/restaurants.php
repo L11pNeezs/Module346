@@ -4,8 +4,8 @@ use App\Models\Restaurant;
 
 ?>
 
-<h1>Are you hungry?</h1>
-<h2>Find all our recommended places below and refine them with your criteria</h2>
+<h1 class="center">Are you hungry?</h1>
+<h2 class="center">Find all our recommended places below and refine them with your criteria</h2>
 
 <div class="filter-container">
     <p class="font22">Filter:</p>
@@ -55,7 +55,11 @@ use App\Models\Restaurant;
 <div class="card-grid">
     <?php foreach ($restaurants as $restaurant): ?>
         <div class="card">
-            <div class="img"><img src="<?= $restaurant->image ?>"></div>
+            <div class="img">
+                <a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id ?>">
+                    <img src="<?= $restaurant->image ?>" alt="<?= htmlspecialchars($restaurant->name) ?>">
+                </a>
+            </div>
             <div class="text">
                 <p class="h3"> <?= $restaurant->name ?> </p>
                 <p><?= $restaurant->description ?></p>
