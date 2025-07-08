@@ -9,7 +9,12 @@ class RestaurantController extends AbstractController
 {
     public function restaurants(): string
     {
-        return view('restaurants', ['restaurants' => Restaurant::all()]);
+        $pageNumber = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
+        return view('restaurants', [
+            'restaurants' => Restaurant::paginate(3, $pageNumber),
+            'pageNumber' => $pageNumber,
+            'nbPages' => ceil(Restaurant::countAll(3, $pageNumber) / 3)
+        ]);
     }
 
     public function contribute(): string

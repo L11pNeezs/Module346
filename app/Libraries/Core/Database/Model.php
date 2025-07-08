@@ -48,6 +48,13 @@ abstract class Model
         }, $results);
     }
 
+    public static function countAll(): int
+    {
+        $count = DB::select(self::getTableName())->count();
+
+        return $count;
+    }
+
     public static function getById(string $id): ?static
     {
         $result = DB::select(self::getTableName())
@@ -123,4 +130,39 @@ abstract class Model
         }
         return $model;
     }
+
+    public static function count(): array
+    {
+        $results = DB::count(self::getTableName())->get();
+
+        return array_map(static function ($result) {
+            $model = new static;
+            foreach ($result as $key => $value) {
+                $model->{$key} = $value;
+            }
+
+            return $model;
+        }, $results);
+    }
+
+    public static function paginate(int $perPage, int $pageNumber): array
+    {
+
+        $offset = ($pageNumber - 1) * $perPage;
+        $results = DB::table(self::getTableName())
+            ->limit($perPage)
+            ->offset($offset)
+            ->get();
+
+        return array_map(static function ($result) {
+         $model = new static;
+
+            foreach ($result as $key => $value) {
+                $model->{$key} = $value;
+            }
+
+            return $model;
+        }, $results);
+    }
 }
+

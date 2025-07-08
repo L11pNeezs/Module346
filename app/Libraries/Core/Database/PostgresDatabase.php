@@ -107,6 +107,24 @@ final class PostgresDatabase extends AbstractDatabase
         return [];
     }
 
+    protected function executeCount(Query $query): int
+    {
+        $sql = sprintf(
+            'SELECT COUNT(id) FROM %s',
+            $query->tableName
+    );
+
+        if ($query->hasWhere()) {
+            $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+        }
+
+        if ($result = $this->query($sql)) {
+            return $result->fetchColumn();
+        }
+
+        return 0;
+    }
+
     protected function executeDelete(Query $query): string
     {
         $sql = sprintf(
@@ -186,6 +204,10 @@ final class PostgresDatabase extends AbstractDatabase
 
         if ($query->isSelect()) {
             return $this->executeSelect($query);
+        }
+
+        if ($query->isCount()) {
+            return $this->executeCount($query);
         }
 
         if ($query->isDelete()) {

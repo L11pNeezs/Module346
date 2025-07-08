@@ -29,6 +29,11 @@ class Query
         return $this->type === 'select';
     }
 
+    public function isCount(): bool
+    {
+        return $this->type === 'count';
+    }
+
     public function isInsert(): bool
     {
         return $this->type === 'insert';
@@ -111,6 +116,13 @@ class Query
     public function get(): array
     {
         $this->type = 'select';
+
+        return app('database')->execute($this);
+    }
+
+    public function count(): int
+    {
+        $this->type = 'count';
 
         return app('database')->execute($this);
     }
