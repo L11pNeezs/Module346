@@ -88,4 +88,12 @@ use App\Models\Restaurant;
             </div>
         </div>
     <?php endforeach; ?>
+
 </div>
+<ul class="pagination-container">
+    <li><a href="?page=<?= $pageNumber -1 ?>" class="previous">&laquo; Previous</a></li>
+        <?php for ($i = 1; $i <= $nbPages; $i++) {?>
+        <li><a href="?page=<?= $i ?>" class="previous"><?php echo  $i ?></a></li>
+        <?php } ?>
+    <li><a href="?page=<?= $pageNumber +1 ?>" class="next">Next &raquo;</a></li>
+</ul>
