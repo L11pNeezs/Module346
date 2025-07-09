@@ -12,3 +12,6 @@
     width: 90%;
 }
 
+form .modal-btn {
+    align-items: center;
+}

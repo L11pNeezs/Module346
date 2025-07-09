@@ -25,7 +25,7 @@ class UserController extends AbstractController
         $user->surname = $data['surname'];
         $user->save();
 
-        header('Location: /login');
+        header('Location: /');
         exit;
     }
 

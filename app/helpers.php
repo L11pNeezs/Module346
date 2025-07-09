@@ -34,9 +34,16 @@ if (! function_exists('view')) {
         ob_start();
         extract($data);
         $view = str_replace('.', '/', $view);
-        include __DIR__."/../resources/templates/header.php";
-        include __DIR__."/../resources/views/{$view}.php";
-        include __DIR__."/../resources/templates/footer.php";
+
+        $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+        if ($isAjax && $view === 'partials/restaurant_cards') {
+            include __DIR__ . "/../resources/views/{$view}.php";
+        } else {
+            include __DIR__ . "/../resources/templates/header.php";
+            include __DIR__ . "/../resources/views/{$view}.php";
+            include __DIR__ . "/../resources/templates/footer.php";
+        }
 
         return ob_get_clean();
     }

@@ -34,13 +34,11 @@ class RestaurantController extends AbstractController
         $restaurant->description = $data['description'];
         $restaurant->image = $data['image'];
         $restaurant->price_tier = $data['price_tier'];
+        $restaurant->p_t_description = $data['p_t_description'];
         $restaurant->concept = $data['concept'];
-
-        if(isset($data['veggie_option'])){
-            $restaurant->veggie_option = $data['veggie_option'];
-        } else {
-            $restaurant->veggie_option = 0;
-        }
+        $restaurant->c_description = $data['c_description'];
+        $restaurant->diet = $data['diet'];
+        $restaurant->d_description = $data['d_description'];
         $restaurant->save();
 
         return header('Location: /');
@@ -49,5 +47,16 @@ class RestaurantController extends AbstractController
     public function keypoints(): string
     {
         return view('keypoints');
+    }
+
+    public function getFilteredRestaurants(): string
+    {
+        $criteria = request()->all();
+        $restaurants = Restaurant::getRestaurantsByCriteria($criteria);
+
+        if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+            return view('partials.restaurant_cards', ['restaurants' => $restaurants]);
+        }
+        return view('restaurants', ['restaurants' => $restaurants]);
     }
 }

@@ -54,6 +54,7 @@ Router::group(['prefix' => 'restaurants'], static function () {
         return view('contribute');
     });
     Router::get('/keypoints', [RestaurantController::class, 'keypoints']);
+    Router::post('/', [RestaurantController::class, 'getFilteredRestaurants']);
 });
 
 
