@@ -107,7 +107,7 @@ class Query
             'column' => $column,
             'operator' => $operator,
             'value' => $value,
-            'logical' => 'AND',
+            'logical' => 'AND ',
         ];
 
         return $this;

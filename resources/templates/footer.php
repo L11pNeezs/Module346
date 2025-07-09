@@ -22,3 +22,4 @@
         </div>
     </div>
 </footer>
+<script src="/assets/js/restaurantsAjax.js"></script>

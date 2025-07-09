@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('p_t_description');
             $table->string('concept');
             $table->string('c_description');
-            $table->bool('veggie_option');
-            $table->string('v_o_description');
+            $table->string('diet');
+            $table->string('d_description');
             $table->timestamps();
         });
     }

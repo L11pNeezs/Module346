@@ -240,6 +240,12 @@
     justify-content: center;
 }
 
+.user-log {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 600px) {
     #modal-toggle:checked ~ .modal-backdrop {
         opacity: 0.5;

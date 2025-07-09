@@ -27,6 +27,9 @@
                 <option value="$$$">3 - Expensive</option>
             </select>
 
+            <label for="p_t_description">Price Tier Description:</label>
+            <input type="text" id="p_t_description" name="p_t_description" placeholder="'Affordable yet premium', 'Prix élevé mais qualité supérieure'">
+
             <label for="concept>">Concept:</label>
             <select id="concept" name="concept">
                 <option value="Italian">Italian</option>
@@ -37,12 +40,23 @@
                 <option value="Other">Other</option>
             </select>
 
-            <label for="veggie-friendly">Vegetarian Friendly:</label>
-            <div class="checkbox">
-                <p>Yessss</p>
-                <input type="checkbox" id="veggie-friendly" name="veggie_option" value="1">
-            </div>
+            <label for="c_description">Concept Description:</label>
+            <input type="text" id="c_description" name="c_description" placeholder="'Burgers gourmets avec un accent sur la qualité locale et la rapidité', 'Ramen maison inspirés de la tradition japonaise avec une touche locale'">
+
+            <label for="diet>">Diet:</label>
+            <select id="diet" name="diet">
+                <option value="Vegan">Vegan</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Gluten-Free">Gluten-Free</option>
+                <option value="Flexitarian">Flexitarian</option>
+            </select>
+
+            <label for="d_description">Diet Description:</label>
+            <input type="text" id="d_description" name="d_description" placeholder="">
+
+            <div class="button-wrapper">
             <button class="modal-btn" type="submit">Submit</button> <!-- Change police or font size -->
+            </div>
         </form>
     </div>
 </section>

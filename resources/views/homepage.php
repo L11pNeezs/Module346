@@ -16,7 +16,7 @@ if (isset($_SESSION['id'])) {
     <p class="font22">Today you should eat at : <strong><?= $restaurant->name ?></strong></p>
 </section>
 
-<section class="description">
+<section class="description-hp">
     <img class="description-img" src="<?= $restaurant->image ?>">
     <div class="restaurant-description">
         <div>

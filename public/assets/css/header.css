@@ -1,4 +1,5 @@
-@media screen and (max-width: 375px) {
+/* === MOBILE: 0px - 767px === */
+@media screen and (max-width: 767px) {
     header {
         display: flex;
         flex-direction: row;
@@ -7,20 +8,20 @@
         padding-top: 1vh;
         padding-bottom: 1vw;
         padding-inline: 1vw;
+    }
 
-        .title {
-            font-size: var(--font-size-xl);
-        }
+    header .title {
+        font-size: var(--font-size-xl);
+    }
 
-        img {
-            width: 25%;
-        }
+    header img {
+        width: 25%;
     }
 
     header .title-container {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
     }
 
@@ -29,7 +30,8 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+/* === TABLET: 768px - 1023px === */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     header {
         display: flex;
         flex-direction: row;
@@ -38,20 +40,20 @@
         padding-top: 1vh;
         padding-bottom: 1vw;
         padding-inline: 1vw;
+    }
 
-        .title {
-            font-size: var(--font-size-xl);
-        }
+    header .title {
+        font-size: var(--font-size-xl);
+    }
 
-        img {
-            width: 25%;
-        }
+    header img {
+        width: 25%;
     }
 
     header .title-container {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
     }
 
@@ -59,7 +61,8 @@
         display: flex;
     }
 
-    .nav-bar, .nav-bar-link {
+    .nav-bar,
+    .nav-bar-link {
         display: flex;
         margin: 20px;
         gap: 10px;
@@ -67,6 +70,7 @@
     }
 }
 
+/* === DESKTOP: 1024px and up === */
 @media screen and (min-width: 1024px) {
     header {
         display: flex;
@@ -74,15 +78,15 @@
         justify-content: space-between;
         align-items: center;
         padding: 2rem 4rem;
+    }
 
-        .title {
-            font-size: var(--font-size-4xl);
-        }
+    header .title {
+        font-size: var(--font-size-4xl);
+    }
 
-        img {
-            width: 60px;
-            max-width: 6vw;
-        }
+    header img {
+        width: 60px;
+        max-width: 6vw;
     }
 
     header .title-container {
@@ -93,10 +97,12 @@
     }
 
     .auth-buttons {
+        display: flex;
         gap: 1.5rem;
     }
 
-    .nav-bar, .nav-bar-link {
+    .nav-bar,
+    .nav-bar-link {
         display: flex;
         flex-direction: row;
         gap: 2rem;
