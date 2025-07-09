@@ -23,11 +23,11 @@ INSERT INTO restaurants (
 
       ('Doki Doki', 'Av. du Tribunal-Fédéral 4',
        'Doki Doki offers elegant sushi and Japanese dishes in a modern setting, combining traditional flavors with creative presentation.',
-       '/assets/images/doki_doki.jpg', '30', 'Prix élevé mais qualité supérieure', 'Japanese', 'Ramen maison inspirés de la tradition japonaise avec une touche locale.', 'Gluten-Free', 'Des options de ramen sans gluten sont disponibles, bien que limitées.'),
+       '/assets/images/doki_doki.jpg', '30', 'Prix élevé mais qualité supérieure', 'Asian', 'Ramen maison inspirés de la tradition japonaise avec une touche locale.', 'Gluten-Free', 'Des options de ramen sans gluten sont disponibles, bien que limitées.'),
 
       ('Le Kotchi Cité', 'Rue Louis-Auguste Curtat 6',
        'Le Kotchi Cité is a cozy Lausanne eatery offering Japanese street food, traditional dishes, and rich, flavorful ramen bowls.',
-       '/assets/images/kotchi.png', '12', 'Petit budget', 'Japanese', 'Snacks japonais rapides et authentiques en format street food.', 'Vegetarian', 'Propose des onigiris et plats sans viande, adaptés aux végétariens.'),
+       '/assets/images/kotchi.png', '12', 'Petit budget', 'Asian', 'Snacks japonais rapides et authentiques en format street food.', 'Vegetarian', 'Propose des onigiris et plats sans viande, adaptés aux végétariens.'),
 
       ('Chez Mario', 'Rue de Bourg 28',
        'Chez Mario serves authentic Italian dishes in a cozy, rustic setting with homemade pasta, rich sauces, and welcoming hospitality.',
