@@ -268,3 +268,42 @@
         height: 50px;
     }
 }
+
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10vh;
+}
+.pages{
+    border-radius:  5px;
+    padding-inline: 1vw;
+    padding-block: 1vh;
+}
+
+.pagination-dots{
+    padding-inline: 2vw;
+}
+
+.pagination {
+    grid-column: 1 / -1;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 6px 14px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+

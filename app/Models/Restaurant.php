@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Libraries\Core\Database\Model;
+use App\Libraries\Core\Database\Query;
 use App\Libraries\Core\Facades\DB;
 
 class Restaurant extends Model
@@ -28,7 +29,39 @@ class Restaurant extends Model
         return $restaurant;
     }
 
-    public static function getRestaurantsByCriteria(array $criteria): array
+    public static function getRestaurantsByCriteria(array $criteria, int $perPage, int $pageNumber): array
+    {
+        $offset = ($pageNumber - 1) * $perPage;
+        $query = self::getBasedQuery($criteria);
+        $results = $query
+            ->limit($perPage)
+            ->offset($offset)
+            ->get();
+        $restaurants = [];
+
+        foreach ($results as $result) {
+            $restaurant = new self;
+            $restaurant->id = $result['id'];
+            $restaurant->name = $result['name'];
+            $restaurant->address = $result['address'];
+            $restaurant->description = $result['description'];
+            $restaurant->image = $result['image'];
+            $restaurant->price_tier = $result['price_tier'];
+            $restaurant->concept = $result['concept'];
+            $restaurant->diet = $result['diet'];
+            $restaurants[] = $restaurant;
+        }
+        return $restaurants;
+    }
+
+    public static function countRestaurantsByCriteria(array $criteria): int
+    {
+        $query = self::getBasedQuery($criteria);
+
+        return $query->count();
+    }
+
+    public static function getBasedQuery(array $criteria): Query
     {
         $query = DB::select(self::getTableName());
 
@@ -60,21 +93,6 @@ class Restaurant extends Model
             $query->where('diet', '=', $criteria['diet']);
         }
 
-        $results = $query->get();
-        $restaurants = [];
-
-        foreach ($results as $result) {
-            $restaurant = new self;
-            $restaurant->id = $result['id'];
-            $restaurant->name = $result['name'];
-            $restaurant->address = $result['address'];
-            $restaurant->description = $result['description'];
-            $restaurant->image = $result['image'];
-            $restaurant->price_tier = $result['price_tier'];
-            $restaurant->concept = $result['concept'];
-            $restaurant->diet = $result['diet'];
-            $restaurants[] = $restaurant;
-        }
-        return $restaurants;
+        return $query;
     }
 }

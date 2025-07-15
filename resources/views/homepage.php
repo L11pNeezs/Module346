@@ -62,4 +62,9 @@ if (isset($_SESSION['id'])) {
     <h2>Do you want more?</h2>
     <label class="modal-btn"><a href="/restaurants/">Discover more</a></label>
 </section>
-<br>
+
+
+    <section class="section-discover">
+    <h3 class="discover-title">Do you want more?</h3>
+    <a class="discover-button" href="/restaurants">Discover more</a>
+</section>
