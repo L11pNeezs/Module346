@@ -51,7 +51,7 @@ To exist the root container
 ```
 - 2nd Way (*directly from your engine*) :
 ```bash
-  $ docker compose exec app php craft migrate 
+  $ docker compose exec app php craft migrate -d
 ```
 
 ### *Now we have the db and the app container running :D !!* 

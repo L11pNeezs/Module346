@@ -10,6 +10,7 @@
 - [Features](#-features)
 - [Contributors](#-contributors)
 - [Notes](#-notes)
+- [Setup](#-setup)
 
 ---
 
@@ -44,3 +45,6 @@
 This project is tailored for internal use by Lausanne office employees. It's designed to be minimal, fast, and easy to use without requiring external dependencies or a complex setup.
 
 ---
+
+## 🛠 Setup
+To set up the Koa-La project follow the instructions in the [SETUP.md](doc/SETUP.md) file.
