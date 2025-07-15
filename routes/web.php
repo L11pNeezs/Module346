@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Map\MapController;
 use App\Http\Controllers\Restaurant\RestaurantController;
 use App\Http\Controllers\User\UserController;
 use App\Libraries\Core\Router;
@@ -57,4 +58,4 @@ Router::group(['prefix' => 'restaurants'], static function () {
     Router::post('/', [RestaurantController::class, 'getFilteredRestaurants']);
 });
 
-
+Router::get('/map', [MapController::class, 'showMap']);

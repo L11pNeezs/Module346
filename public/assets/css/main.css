@@ -7,6 +7,7 @@
 @import url('keypoints.css');
 @import url('contribution.css');
 @import url('normalize.css');
+@import url('map.css');
 
 :root {
     /* Base Font Size */
