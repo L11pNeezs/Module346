@@ -155,7 +155,7 @@ abstract class Model
             ->get();
 
         return array_map(static function ($result) {
-         $model = new static;
+            $model = new static;
 
             foreach ($result as $key => $value) {
                 $model->{$key} = $value;

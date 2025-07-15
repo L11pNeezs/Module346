@@ -33,3 +33,34 @@
         </div>
     </div>
 <?php endforeach; ?>
+
+<?php
+$adjacentNumber = 2;
+$pageNumber = min($pageNumber, $pageNumber);
+$startPage = max(1,$pageNumber - $adjacentNumber);
+$endPage = min($nbPages ,$pageNumber + $adjacentNumber);
+?>
+
+<ul class="pagination-container pagination">
+    <li><a href="javascript:;" data-page="1" class="first">&laquo;</a></li>
+
+    <?php if ($startPage > 1): ?>
+
+        <li><a href="javascript:;" data-page="<?= $pageNumber - 1 ?>" class="previous pagination-dots">&lsaquo;</a></li>
+        <li class ="pagination-dots"> ... </li>
+
+    <?php endif; ?>
+
+    <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+        <li class="pages"><a class="active" href="javascript:;" data-page="<?= $i ?>" ><?php echo $i?></a></li>
+    <?php endfor; ?>
+
+    <?php if ($endPage < $nbPages): ?>
+
+        <li class ="pagination-dots"> ... </li>
+        <li><a href="javascript:;" data-page="<?= $pageNumber + 1 ?>" class="next pagination-dots" >&rsaquo;</a></li>
+
+    <?php endif; ?>
+    <li><a href="javascript:;" data-page="<?= $nbPages?>" class="last <?php if ($endPage < $nbPages): ?>disabled<?php endif; ?>">&raquo;</a></li>
+</ul>
+

@@ -26,7 +26,30 @@
     font-family: 'Archivo', sans-serif;
 }
 
-ul, ol {
+html {
+    line-height: 1;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 2vw;
+}
+
+ol, ul, li {
     list-style: none;
     margin: 0;
     padding: 0;
