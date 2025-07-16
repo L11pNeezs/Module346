@@ -52,28 +52,6 @@ class RestaurantController extends AbstractController
 
     public function contribute(): string
     {
-        $criterias = [];
-        $requestVars = request()->all();
-        $criteriasKeys = ['concept', 'price_tier', 'diet'];
-
-        foreach ($criteriasKeys as $criteriaKey) {
-            if (isset($requestVars[$criteriaKey]) && !empty($requestVars[$criteriaKey])) {
-                $criterias[$criteriaKey] = $requestVars[$criteriaKey];
-            }
-        }
-
-        return $criterias;
-    }
-
-    private function getPageNumber(): int
-    {
-        $requestVars = request()->all();
-
-        return isset($requestVars['page']) && is_numeric($requestVars['page']) ? (int) $requestVars['page'] : 1;
-    }
-
-    public function contribute(): string
-    {
         $validator = new RestaurantValidator();
         $data = request()->all();
 
