@@ -1,0 +1,14 @@
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .nav-bar-link {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .nav-bar-link {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+}

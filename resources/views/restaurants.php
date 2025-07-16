@@ -2,13 +2,13 @@
 
 ?>
 
-<h1 class="center">Are you hungry?</h1>
-<h2 class="center">Find all our recommended places below and refine them with your criteria</h2>
+<h1 class="text-subtitle text-center">Are you hungry?</h1>
+<h2 class="text-small text-center">Find all our recommended places below and refine them with your criteria</h2>
 
-<div class="filter-container">
-    <p class="font22">Filter:</p>
-    <div class="select-container">
-        <form class="filter-form" method="GET" action="/restaurants" id="filterForm">
+<div class="flex_col align_center justify_center">
+    <p class="padding_margin_zero">Filter:</p>
+    <div class="flex gap-small">
+        <form class="flex_col align_center gap-small margin-medium" method="GET" action="/restaurants" id="filterForm">
             <div class="custom-select-wrapper">
                 <select class="filter" id="price-tier" name="price_tier">
                     <option value="">Price ranges</option>
@@ -49,7 +49,7 @@
                 </svg>
             </div>
             <input type="hidden" name="page" value="<?= $pageNumber ?>">
-            <button class="modal-btn" type="submit">Filter</button>
+            <button class="btn" type="submit">Filter</button>
         </form>
     </div>
 

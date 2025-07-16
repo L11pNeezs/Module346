@@ -1,0 +1,83 @@
+:root {
+    /* Base Font Size */
+    font-size: 16px;
+    font-family: 'Archivo', sans-serif;
+    background-color: #FAFAFA;
+
+    --font-size-h4: 1.25rem; /* 20px */
+    --font-size-h3: 1.5rem; /* 24px */
+    --font-size-h2: 1.75rem; /* 28px */
+    --font-size-h1: 2rem; /* 32px */
+
+    --spacing-small: 6px;
+    --spacing-medium-small: 10px;
+    --spacing-medium: 16px;
+    --spacing-large: 32px;
+
+    --color-btn: black;
+    --btn-radius: 8px;
+
+    --color-liip: #AEEA00;
+
+    --text-color: #9198e5;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.padding_margin_zero {
+    padding: 0;
+    margin: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex_col {
+    display: flex;
+    flex-direction: column;
+}
+
+.justify_center {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.align_center {
+    align-items: center;
+}
+
+.gap-small {
+    gap: var(--spacing-small);
+}
+
+.padding-small {
+    padding: var(--spacing-small);
+}
+
+.padding-medium-small {
+    padding: var(--spacing-medium-small);
+}
+
+.margin-medium {
+    margin: var(--spacing-medium);
+}
+
+.text-center {
+    text-align: center;
+}

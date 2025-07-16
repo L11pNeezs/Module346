@@ -1,0 +1,29 @@
+.img-container img {
+    width: 90%;
+    height: auto;
+}
+
+.icon-box-hp img {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-box-card img {
+    width: 40px;
+    height: 40px;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .img-container img {
+        width: auto;
+        max-width: 1100px;
+        height: 50%;
+        max-height: 550px;
+    }
+
+    .icon-box-hp img {
+        width: 35px;
+        height: 35px;
+    }
+}

@@ -1,0 +1,11 @@
+.text-title {
+    font-size: var(--font-size-h1);
+}
+
+.text-subtitle {
+    font-size: var(--font-size-h2);
+}
+
+.text-small {
+    font-size: var(--font-size-h4);
+}

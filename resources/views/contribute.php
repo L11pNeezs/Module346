@@ -2,7 +2,7 @@
 ?>
 
 <section>
-    <div class="form-container" id="form-container">
+    <div class="flex justify_center align_center" id="form-container">
         <?php include __DIR__ . '/partials/contribute_partial.php'; ?>
     </div>
 </section>

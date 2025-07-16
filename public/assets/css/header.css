@@ -1,112 +1,42 @@
-/* === MOBILE: 0px - 767px === */
-@media screen and (max-width: 767px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1vh;
-        padding-bottom: 1vw;
-        padding-inline: 1vw;
-    }
-
-    header .title {
-        font-size: var(--font-size-xl);
-    }
-
-    header img {
-        width: 25%;
-    }
-
-    header .title-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .auth-buttons {
-        display: flex;
-    }
+header {
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1vh;
+    padding-bottom: 1vw;
+    padding-inline: 2vw;
 }
 
-/* === TABLET: 768px - 1023px === */
+header .title {
+    font-size: var(--font-size-h3);
+}
+
+header img {
+    width: 70px;
+}
+
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1vh;
-        padding-bottom: 1vw;
-        padding-inline: 1vw;
-    }
-
     header .title {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-h2);
     }
 
     header img {
-        width: 25%;
-    }
-
-    header .title-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .auth-buttons {
-        display: flex;
-    }
-
-    .nav-bar,
-    .nav-bar-link {
-        display: flex;
-        margin: 20px;
-        gap: 10px;
-        align-items: center;
+        width: 100px;
     }
 }
 
-/* === DESKTOP: 1024px and up === */
 @media screen and (min-width: 1024px) {
     header {
-        display: flex;
-        flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 2rem 4rem;
     }
 
     header .title {
-        font-size: var(--font-size-4xl);
+        font-size: var(--font-size-h1);
     }
 
     header img {
-        width: 60px;
-        max-width: 6vw;
-    }
-
-    header .title-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 1.5rem;
-    }
-
-    .auth-buttons {
-        display: flex;
-        gap: 1.5rem;
-    }
-
-    .nav-bar,
-    .nav-bar-link {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        margin: 0;
-        align-items: center;
+        width: 120px;
     }
 }
+
