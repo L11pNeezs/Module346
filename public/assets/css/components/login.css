@@ -273,3 +273,14 @@
         align-items: center;
     }
 }
+
+
+form input.error,
+form select.error,
+form textarea.error {
+    border: 1px solid red;
+
+}
+form span.error {
+    color: red;
+}
