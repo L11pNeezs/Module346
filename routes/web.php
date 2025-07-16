@@ -53,7 +53,11 @@ Router::group(['prefix' => 'restaurants'], static function () {
     Router::post('/', [RestaurantController::class, 'restaurants']);
     Router::post('/contribute', [RestaurantController::class, 'contribute']);
     Router::get('/contribute', static function () {
-        return view('contribute');
+        return view('contribute', [
+            'concepts' => Restaurant::getConcepts(),
+            'priceTiers' => Restaurant::getPriceTiers(),
+            'diets' => Restaurant::getDiets(),
+        ]);
     });
     Router::get('/keypoints', [RestaurantController::class, 'keypoints']);
 });
