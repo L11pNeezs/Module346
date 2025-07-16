@@ -68,20 +68,11 @@ class Restaurant extends Model
         if (!empty($criteria['price_tier'])) {
             if ($criteria['price_tier'] <= 15) {
                 $query->where('price_tier', '<=', $criteria['price_tier']);
-                if (!empty($criteria['concept'])) {
-                    $query->where('concept', '=', $criteria['concept']);
-                }
             } elseif ($criteria['price_tier'] > 15 && $criteria['price_tier'] <= 30) {
                 $query->where('price_tier', '>', 15)
-                      ->where('price_tier', '<=', 30);
-                if (!empty($criteria['concept'])) {
-                    $query->where('concept', '=', $criteria['concept']);
-                }
+                    ->where('price_tier', '<=', 30);
             } elseif ($criteria['price_tier'] > 30) {
                 $query->where('price_tier', '>', 30);
-                if (!empty($criteria['concept'])) {
-                    $query->where('concept', '=', $criteria['concept']);
-                }
             }
         }
 
@@ -94,5 +85,29 @@ class Restaurant extends Model
         }
 
         return $query;
+    }
+
+    public static function getConcepts(): array
+    {
+        $query = DB::select(self::getTableName());
+        $concepts = $query->setColumns(['concept'])->get();
+
+        return $concepts ? array_unique(array_column($concepts, 'concept')) : [];
+    }
+
+    public static function getPriceTiers(): array
+    {
+        $query = DB::select(self::getTableName());
+        $priceTiers = $query->setColumns(['price_tier'])->get();
+
+        return $priceTiers ? array_unique(array_column($priceTiers, 'price_tier')) : [];
+    }
+
+    public static function getDiets(): array
+    {
+        $query = DB::select(self::getTableName());
+        $diets = $query->setColumns(['diet'])->get();
+
+        return $diets ? array_unique(array_column($diets, 'diet')) : [];
     }
 }

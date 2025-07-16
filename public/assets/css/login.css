@@ -246,6 +246,7 @@
     align-items: center;
 }
 
+
 @media (max-width: 600px) {
     #modal-toggle:checked ~ .modal-backdrop {
         opacity: 0.5;
@@ -272,4 +273,14 @@
         justify-content: center;
         align-items: center;
     }
+}
+
+form input.error,
+form select.error,
+form textarea.error {
+    border: 1px solid red;
+
+}
+form span.error {
+    color: red;
 }

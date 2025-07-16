@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Libraries\Core\Http\Controller\AbstractController;
+use App\Libraries\Core\Http\RestaurantValidator\RestaurantValidator;
 use App\Models\Restaurant;
 
 class RestaurantController extends AbstractController
@@ -51,33 +52,94 @@ class RestaurantController extends AbstractController
 
     public function contribute(): string
     {
-        $data = request()->all();
+        $criterias = [];
+        $requestVars = request()->all();
+        $criteriasKeys = ['concept', 'price_tier', 'diet'];
 
-        $required = ['name', 'address', 'description', 'image', 'price_tier', 'concept'];
-        foreach ($required as $field) {
-            if (empty($data[$field] ?? null)) {
-                return view('contribute', ['error' => 'All fields are required.']);
+        foreach ($criteriasKeys as $criteriaKey) {
+            if (isset($requestVars[$criteriaKey]) && !empty($requestVars[$criteriaKey])) {
+                $criterias[$criteriaKey] = $requestVars[$criteriaKey];
             }
         }
 
+        return $criterias;
+    }
+
+    private function getPageNumber(): int
+    {
+        $requestVars = request()->all();
+
+        return isset($requestVars['page']) && is_numeric($requestVars['page']) ? (int) $requestVars['page'] : 1;
+    }
+
+    public function contribute(): string
+    {
+        $validator = new RestaurantValidator();
+        $data = request()->all();
+
+        $options = [
+            'priceTiers' => $validator->getPriceTierOptions(),
+            'concepts' => $validator->getConceptOptions(),
+            'diets' => $validator->getDietOptions(),
+        ];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            return view('contribute', $options);
+        }
+
+        $errors = $validator->validateData($data);
+
+        if (!empty($errors)) {
+            return view('partials/contribute_partial', array_merge([
+                'errors' => $errors,
+                'old' => $data,
+            ], $options));
+        }
+
         $restaurant = new Restaurant;
-        $restaurant->name = $data['name'];
-        $restaurant->address = $data['address'];
-        $restaurant->description = $data['description'];
-        $restaurant->image = $data['image'];
+        $restaurant->name = trim($data['name']);
+        $restaurant->address = trim($data['address']);
+        $restaurant->description = trim($data['description']);
+        $restaurant->image = trim($data['image']);
         $restaurant->price_tier = $data['price_tier'];
-        $restaurant->p_t_description = $data['p_t_description'];
+        $restaurant->p_t_description = $data['p_t_description'] ?? '';
         $restaurant->concept = $data['concept'];
-        $restaurant->c_description = $data['c_description'];
-        $restaurant->diet = $data['diet'];
-        $restaurant->d_description = $data['d_description'];
+        $restaurant->c_description = $data['c_description'] ?? '';
+        $restaurant->diet = $data['diet'] ?? '';
+        $restaurant->d_description = $data['d_description'] ?? '';
         $restaurant->save();
 
-        return header('Location: /');
+        if ($this->isAjaxRequest()) {
+            $this->handleAjaxSuccess([
+                'redirect' => '/',
+                'message' => 'Restaurant submitted successfully',
+            ]);
+            return '';
+        }
+
+        header('Location: /');
+        exit;
     }
 
     public function keypoints(): string
     {
         return view('keypoints');
+    }
+
+    public function getFilteredRestaurants(): string
+    {
+        $criteria = request()->all();
+        $restaurants = Restaurant::getRestaurantsByCriteria($criteria);
+
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+            return view('partials.restaurant_cards', ['restaurants' => $restaurants]);
+        }
+        return view('restaurants', ['restaurants' => $restaurants]);
+    }
+
+    protected function isAjaxRequest(): bool
+    {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
     }
 }

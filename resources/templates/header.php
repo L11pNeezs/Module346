@@ -60,8 +60,16 @@ if (isset($_SESSION['id'])) {
                             <label for="tab-1" class="table"><span>Login</span></label>
                             <div class="tabs-content">
                                 <form action="/login" method="post">
-                                    <input name="username" type="text" placeholder="Username" required>
-                                    <input name="password" type="password" placeholder="Password" required>
+                                    <?php foreach (USERLOGIN_FORM_FIELDS as $field): ?>
+                                    <input
+                                        type="<?= htmlspecialchars($field['type']) ?>"
+                                        name="<?= htmlspecialchars($field['name']) ?>"
+                                        placeholder="<?= htmlspecialchars($field['placeholder']) ?>"
+                                        class="<?php if (!empty($errors[$field['name']])): ?>error<?php endif; ?>">
+                                    <?php if (!empty($errors[$field['name']])): ?>
+                                        <span class="error"><?= htmlspecialchars($errors[$field['name']]) ?></span>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
                                     <input class="login-button" type="submit" value="Log In">
                                 </form>
                             </div>
@@ -69,11 +77,18 @@ if (isset($_SESSION['id'])) {
                             <label for="tab-2" class="table"><span>Sign up</span></label>
                             <div class="tabs-content">
                                 <form action="/signup" method="post">
-                                    <input name="username" placeholder="Username">
-                                    <input name="name" type="text" placeholder="First Name" required>
-                                    <input name="surname" type="text" placeholder="Last Name" required>
-                                    <input name="email" type="email" placeholder="Email" required>
-                                    <input name="password" type="password" placeholder="Password" required>
+                                    <?php foreach (USERSIGNUP_FORM_FIELDS as $field): ?>
+                                    <input
+                                        type="<?= htmlspecialchars($field['type']) ?>"
+                                        name="<?= htmlspecialchars($field['name']) ?>"
+                                        placeholder="<?= htmlspecialchars($field['placeholder']) ?>"
+                                        class="<?php if (!empty($errors[$field['name']])): ?>error<?php endif; ?>"
+                                    >
+                                        <?php if (!empty($errors[$field['name']])): ?>
+                                            <span class="error"><?= htmlspecialchars($errors[$field['name']]) ?></span>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+
                                     <input class="login-button" type="submit" value="Sign Up">
                                 </form>
                             </div>

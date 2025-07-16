@@ -3,20 +3,28 @@
 namespace App\Http\Controllers\User;
 
 use App\Libraries\Core\Http\Controller\AbstractController;
+use App\Libraries\Core\Http\UserValidator\UserValidator;
 use App\Models\User;
 
 class UserController extends AbstractController
 {
     public function register()
     {
+        $validator = new UserValidator();
         $data = request()->all();
+        $errors = $validator->validateData($data);
 
-        $required = ['username', 'password', 'email', 'name', 'surname'];
-        foreach ($required as $field) {
-            if (empty($data[$field] ?? null)) {
-                return view('homepage', ['error' => 'All fields are required.']);
-            }
+        if (User::find('username', $data['username'])) {
+            $errors['username'] = 'Username already exists.';
         }
+        if (User::find('email', $data['email'])) {
+            $errors['email'] = 'Email already exists.';
+        }
+
+        if ($errors) {
+            return $this->handleValidationErrors($errors, 'homepage');
+        }
+
         $user = new User;
         $user->username = $data['username'];
         $user->password = password_hash($data['password'], PASSWORD_BCRYPT);
@@ -25,6 +33,8 @@ class UserController extends AbstractController
         $user->surname = $data['surname'];
         $user->save();
 
+        $this->handleAjaxSuccess();
+
         header('Location: /');
         exit;
     }
@@ -32,21 +42,31 @@ class UserController extends AbstractController
     public function login()
     {
         $data = request()->all();
+        $errors = [];
 
-        $required = ['username', 'password'];
-        foreach ($required as $field) {
-            if (empty($data[$field] ?? null)) {
-                return view('homepage', ['error' => 'Username and password are required.']);
-            }
+        if (empty($data['username'])) {
+            $errors['username'] = 'Username is required.';
+        }
+
+        if (empty($data['password'])) {
+            $errors['password'] = 'Password is required.';
         }
 
         $user = User::find('username', $data['username']);
 
-        if (!$user || !password_verify($data['password'], $user->password)) {
-            return view('homepage', ['error' => 'Wrong username or password.']);
+        if (!$user) {
+            $errors['username'] = 'User not found.';
+        } elseif (!password_verify($data['password'], $user->password)) {
+            $errors['password'] = 'Incorrect password.';
+        }
+
+        if ($errors) {
+            return $this->handleValidationErrors($errors, 'homepage');
         }
 
         $_SESSION['id'] = $user->id;
+
+        $this->handleAjaxSuccess();
 
         header('Location: /');
         exit;
@@ -58,6 +78,4 @@ class UserController extends AbstractController
         header('Location: /');
         exit;
     }
-
-
 }

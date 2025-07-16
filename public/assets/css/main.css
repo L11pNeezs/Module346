@@ -77,3 +77,13 @@ body {
 html {
     margin: 0;
 }
+
+form input.error,
+form select.error,
+form textarea.error {
+    border: 1px solid red !important;
+
+}
+form span.error {
+    color: red;
+}

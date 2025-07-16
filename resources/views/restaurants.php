@@ -56,7 +56,5 @@
 </div>
 
 <div class="card-grid" id="restaurantGrid">
-
-    <?php include __DIR__ . "/partials/restaurant_cards.php"; ?>
-
+    <?= include __DIR__ . '/partials/restaurant_cards.php' ?>
 </div>

@@ -23,3 +23,4 @@
     </div>
 </footer>
 <script src="/assets/js/restaurantsAjax.js"></script>
+<script src="/assets/js/loginsignupAjax.js"></script>
