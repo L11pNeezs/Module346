@@ -10,23 +10,10 @@ class RestaurantController extends AbstractController
     const NB_RESTAURANTS_PER_PAGE = 6;
     public function restaurants(): string
     {
-        $criteria = $_GET; // Use GET for filters
-        $hasCriteria = !empty(array_filter([
-            $criteria['concept'] ?? null,
-            $criteria['price_tier'] ?? null,
-            $criteria['diet'] ?? null,
-        ]));
-
-        $pageNumber = isset($criteria['page']) && is_numeric($criteria['page']) ? (int) $criteria['page'] : 1;
-
-        if ($hasCriteria) {
-            $restaurants = Restaurant::getRestaurantsByCriteria($criteria, self::NB_RESTAURANTS_PER_PAGE, $pageNumber);
-            $nbPages = ceil(Restaurant::countRestaurantsByCriteria($criteria) / self::NB_RESTAURANTS_PER_PAGE);
-        } else {
-            $criteria = request()->all();
-            $nbPages = ceil(Restaurant::countRestaurantsByCriteria($criteria) / self::NB_RESTAURANTS_PER_PAGE);
-            $restaurants = Restaurant::getRestaurantsByCriteria($criteria, self::NB_RESTAURANTS_PER_PAGE, $pageNumber);
-        }
+        $pageNumber = $this->getPageNumber();
+        $criterias = $this->getCriterias();
+        $nbPages = ceil(Restaurant::countRestaurantsByCriteria($criterias) / self::NB_RESTAURANTS_PER_PAGE);
+        $restaurants = Restaurant::getRestaurantsByCriteria($criterias, self::NB_RESTAURANTS_PER_PAGE, $pageNumber);
 
         $view = 'restaurants';
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
@@ -38,6 +25,28 @@ class RestaurantController extends AbstractController
             'pageNumber' => $pageNumber,
             'nbPages' => $nbPages,
         ]);
+    }
+
+    private function getCriterias(): array
+    {
+        $criterias = [];
+        $requestVars = request()->all();
+        $criteriasKeys = ['concept', 'price_tier', 'diet'];
+
+        foreach ($criteriasKeys as $criteriaKey) {
+            if (isset($requestVars[$criteriaKey]) && !empty($requestVars[$criteriaKey])) {
+                $criterias[$criteriaKey] = $requestVars[$criteriaKey];
+            }
+        }
+
+        return $criterias;
+    }
+
+    private function getPageNumber(): int
+    {
+        $requestVars = request()->all();
+
+        return isset($requestVars['page']) && is_numeric($requestVars['page']) ? (int) $requestVars['page'] : 1;
     }
 
     public function contribute(): string
