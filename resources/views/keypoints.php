@@ -1,37 +1,39 @@
 <?php
-Use App\Models\Restaurant;
+
+use App\Models\Restaurant;
 
 $restaurant = Restaurant::getById($_GET['restaurant_id']);
 
 ?>
 
-<h1 class="title"><?= $restaurant->name ?></h1>
+<h1 class="text-title text-center"><?= $restaurant->name ?></h1>
 
-<section class="hero-container">
+<section class="flex justify_center img-container">
     <img src="<?= $restaurant->image ?>">
 </section>
 
-<h1 class="title">Keypoints</h1>
-<section class="keypoints-container">
-    <div class="keypoints-div">
-        <h2><?= $restaurant->price_tier ?></h2>
-        <section class="keypoints-div-description">
-            <?= $restaurant->p_t_description ?>
+<h1 class="text-subtitle text-center">Keypoints</h1>
 
-        </section>
+<section class="keypoints">
+    <div class="text-center">
+        <h3 class="text-small"><?= $restaurant->price_tier ?></h3>
+        <div>
+            <?= $restaurant->p_t_description ?>
+        </div>
     </div>
-    <div class="keypoints-div">
-        <h2><?= $restaurant->concept ?></h2>
-        <section class="keypoints-div-description">
+    <div class="text-center">
+        <h3 class="text-small"><?= $restaurant->concept ?></h3>
+        <div>
             <?= $restaurant->c_description ?>
 
-        </section>
+        </div>
     </div>
-    <div class="keypoints-div">
-        <h2><?= $restaurant->veggie_options ?></h2>
-        <section class="keypoints-div-description">
+    <div class="text-center">
+        <h3 class="text-small">Veggie Option</h3>
+        <div>
+            <p>YOLO</p>
             <?= $restaurant->v_o_description ?>
 
-        </section>
+        </div>
     </div>
 </section>

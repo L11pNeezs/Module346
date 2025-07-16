@@ -4,20 +4,20 @@
 
 </main>
 <footer>
-    <div class="footer-container">
-        <div class="img-container">
+    <div class="flex_row space-between align_center">
+        <div class="flex_row align_center">
             <img class="logo" src="/assets/images/koa-la-logo.png" alt="Koa-La Logo">
-            <h1><a href="/">Koa-La</a></h1>
+            <h1 class="title"><a href="/">Koa-La</a></h1>
         </div>
         <div class="footer-bar"></div>
-        <div class="footer-links">
-            <ul>
+        <div>
+            <ul class="flex_col gap-small" id="ul">
                 <li><a href="/">Contact Us</a></li>
                 <li><a href="/">Team</a></li>
                 <li><a href="/">Company</a></li>
             </ul>
         </div>
-        <div class="span-container">
+        <div>
             <span>©Liip</span>
         </div>
     </div>

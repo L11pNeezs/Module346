@@ -2,7 +2,7 @@
 
 ?>
 
-<form method="POST" action="/restaurants/contribute">
+<form class="contribute-form" method="POST" action="/restaurants/contribute">
     <h1><strong>Contribute</strong></h1>
     <p><strong>Help us improve Koa-La by contributing your favorite places!</strong></p>
 
@@ -50,7 +50,7 @@
 
     <?php endforeach; ?>
 
-    <div class="button-wrapper">
-        <button class="modal-btn" type="submit">Submit</button>
+    <div>
+        <button class="btn" type="submit">Submit</button>
     </div>
 </form>

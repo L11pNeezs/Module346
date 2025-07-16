@@ -1,29 +1,28 @@
+@import url('normalize.css');
+@import url('theme.css');
+@import url('components/btn_primary.css');
+@import url('components/nav_bar.css');
+@import url('components/img_containers.css');
+@import url('components/titles.css');
+@import url('components/forms.css');
+@import url('components/cards.css');
+@import url('components/login.css');
+@import url('components/hamburger.css');
 @import url('header.css');
 @import url('footer.css');
-@import url('login.css');
-@import url('hamburger.css');
 @import url('homepage.css');
-@import url('cards.css');
 @import url('keypoints.css');
 @import url('contribution.css');
 @import url('normalize.css');
 @import url('map.css');
 
-:root {
-    /* Base Font Size */
-    font-size: 16px;
 
-    --font-size-xs: 0.75rem; /* 12px */
-    --font-size-sm: 0.875rem; /* 14px */
-    --font-size-base: 1rem; /* 16px */
-    --font-size-lg: 1.125rem; /* 18px */
-    --font-size-xl: 1.25rem; /* 20px */
-    --font-size-2xl: 1.5rem; /* 24px */
-    --font-size-3xl: 1.875rem; /* 30px */
-    --font-size-4xl: 2.25rem; /* 36px */
-    --font-size-5xl: 3rem; /* 48px */
 
-    font-family: 'Archivo', sans-serif;
+html {
+    line-height: 1;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -66,6 +65,7 @@ a {
 
 main {
     flex: 1;
+    padding-inline: 2vw;
 }
 
 body {
@@ -76,14 +76,4 @@ body {
 
 html {
     margin: 0;
-}
-
-form input.error,
-form select.error,
-form textarea.error {
-    border: 1px solid red !important;
-
-}
-form span.error {
-    color: red;
 }

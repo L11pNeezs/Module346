@@ -12,39 +12,39 @@ if (isset($_SESSION['id'])) {
 
 ?>
 <br>
-<section class="restaurant-suggestion">
-    <p class="font22">Today you should eat at : <strong><?= $restaurant->name ?></strong></p>
+<section>
+    <p class="text-center sub_title">Today you should eat at : <strong><?= $restaurant->name ?></strong></p>
 </section>
 
-<section class="description-hp">
-    <img class="description-img" src="<?= $restaurant->image ?>">
-    <div class="restaurant-description">
+<section class="img-container flex_col align_center">
+    <img src="<?= $restaurant->image ?>">
+    <div>
         <div>
-            <p><strong><?= $restaurant->name ?></strong></p>
-            <p><?= $restaurant->description ?></p>
-            <div class="info-container">
-                <div class="box">
+            <p class="text-center"><strong><?= $restaurant->name ?></strong></p>
+            <p class="text-center"><?= $restaurant->description ?></p>
+            <div class="icon-box-hp flex space-around padding-small">
+                <div class="text-center">
                     <?php if ($restaurant->price_tier < 15) { ?>
-                        <p class="span"><img src="/assets/images/price-green.png"</p>
+                        <p><img src="/assets/images/price-green.png"</p>
                         <p>Cheap</p>
                     <?php } elseif ($restaurant->price_tier > 15 && $restaurant->price_tier < 30) { ?>
-                        <p class="span"><img src="/assets/images/price-yellow.png"></p>
+                        <p><img src="/assets/images/price-yellow.png"></p>
                         <p>Moderate</p>
                     <?php } else { ?>
-                        <p class="span"><img src="/assets/images/price-red.png"</p>
+                        <p><img src="/assets/images/price-red.png"</p>
                         <p>Expensive</p>
                     <?php }; ?>
                 </div>
-                <div class="box">
-                    <p class="span"><img src="/assets/images/<?= $restaurant->concept ?>.png"></p>
+                <div class="text-center">
+                    <p><img src="/assets/images/<?= $restaurant->concept ?>.png"></p>
                     <p><?= $restaurant->concept ?></p>
                 </div>
-                <div class="box">
+                <div class="text-center">
                     <?php if ($restaurant->veggie_option): ?>
-                        <p class="span"><img src="/assets/images/vegan.png"></p>
+                        <p><img src="/assets/images/vegan.png"></p>
                         <p>Vegetarian option</p>
                     <?php else: ?>
-                        <p class="span"><img src="/assets/images/vegan-red.png"></p>
+                        <p><img src="/assets/images/vegan-red.png"></p>
                         <p>No vegetarian option</p>
                     <?php endif; ?>
                 </div>
@@ -52,19 +52,14 @@ if (isset($_SESSION['id'])) {
         </div>
     </div>
 </section>
-
-<div class="learn-more-container">
-    <label class="modal-btn"><a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn
-            More</a></label>
+<br>
+<div class="text-center">
+    <label class="btn"><a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn More</a></label>
 </div>
-
-<section class="discover-more">
-    <h2>Do you want more?</h2>
-    <label class="modal-btn"><a href="/restaurants/">Discover more</a></label>
+<br>
+<section class="text-center">
+    <h2 class="sub_title">Do you want more?</h2>
+    <label class="btn"><a href="/restaurants">Discover more</a></label>
 </section>
-
-
-    <section class="section-discover">
-    <h3 class="discover-title">Do you want more?</h3>
-    <a class="discover-button" href="/restaurants">Discover more</a>
-</section>
+<br>
+<br>
