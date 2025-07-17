@@ -13,13 +13,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('description');
-            $table->string('image');
+            $table->string('image')->nullable(true);
             $table->string('price_tier');
-            $table->string('p_t_description');
+            $table->string('p_t_description')->nullable(true);
             $table->string('concept');
-            $table->string('c_description');
+            $table->string('c_description')->nullable(true);
             $table->string('diet');
-            $table->string('d_description');
+            $table->string('d_description')->nullable(true);
             $table->timestamps();
         });
     }
