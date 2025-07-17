@@ -36,4 +36,10 @@ class Column
     {
         return app('database')->getColumnDefinition($this);
     }
+
+    public function nullable(bool $isNullable = true): static
+    {
+        $this->nullable = $isNullable;
+        return $this;
+    }
 }

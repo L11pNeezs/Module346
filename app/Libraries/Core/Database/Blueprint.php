@@ -30,13 +30,15 @@ class Blueprint
         ]);
     }
 
-    public function string(string $columnName, ?int $length = null): void
+    public function string(string $columnName, ?int $length = null): Column
     {
-        $this->columns[$columnName] = Column::fromArray([
+        $columns = Column::fromArray([
             'name' => $columnName,
             'type' => $length ? Type::VarChar : Type::Text,
             'length' => $length,
         ]);
+        $this->columns[$columnName] = $columns;
+        return $columns;
     }
 
     public function timestamps(): void
