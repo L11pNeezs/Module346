@@ -1,5 +1,6 @@
 <?php
 
+/** @var \App\Models\Restaurant|null $restaurant */
 use App\Models\User;
 
 $username = null;
@@ -27,26 +28,26 @@ if (isset($_SESSION['id'])) {
                     <?php if ($restaurant->price_tier < 15) { ?>
                         <p><img src="/assets/images/price-green.png"</p>
                         <p>Cheap</p>
-                    <?php } elseif ($restaurant->price_tier > 15 && $restaurant->price_tier < 30) { ?>
+                    <?php } elseif ($restaurant->price_tier > 15 && $restaurant->price_tier <= 30) { ?>
                         <p><img src="/assets/images/price-yellow.png"></p>
                         <p>Moderate</p>
                     <?php } else { ?>
                         <p><img src="/assets/images/price-red.png"</p>
                         <p>Expensive</p>
-                    <?php }; ?>
+                    <?php } ?>
                 </div>
                 <div class="text-center">
                     <p><img src="/assets/images/<?= $restaurant->concept ?>.png"></p>
                     <p><?= $restaurant->concept ?></p>
                 </div>
                 <div class="text-center">
-                    <?php if ($restaurant->veggie_option): ?>
+                    <?php if ($restaurant->veggie_option) { ?>
                         <p><img src="/assets/images/vegan.png"></p>
                         <p>Vegetarian option</p>
-                    <?php else: ?>
+                    <?php } else { ?>
                         <p><img src="/assets/images/vegan-red.png"></p>
                         <p>No vegetarian option</p>
-                    <?php endif; ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>

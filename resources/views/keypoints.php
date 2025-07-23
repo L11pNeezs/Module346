@@ -20,13 +20,13 @@ $restaurant = Restaurant::getById($data['restaurant_id']);
     <div class="text-center">
         <h3 class="text-small"><?= $restaurant->price_tier ?></h3>
         <div>
-            <?= $restaurant->p_t_description ?>
+            <?= $restaurant->price_tier_description ?>
         </div>
     </div>
     <div class="text-center">
         <h3 class="text-small"><?= $restaurant->concept ?></h3>
         <div>
-            <?= $restaurant->c_description ?>
+            <?= $restaurant->concept_description ?>
 
         </div>
     </div>

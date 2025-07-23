@@ -10,7 +10,7 @@ class UserController extends AbstractController
 {
     public function register()
     {
-        $validator = new UserValidator();
+        $validator = new UserValidator;
         $data = request()->all();
         $errors = $validator->validateData($data);
 
@@ -54,9 +54,9 @@ class UserController extends AbstractController
 
         $user = User::find('username', $data['username']);
 
-        if (!$user) {
+        if (! $user) {
             $errors['username'] = 'User not found.';
-        } elseif (!password_verify($data['password'], $user->password)) {
+        } elseif (! password_verify($data['password'], $user->password)) {
             $errors['password'] = 'Incorrect password.';
         }
 

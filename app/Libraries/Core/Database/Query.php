@@ -13,6 +13,7 @@ class Query
     protected array $where = [];
 
     protected ?int $limit = null;
+
     protected ?int $offset = null;
 
     protected array $orderBy = [];

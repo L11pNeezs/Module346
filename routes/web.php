@@ -16,6 +16,7 @@ Router::get('/login', static function () {
     if (isset($_SESSION['id'])) {
         return view('homepage');
     }
+
     return view('homepage');
 });
 
@@ -33,7 +34,7 @@ Router::group(['prefix' => 'example'], static function () {
             'username' => $username,
             'password' => $password,
 
-            ] = request()->all();
+        ] = request()->all();
 
         if (empty($username) || empty($password)) {
             return view('example.index', ['error' => 'Name and password are required.']);

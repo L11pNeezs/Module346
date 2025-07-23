@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('description');
             $table->string('image')->nullable(true);
             $table->string('price_tier');
-            $table->string('p_t_description')->nullable(true);
+            $table->string('price_tier_description')->nullable(true);
             $table->string('concept');
-            $table->string('c_description')->nullable(true);
+            $table->string('concept_description')->nullable(true);
             $table->string('diet');
-            $table->string('d_description')->nullable(true);
+            $table->string('diet_description')->nullable(true);
             $table->timestamps();
         });
     }

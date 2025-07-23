@@ -1,5 +1,5 @@
 <?php
-
+/** @var int $pageNumber */
 ?>
 
 <h1 class="text-subtitle text-center">Are you hungry?</h1>
@@ -56,5 +56,5 @@
 </div>
 
 <div class="card-grid" id="restaurantGrid">
-    <?= include __DIR__ . '/partials/restaurant_cards.php' ?>
+    <?php include __DIR__.'/partials/restaurant_cards.php' ?>
 </div>

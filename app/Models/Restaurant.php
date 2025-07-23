@@ -8,6 +8,14 @@ use App\Libraries\Core\Facades\DB;
 
 class Restaurant extends Model
 {
+
+    public function fillFromArray(array $data): void
+    {
+        foreach ($data as $field => $value) {
+            $this->$field = $value;
+        }
+    }
+
     public static function getRandomRestaurant(): ?Restaurant
     {
         $result = DB::select(self::getTableName())
@@ -17,16 +25,9 @@ class Restaurant extends Model
 
         $restaurant = new self;
         if ($result) {
-            $restaurant->id = $result['id'];
-            $restaurant->name = $result['name'];
-            $restaurant->address = $result['address'];
-            $restaurant->coordinates =  $result['coordinates'];
-            $restaurant->description = $result['description'];
-            $restaurant->image = $result['image'];
-            $restaurant->price_tier = $result['price_tier'];
-            $restaurant->concept = $result['concept'];
-            $restaurant->diet = $result['diet'];
+            $restaurant->fillFromArray($result);
         }
+
         return $restaurant;
     }
 
@@ -42,17 +43,10 @@ class Restaurant extends Model
 
         foreach ($results as $result) {
             $restaurant = new self;
-            $restaurant->id = $result['id'];
-            $restaurant->name = $result['name'];
-            $restaurant->address = $result['address'];
-            $restaurant->coordinates = $result['coordinates'];
-            $restaurant->description = $result['description'];
-            $restaurant->image = $result['image'];
-            $restaurant->price_tier = $result['price_tier'];
-            $restaurant->concept = $result['concept'];
-            $restaurant->diet = $result['diet'];
+            $restaurant->fillFromArray($result);
             $restaurants[] = $restaurant;
         }
+
         return $restaurants;
     }
 

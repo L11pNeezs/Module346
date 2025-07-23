@@ -11,13 +11,14 @@ use App\Services\GeoAdminApi\SearchService;
 class RestaurantController extends AbstractController
 {
     const NB_RESTAURANTS_PER_PAGE = 6;
+
     public function restaurants(): string
     {
         $pageNumber = $this->getPageNumber();
-        $criterias = $this->getCriterias();
-        $nbPages = ceil(Restaurant::countRestaurantsByCriteria($criterias) / self::NB_RESTAURANTS_PER_PAGE);
-        $restaurants = Restaurant::getRestaurantsByCriteria($criterias, self::NB_RESTAURANTS_PER_PAGE, $pageNumber);
+        $criteria = $this->getCriterias();
+        $nbPages = ceil(Restaurant::countRestaurantsByCriteria($criteria) / self::NB_RESTAURANTS_PER_PAGE);
 
+        $restaurants = Restaurant::getRestaurantsByCriteria($criteria, self::NB_RESTAURANTS_PER_PAGE, $pageNumber);
         $view = 'restaurants';
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
             $view = 'partials.restaurant_cards';
@@ -56,8 +57,7 @@ class RestaurantController extends AbstractController
     {
         $validator = new RestaurantValidator();
         $data = request()->all();
-        $searchApi = new SearchService();
-
+        $errors = $validator->validateData($data);
 
         $options = [
             'priceTiers' => $validator->getPriceTierOptions(),
@@ -65,11 +65,13 @@ class RestaurantController extends AbstractController
             'diets' => $validator->getDietOptions(),
         ];
 
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return view('contribute', $options);
+        if (request()->method === 'GET') {
+            return view('contribute', array_merge([
+                'errors' => $errors,
+                'old' => $data,
+                ],
+                $options));
         }
-
-        $errors = $validator->validateData($data);
 
         if (!empty($errors)) {
             return view('partials/contribute_partial', array_merge([
@@ -78,23 +80,18 @@ class RestaurantController extends AbstractController
             ], $options));
         }
 
+        if (($data['concept'] ?? '') === '__other__' && !empty($data['concept_other'])) {
+            $data['concept'] = $data['concept_other'];
+        }
+        unset($data['concept_other']);
+
+        if (($data['diet'] ?? '') === '__other__' && !empty($data['diet_other'])) {
+            $data['diet'] = $data['diet_other'];
+        }
+        unset($data['diet_other']);
+
         $restaurant = new Restaurant;
-        $restaurant->name = trim($data['name']);
-        $restaurant->address = trim($data['address']);
-        $restaurant->description = trim($data['description']);
-        $restaurant->image = trim($data['image']);
-        $restaurant->price_tier = $data['price_tier'];
-        $restaurant->p_t_description = $data['p_t_description'] ?? '';
-        $restaurant->concept = $data['concept'];
-        $restaurant->c_description = $data['c_description'];
-        $restaurant->diet = $data['diet'];
-        $restaurant->d_description = $data['d_description'];
-
-        $coordinates = $searchApi->getCoordinates($data['address']);
-        $sql = "SELECT ST_SetSRID(ST_MakePoint({$coordinates->lon}, {$coordinates->lat}), 4326)";
-        $geometryPoint = DB::raw($sql)->fetchAll(\PDO::FETCH_ASSOC);
-        $restaurant->coordinates = $geometryPoint[0]['st_setsrid'];
-
+        $restaurant->fillFromArray($data);
         $restaurant->save();
 
         if ($this->isAjaxRequest()) {
@@ -102,6 +99,7 @@ class RestaurantController extends AbstractController
                 'redirect' => '/',
                 'message' => 'Restaurant submitted successfully',
             ]);
+
             return '';
         }
 
@@ -122,17 +120,6 @@ class RestaurantController extends AbstractController
         ];
 
         return view('keypoints', ['restaurantCoordinates' => $restaurantCoordinates]);
-    }
-
-    public function getFilteredRestaurants(): string
-    {
-        $criteria = request()->all();
-        $restaurants = Restaurant::getRestaurantsByCriteria($criteria);
-
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
-            return view('partials.restaurant_cards', ['restaurants' => $restaurants]);
-        }
-        return view('restaurants', ['restaurants' => $restaurants]);
     }
 
     protected function isAjaxRequest(): bool
