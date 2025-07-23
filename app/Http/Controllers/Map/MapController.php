@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Map;
 use App\Libraries\Core\Facades\DB;
 use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Models\Restaurant;
-use App\Services\GeoAdminApi\SearchService;
 
 class MapController extends AbstractController
 {

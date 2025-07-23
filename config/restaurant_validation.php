@@ -8,8 +8,8 @@ return [
         'messages' => [
             'required' => 'Place name is required.',
             'min_length' => 'Place name must be at least 2 characters.',
-            'max_length' => 'Place name must not exceed 100 characters.'
-        ]
+            'max_length' => 'Place name must not exceed 100 characters.',
+        ],
     ],
     'address' => [
         'required' => true,
@@ -18,8 +18,8 @@ return [
         'messages' => [
             'required' => 'Location is required.',
             'min_length' => 'Location must be at least 5 characters.',
-            'max_length' => 'Location must not exceed 255 characters.'
-        ]
+            'max_length' => 'Location must not exceed 255 characters.',
+        ],
     ],
     'description' => [
         'required' => true,
@@ -28,8 +28,8 @@ return [
         'messages' => [
             'required' => 'Description is required.',
             'min_length' => 'Description must be at least 10 characters.',
-            'max_length' => 'Description must not exceed 500 characters.'
-        ]
+            'max_length' => 'Description must not exceed 500 characters.',
+        ],
     ],
     'image' => [
         'required' => true,
@@ -39,19 +39,19 @@ return [
         'messages' => [
             'required' => 'Image URL is required.',
             'valid_url' => 'Image URL must be a valid URL.',
-            'valid_image' => 'Image URL must point to a valid image file (jpg, jpeg, png, gif).'
-        ]
+            'valid_image' => 'Image URL must point to a valid image file (jpg, jpeg, png, gif).',
+        ],
     ],
     'price_tier' => [
         'required' => true,
         'messages' => [
             'required' => 'Price tier is required.',
-        ]
+        ],
     ],
     'concept' => [
         'required' => true,
         'messages' => [
             'required' => 'Concept is required.',
-        ]
+        ],
     ],
 ];

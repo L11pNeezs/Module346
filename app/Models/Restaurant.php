@@ -5,15 +5,22 @@ namespace App\Models;
 use App\Libraries\Core\Database\Model;
 use App\Libraries\Core\Database\Query;
 use App\Libraries\Core\Facades\DB;
+use App\Services\GeoAdminApi\SearchService;
 
 class Restaurant extends Model
 {
-
     public function fillFromArray(array $data): void
     {
         foreach ($data as $field => $value) {
             $this->$field = $value;
         }
+
+        $searchApi = new SearchService;
+        $coordinates = $searchApi->getCoordinates($data['address']);
+
+        $sql = "SELECT ST_SetSRID(ST_MakePoint({$coordinates->lon}, {$coordinates->lat}), 4326)";
+        $geometryPoint = DB::raw($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        $this->coordinates = $geometryPoint[0]['st_setsrid'];
     }
 
     public static function getRandomRestaurant(): ?Restaurant
@@ -61,7 +68,7 @@ class Restaurant extends Model
     {
         $query = DB::select(self::getTableName());
 
-        if (!empty($criteria['price_tier'])) {
+        if (! empty($criteria['price_tier'])) {
             if ($criteria['price_tier'] <= 15) {
                 $query->where('price_tier', '<=', $criteria['price_tier']);
             } elseif ($criteria['price_tier'] > 15 && $criteria['price_tier'] <= 30) {
@@ -72,11 +79,11 @@ class Restaurant extends Model
             }
         }
 
-        if (!empty($criteria['concept'])) {
+        if (! empty($criteria['concept'])) {
             $query->where('concept', '=', $criteria['concept']);
         }
 
-        if (!empty($criteria['diet'])) {
+        if (! empty($criteria['diet'])) {
             $query->where('diet', '=', $criteria['diet']);
         }
 

@@ -9,6 +9,7 @@ class Column
     public string $name;
 
     public Type $type;
+
     public ?array $typeParameters;
 
     public bool $nullable = false;
@@ -29,7 +30,7 @@ class Column
         return new static(
             name: $array['name'],
             type: $array['type'],
-            typeParameters:  $array['typeParameters'] ?? null,
+            typeParameters: $array['typeParameters'] ?? null,
             nullable: $array['nullable'] ?? false,
             primary: $array['primaryKey'] ?? false
         );
