@@ -56,6 +56,7 @@ class RestaurantController extends AbstractController
     public function contribute(): string
     {
         $validator = new RestaurantValidator();
+        $searchApi = new SearchService();
         $data = request()->all();
         $errors = $validator->validateData($data);
 
@@ -92,6 +93,12 @@ class RestaurantController extends AbstractController
 
         $restaurant = new Restaurant;
         $restaurant->fillFromArray($data);
+
+        $coordinates = $searchApi->getCoordinates($data['address']);
+        $sql = "SELECT ST_SetSRID(ST_MakePoint({$coordinates->lon}, {$coordinates->lat}), 4326)";
+        $geometryPoint = DB::raw($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        $restaurant->coordinates = $geometryPoint[0]['st_setsrid'];
+
         $restaurant->save();
 
         if ($this->isAjaxRequest()) {
