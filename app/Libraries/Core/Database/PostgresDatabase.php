@@ -39,7 +39,7 @@ final class PostgresDatabase extends AbstractDatabase
         $definition = "{$column->name} {$type}";
 
         if ($column->typeParameters) {
-            $definition .= '(' . implode(', ', $column->typeParameters) . ')';
+            $definition .= '('.implode(', ', $column->typeParameters).')';
         }
 
         if ($column->nullable) {

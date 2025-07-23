@@ -1,5 +1,5 @@
 <?php
-;
+
 const CONTRIBUTE_FORM_FIELDS = [
     'name' => [
         'label' => 'Restaurant Name',

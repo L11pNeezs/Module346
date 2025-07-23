@@ -68,12 +68,13 @@ class Blueprint
     public function geometry(string $columnName, string $geometryType = 'Point', $srid = 4326): Column
     {
         $columns = Column::fromArray([
-            'name' =>  $columnName,
+            'name' => $columnName,
             'type' => Type::Geometry,
-            'typeParameters' =>  [$geometryType, $srid],
+            'typeParameters' => [$geometryType, $srid],
             'nullable' => true,
-         ]);
+        ]);
         $this->columns[$columnName] = $columns;
+
         return $columns;
     }
 }

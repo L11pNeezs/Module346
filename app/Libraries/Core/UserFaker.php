@@ -9,35 +9,39 @@ class UserFaker
         'luna.techie',
         'max_power23',
         'nova.alpha',
-        'skywalker7'
+        'skywalker7',
     ];
+
     private static array $passwords = [
         'P@ssw0rd123',
         'Zebra!2025',
         'Qwerty_89!',
         'L1ipSecure*',
-        'Moonlight$7'
+        'Moonlight$7',
     ];
+
     private static array $names = [
         'Goat',
         'Luna',
         'Max',
         'Sophie',
-        'Leo'
+        'Leo',
     ];
+
     private static array $surnames = [
         'Dev',
         'Meier',
         'Schmid',
         'Keller',
-        'Baumann'
+        'Baumann',
     ];
+
     private static array $emails = [
         'goat.dev@example.com',
         'luna.meier@example.com',
         'max.schmid@example.com',
         'sophie.keller@example.com',
-        'leo.baumann@example.com'
+        'leo.baumann@example.com',
     ];
 
     public static function username(): string

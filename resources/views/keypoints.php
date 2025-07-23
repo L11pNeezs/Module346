@@ -1,7 +1,6 @@
 <?php
 
-use App\Libraries\Core\Facades\DB;
-Use App\Models\Restaurant;
+use App\Models\Restaurant;
 
 $data = request()->all();
 $restaurant = Restaurant::getById($data['restaurant_id']);

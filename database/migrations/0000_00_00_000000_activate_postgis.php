@@ -1,6 +1,5 @@
 <?php
 
-use App\Libraries\Core\Database\Blueprint;
 use App\Libraries\Core\Database\Migration;
 use App\Libraries\Core\Facades\DB;
 

@@ -6,7 +6,6 @@ use App\Libraries\Core\Facades\DB;
 use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Libraries\Core\Http\RestaurantValidator\RestaurantValidator;
 use App\Models\Restaurant;
-use App\Services\GeoAdminApi\SearchService;
 
 class RestaurantController extends AbstractController
 {
@@ -38,7 +37,7 @@ class RestaurantController extends AbstractController
         $criteriasKeys = ['concept', 'price_tier', 'diet'];
 
         foreach ($criteriasKeys as $criteriaKey) {
-            if (isset($requestVars[$criteriaKey]) && !empty($requestVars[$criteriaKey])) {
+            if (isset($requestVars[$criteriaKey]) && ! empty($requestVars[$criteriaKey])) {
                 $criterias[$criteriaKey] = $requestVars[$criteriaKey];
             }
         }
@@ -55,8 +54,7 @@ class RestaurantController extends AbstractController
 
     public function contribute(): string
     {
-        $validator = new RestaurantValidator();
-        $searchApi = new SearchService();
+        $validator = new RestaurantValidator;
         $data = request()->all();
         $errors = $validator->validateData($data);
 
@@ -70,34 +68,29 @@ class RestaurantController extends AbstractController
             return view('contribute', array_merge([
                 'errors' => $errors,
                 'old' => $data,
-                ],
+            ],
                 $options));
         }
 
-        if (!empty($errors)) {
+        if (! empty($errors)) {
             return view('partials/contribute_partial', array_merge([
                 'errors' => $errors,
                 'old' => $data,
             ], $options));
         }
 
-        if (($data['concept'] ?? '') === '__other__' && !empty($data['concept_other'])) {
+        if (($data['concept'] ?? '') === '__other__' && ! empty($data['concept_other'])) {
             $data['concept'] = $data['concept_other'];
         }
         unset($data['concept_other']);
 
-        if (($data['diet'] ?? '') === '__other__' && !empty($data['diet_other'])) {
+        if (($data['diet'] ?? '') === '__other__' && ! empty($data['diet_other'])) {
             $data['diet'] = $data['diet_other'];
         }
         unset($data['diet_other']);
 
         $restaurant = new Restaurant;
         $restaurant->fillFromArray($data);
-
-        $coordinates = $searchApi->getCoordinates($data['address']);
-        $sql = "SELECT ST_SetSRID(ST_MakePoint({$coordinates->lon}, {$coordinates->lat}), 4326)";
-        $geometryPoint = DB::raw($sql)->fetchAll(\PDO::FETCH_ASSOC);
-        $restaurant->coordinates = $geometryPoint[0]['st_setsrid'];
 
         $restaurant->save();
 

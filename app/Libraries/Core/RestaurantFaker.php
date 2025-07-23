@@ -12,6 +12,7 @@ class RestaurantFaker
         'Urban Bites',
         'Fusion Feast',
     ];
+
     private static array $addresses = [
         'Rue de Bourg 22, 1003 Lausanne',
         'Avenue d’Ouchy 45, 1006 Lausanne',
@@ -20,6 +21,7 @@ class RestaurantFaker
         'Boulevard de Grancy 27, 1006 Lausanne',
         'Avenue du Léman 5, 1005 Lausanne',
     ];
+
     private static array $coordinates = [
         'POINT(6.6336 46.5205)',
         'POINT(6.6319 46.5074)',
@@ -37,6 +39,7 @@ class RestaurantFaker
         'crunchy sweet vibrant greens',
         'modern bold creative bites',
     ];
+
     private static array $images = [
         '/assets/images/black_tap.jpg',
         '/assets/images/chez_mario.jpg',
@@ -45,11 +48,13 @@ class RestaurantFaker
         '/assets/images/nil_bleu.jpg',
         '/assets/images/non_solo.jpg',
     ];
+
     private static array $priceTiers = [
         '$',
         '$$',
         '$$$',
     ];
+
     private static array $ptDescriptions = [
         'budget friendly daily meals',
         'affordable tasty quick food',
@@ -58,6 +63,7 @@ class RestaurantFaker
         'value for great experience',
         'cheap delicious menu picks',
     ];
+
     private static array $concepts = [
         'Italian',
         'Vegan',
@@ -66,6 +72,7 @@ class RestaurantFaker
         'American',
         'Other',
     ];
+
     private static array $cDescriptions = [
         'fast bold authentic experience',
         'elevated artistic plated meals',
@@ -74,6 +81,7 @@ class RestaurantFaker
         'juicy crafted layered patties',
         'zesty modern flavor blends',
     ];
+
     private static array $diets = [
         'Vegetarian',
         'Vegan',
@@ -81,6 +89,7 @@ class RestaurantFaker
         'Flexitarian',
         'Other',
     ];
+
     private static array $dDescriptions = [
         'plant based healthy lifestyle',
         'strict animal-free nutrition',

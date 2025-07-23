@@ -50,7 +50,7 @@ class Migrate extends AbstractCommand
             echo "{$fileName}\t✅".PHP_EOL;
         }
 
-        echo "Migrations done !".PHP_EOL;
+        echo 'Migrations done !'.PHP_EOL;
 
         return 0;
     }
