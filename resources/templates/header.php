@@ -79,12 +79,12 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
         <div class="flex">
-            <?php if($username): ?>
+            <?php if ($username) { ?>
                 <span>Welcome, <?= $username ?></span>
                 <label class="btn"><a href="/logout">Logout</a></label>
-            <?php else: ?>
+            <?php } else { ?>
                 <label class="btn" for="modal-toggle">Login</label>
-            <?php endif ?>
+            <?php } ?>
         </div>
     </nav>
 </header>

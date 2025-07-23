@@ -1,4 +1,5 @@
 <?php
+
 const USERSIGNUP_FORM_FIELDS = [
     'username' => [
         'element' => 'input',
@@ -19,20 +20,20 @@ const USERSIGNUP_FORM_FIELDS = [
         'element' => 'input',
         'name' => 'surname',
         'type' => 'text',
-        'placeholder' => 'Enter Your Last Name'
+        'placeholder' => 'Enter Your Last Name',
     ],
     'email' => [
         'element' => 'input',
         'name' => 'email',
         'type' => 'email',
-        'placeholder' => 'Enter Your Email'
+        'placeholder' => 'Enter Your Email',
     ],
     'password' => [
         'element' => 'input',
         'name' => 'password',
         'type' => 'password',
         'placeholder' => 'Enter Your Password',
-    ]
+    ],
 ];
 
 const USERLOGIN_FORM_FIELDS = [
@@ -51,5 +52,5 @@ const USERLOGIN_FORM_FIELDS = [
         'type' => 'password',
         'required' => true,
         'placeholder' => 'Enter Your Password',
-    ]
+    ],
 ];

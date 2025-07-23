@@ -38,11 +38,11 @@ if (! function_exists('view')) {
         $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
         if ($isAjax && str_starts_with($view, 'partials/')) {
-            include __DIR__ . "/../resources/views/{$view}.php";
+            include __DIR__."/../resources/views/{$view}.php";
         } else {
-            include __DIR__ . "/../resources/templates/header.php";
-            include __DIR__ . "/../resources/views/{$view}.php";
-            include __DIR__ . "/../resources/templates/footer.php";
+            include __DIR__.'/../resources/templates/header.php';
+            include __DIR__."/../resources/views/{$view}.php";
+            include __DIR__.'/../resources/templates/footer.php';
         }
 
         return ob_get_clean();

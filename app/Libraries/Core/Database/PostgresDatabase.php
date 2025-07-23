@@ -25,10 +25,10 @@ final class PostgresDatabase extends AbstractDatabase
 
         /** @var Column $column */
         foreach ($columns as $column) {
-            $sql .= $column->getDefinition() . ',';
+            $sql .= $column->getDefinition().',';
         }
 
-        $sql = rtrim($sql, ',') . ');';
+        $sql = rtrim($sql, ',').');';
 
         $this->query($sql);
     }
@@ -89,19 +89,19 @@ final class PostgresDatabase extends AbstractDatabase
         );
 
         if ($query->hasWhere()) {
-            $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+            $sql .= ' WHERE '.$this->getWhereProcessedConditions($query);
         }
 
         if ($query->hasOrderBy()) {
             $command = $query->getOrderBy();
-            $sql .= ' ORDER BY ' . implode(', ', $command);
+            $sql .= ' ORDER BY '.implode(', ', $command);
         }
 
         if ($query->hasLimit()) {
-            $sql .= ' LIMIT ' . (int)$query->getLimit();
+            $sql .= ' LIMIT '.(int) $query->getLimit();
 
             if ($query->hasOffset()) {
-                $sql .= ' OFFSET ' . (int)$query->getOffset();
+                $sql .= ' OFFSET '.(int) $query->getOffset();
             }
         }
 
@@ -117,10 +117,10 @@ final class PostgresDatabase extends AbstractDatabase
         $sql = sprintf(
             'SELECT COUNT(id) FROM %s',
             $query->tableName
-    );
+        );
 
         if ($query->hasWhere()) {
-            $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+            $sql .= ' WHERE '.$this->getWhereProcessedConditions($query);
         }
 
         if ($result = $this->query($sql)) {
@@ -137,12 +137,13 @@ final class PostgresDatabase extends AbstractDatabase
             $query->tableName,
         );
 
-        if (!$query->hasWhere()) {
+        if (! $query->hasWhere()) {
             throw new RuntimeException('Query condition missing!');
         }
 
-        $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+        $sql .= ' WHERE '.$this->getWhereProcessedConditions($query);
         $this->query($sql);
+
         return 'Deleted Successfully';
     }
 
@@ -161,7 +162,7 @@ final class PostgresDatabase extends AbstractDatabase
                 $this->connection->quote($where['value']),
             );
             if (++$i !== $numItems) {
-                $sql .= ' ' . $where['logical'];
+                $sql .= ' '.$where['logical'];
             }
         }
 
@@ -192,12 +193,13 @@ final class PostgresDatabase extends AbstractDatabase
             }
         }
 
-        if (!$query->hasWhere()) {
+        if (! $query->hasWhere()) {
             throw new RuntimeException('Query condition missing!');
         }
 
-        $sql .= ' WHERE ' . $this->getWhereProcessedConditions($query);
+        $sql .= ' WHERE '.$this->getWhereProcessedConditions($query);
         $this->query($sql);
+
         return 'Updated Successfully';
     }
 

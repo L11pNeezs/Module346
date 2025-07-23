@@ -38,6 +38,7 @@ class Blueprint
             'length' => $length,
         ]);
         $this->columns[$columnName] = $columns;
+
         return $columns;
     }
 

@@ -1,4 +1,5 @@
 <?php
+/** @var \App\Models\Restaurant|null $restaurant */
 ?>
 
 <!DOCTYPE html>

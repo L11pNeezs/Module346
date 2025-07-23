@@ -50,14 +50,14 @@ const CONTRIBUTE_FORM_FIELDS = [
         'name' => 'price_tier',
         'id' => 'price-tier',
     ],
-    'p_t_description' => [
+    'price_tier_description' => [
         'label' => 'Price Tier Description',
         'element' => 'input',
         'type' => 'text',
         'required' => false,
         'placeholder' => 'Enter price tier description',
-        'name' => 'p_t_description',
-        'id' => 'p_t_description',
+        'name' => 'price_tier_description',
+        'id' => 'price_tier_description',
     ],
     'concept' => [
         'label' => 'Concept',
@@ -66,14 +66,14 @@ const CONTRIBUTE_FORM_FIELDS = [
         'name' => 'concept',
         'id' => 'concept',
     ],
-    'c_description' => [
+    'concept_description' => [
         'label' => 'Concept Description',
         'element' => 'input',
         'type' => 'text',
         'required' => false,
         'placeholder' => 'Enter concept description',
-        'name' => 'c_description',
-        'id' => 'c_description',
+        'name' => 'concept_description',
+        'id' => 'concept_description',
     ],
     'diet' => [
         'label' => 'Diet',
@@ -82,13 +82,13 @@ const CONTRIBUTE_FORM_FIELDS = [
         'name' => 'diet',
         'id' => 'diet',
     ],
-    'd_description' => [
+    'diet_description' => [
         'label' => 'Diet Description',
         'element' => 'input',
         'type' => 'text',
         'required' => false,
         'placeholder' => 'Enter diet description',
-        'name' => 'd_description',
-        'id' => 'd_description',
+        'name' => 'diet_description',
+        'id' => 'diet_description',
     ],
 ];

@@ -131,18 +131,9 @@ abstract class Model
         return $model;
     }
 
-    public static function count(): array
+    public static function count(): int
     {
-        $results = DB::count(self::getTableName())->get();
-
-        return array_map(static function ($result) {
-            $model = new static;
-            foreach ($result as $key => $value) {
-                $model->{$key} = $value;
-            }
-
-            return $model;
-        }, $results);
+        return DB::select(self::getTableName())->count();
     }
 
     public static function paginate(int $perPage, int $pageNumber): array
