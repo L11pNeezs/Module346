@@ -27,6 +27,10 @@ body {
     padding: 0;
 }
 
+.margin-large {
+    margin: var(--spacing-medium);
+}
+
 .padding_margin_zero {
     padding: 0;
     margin: 0;
@@ -34,6 +38,10 @@ body {
 
 .flex {
     display: flex;
+}
+
+.flex_wrap {
+    flex-wrap: wrap;
 }
 
 .flex_row {
@@ -66,6 +74,10 @@ body {
     gap: var(--spacing-small);
 }
 
+.gap-medium {
+    gap: var(--spacing-medium);^
+}
+
 .padding-small {
     padding: var(--spacing-small);
 }
@@ -80,4 +92,20 @@ body {
 
 .text-center {
     text-align: center;
+}
+
+.display-grid {
+    display: grid;
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.div-break-gap-medium {
+    height: var(--spacing-medium);
+}
+
+.div-break-gap-large {
+    height: var(--spacing-large);
 }
