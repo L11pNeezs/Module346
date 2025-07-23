@@ -82,9 +82,9 @@ if (isset($_SESSION['id'])) {
             <?php if($username): ?>
                 <span class="padding-small flex justify_center align_center">Welcome, <?= $username ?></span>
                 <label class="btn"><a href="/logout">Logout</a></label>
-            <?php } else { ?>
+            <?php else: ?>
                 <label class="btn" for="modal-toggle">Login</label>
-            <?php } ?>
+            <?php endif; ?>
         </div>
     </nav>
 </header>
