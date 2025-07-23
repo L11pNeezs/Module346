@@ -9,15 +9,17 @@ class Column
     public string $name;
 
     public Type $type;
+    public ?array $typeParameters;
 
     public bool $nullable = false;
 
     public bool $primary = false;
 
-    public function __construct(string $name, Type $type, bool $nullable = false, bool $primary = false)
+    public function __construct(string $name, Type $type, ?array $typeParameters = null, bool $nullable = false, bool $primary = false)
     {
         $this->name = $name;
         $this->type = $type;
+        $this->typeParameters = $typeParameters;
         $this->nullable = $nullable;
         $this->primary = $primary;
     }
@@ -27,6 +29,7 @@ class Column
         return new static(
             name: $array['name'],
             type: $array['type'],
+            typeParameters:  $array['typeParameters'] ?? null,
             nullable: $array['nullable'] ?? false,
             primary: $array['primaryKey'] ?? false
         );

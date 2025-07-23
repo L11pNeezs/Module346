@@ -10,4 +10,5 @@ enum Type
     case BigIncrement;
     case Timestamp;
     case Bool;
+    case Geometry;
 }

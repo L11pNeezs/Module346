@@ -31,11 +31,8 @@ class Schema
         return array_any(self::getAllTables(), static fn ($table) => $table['table_name'] === $name);
     }
 
-    public static function dropAllTables(): void
+    public static function resetDatabase(): void
     {
-        $tables = self::getAllTables();
-        foreach ($tables as $table) {
-            DB::dropTable($table);
-        }
+        DB::resetDatabase();
     }
 }

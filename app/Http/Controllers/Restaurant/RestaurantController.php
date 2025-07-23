@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Restaurant;
 
+use App\Libraries\Core\Facades\DB;
 use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Libraries\Core\Http\RestaurantValidator\RestaurantValidator;
 use App\Models\Restaurant;
+use App\Services\GeoAdminApi\SearchService;
 
 class RestaurantController extends AbstractController
 {
@@ -54,6 +56,8 @@ class RestaurantController extends AbstractController
     {
         $validator = new RestaurantValidator();
         $data = request()->all();
+        $searchApi = new SearchService();
+
 
         $options = [
             'priceTiers' => $validator->getPriceTierOptions(),
@@ -82,9 +86,15 @@ class RestaurantController extends AbstractController
         $restaurant->price_tier = $data['price_tier'];
         $restaurant->p_t_description = $data['p_t_description'] ?? '';
         $restaurant->concept = $data['concept'];
-        $restaurant->c_description = $data['c_description'] ?? '';
-        $restaurant->diet = $data['diet'] ?? '';
-        $restaurant->d_description = $data['d_description'] ?? '';
+        $restaurant->c_description = $data['c_description'];
+        $restaurant->diet = $data['diet'];
+        $restaurant->d_description = $data['d_description'];
+
+        $coordinates = $searchApi->getCoordinates($data['address']);
+        $sql = "SELECT ST_SetSRID(ST_MakePoint({$coordinates->lon}, {$coordinates->lat}), 4326)";
+        $geometryPoint = DB::raw($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        $restaurant->coordinates = $geometryPoint[0]['st_setsrid'];
+
         $restaurant->save();
 
         if ($this->isAjaxRequest()) {
@@ -101,7 +111,17 @@ class RestaurantController extends AbstractController
 
     public function keypoints(): string
     {
-        return view('keypoints');
+        $data = request()->all();
+        $restaurant = Restaurant::getById($data['restaurant_id']);
+        $sql = "SELECT ST_X('{$restaurant->coordinates}') as lon, ST_Y('{$restaurant->coordinates}') as lat";
+
+        $rawCoordinates = DB::raw($sql)->fetchAll(\PDO::FETCH_ASSOC);
+        $restaurantCoordinates = [
+            'lon' => $rawCoordinates[0]['lon'],
+            'lat' => $rawCoordinates[0]['lat'],
+        ];
+
+        return view('keypoints', ['restaurantCoordinates' => $restaurantCoordinates]);
     }
 
     public function getFilteredRestaurants(): string

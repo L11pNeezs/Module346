@@ -2,10 +2,7 @@ const map = new ol.Map({
     target: 'map',
     layers: [
         new ol.layer.Tile({
-            source: new ol.source.XYZ({
-                url: 'https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg',
-                attributions: '© Swisstopo'
-            })
+            source: new ol.source.OSM()
         })
     ],
     view: new ol.View({
@@ -20,8 +17,8 @@ const allCoordinates = [];
 
 restaurants.forEach((restaurant) => {
     allCoordinates.push(ol.proj.fromLonLat([
-        restaurant.coords.lon,
-        restaurant.coords.lat
+        restaurant.lon,
+        restaurant.lat
     ]))
 });
 
@@ -37,9 +34,9 @@ const point = new ol.Feature({
 
 point.setStyle(new ol.style.Style({
     image: new ol.style.Circle({
-        radius: 10,
+        radius: 13,
         fill: new ol.style.Fill({ color: 'green' }),
-        stroke: new ol.style.Stroke({ color: 'white', width: 3 })
+        stroke: new ol.style.Stroke({ color: 'black', width: 3 })
     })
 }));
 vectorSource.addFeature(point);
@@ -52,8 +49,8 @@ allCoordinates.forEach((coordinates) => {
     point.setStyle(new ol.style.Style({
         image: new ol.style.Circle({
             radius: 8,
-            fill: new ol.style.Fill({ color: 'blue' }),
-            stroke: new ol.style.Stroke({ color: 'white', width: 2 })
+            fill: new ol.style.Fill({ color: 'red' }),
+            stroke: new ol.style.Stroke({ color: 'black', width: 2 })
         })
     }));
     vectorSource.addFeature(point);

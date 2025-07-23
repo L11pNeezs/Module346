@@ -16,7 +16,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
   db:
-    image: pgvector/pgvector:pg17
+    image: postgis/postgis:17-master
     environment:
       POSTGRES_USER: liipuser
       POSTGRES_PASSWORD: .Liip-123

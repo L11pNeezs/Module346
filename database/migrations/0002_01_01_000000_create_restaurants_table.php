@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
+            $table->geometry('coordinates')->nullable(true);
             $table->string('description');
             $table->string('image')->nullable(true);
             $table->string('price_tier');
