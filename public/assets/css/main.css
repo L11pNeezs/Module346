@@ -8,6 +8,7 @@
 @import url('components/cards.css');
 @import url('components/login.css');
 @import url('components/hamburger.css');
+@import url('components/team-card.css');
 @import url('header.css');
 @import url('footer.css');
 @import url('homepage.css');
@@ -63,17 +64,3 @@ a {
     text-align: center;
 }
 
-main {
-    flex: 1;
-    padding-inline: 2vw;
-}
-
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-html {
-    margin: 0;
-}

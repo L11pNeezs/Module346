@@ -18,11 +18,13 @@ if (isset($_SESSION['id'])) {
 </section>
 
 <section class="img-container flex_col align_center">
-    <img src="<?= $restaurant->image ?>">
+    <div>
+        <img src="<?= $restaurant->image ?>">
+    </div>
     <div>
         <div>
             <p class="text-center"><strong><?= $restaurant->name ?></strong></p>
-            <p class="text-center"><?= $restaurant->description ?></p>
+            <p class="text-center margin-large"><?= $restaurant->description ?></p>
             <div class="icon-box-hp flex space-around padding-small">
                 <div class="text-center">
                     <?php if ($restaurant->price_tier < 15) { ?>
@@ -51,15 +53,24 @@ if (isset($_SESSION['id'])) {
                 </div>
             </div>
         </div>
+        <div class="div-break-gap-large"></div>
+        <div class="text-center">
+            <label class="btn"><a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn More</a></label>
+        </div>
     </div>
 </section>
 <br>
+<div class="div-break-gap-large"></div>
+<!--
 <div class="text-center">
     <label class="btn"><a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn More</a></label>
 </div>
+-->
 <br>
+<div class="div-break-gap-large"></div>
 <section class="text-center">
     <h2 class="sub_title">Do you want more?</h2>
+    <div class="div-break-gap-medium"></div>
     <label class="btn"><a href="/restaurants">Discover more</a></label>
 </section>
 <br>

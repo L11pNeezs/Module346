@@ -64,3 +64,7 @@ Router::group(['prefix' => 'restaurants'], static function () {
 });
 
 Router::get('/map', [MapController::class, 'showMap']);
+
+Router::get('/team', static function () {
+    return view('team');
+});

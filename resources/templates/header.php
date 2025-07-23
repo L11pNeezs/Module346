@@ -79,8 +79,8 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
         <div class="flex">
-            <?php if ($username) { ?>
-                <span>Welcome, <?= $username ?></span>
+            <?php if($username): ?>
+                <span class="padding-small flex justify_center align_center">Welcome, <?= $username ?></span>
                 <label class="btn"><a href="/logout">Logout</a></label>
             <?php } else { ?>
                 <label class="btn" for="modal-toggle">Login</label>
