@@ -38,6 +38,10 @@ final class PostgresDatabase extends AbstractDatabase
         $type = self::getTypeMapping($column->type);
         $definition = "{$column->name} {$type}";
 
+        if ($column->typeParameters) {
+            $definition .= '(' . implode(', ', $column->typeParameters) . ')';
+        }
+
         if ($column->nullable) {
             $definition .= ' NULL';
         } else {
@@ -59,6 +63,7 @@ final class PostgresDatabase extends AbstractDatabase
             Type::Text => 'TEXT',
             Type::Timestamp => 'TIMESTAMP',
             Type::Bool => 'BOOL',
+            Type::Geometry => 'GEOMETRY',
             default => throw new RuntimeException('Unsupported column type'),
         };
     }
@@ -224,5 +229,16 @@ final class PostgresDatabase extends AbstractDatabase
     public function dropTable(string $tableName): void
     {
         $this->query("DROP TABLE IF EXISTS \"$tableName\" CASCADE");
+    }
+
+    public function resetDatabase(): void
+    {
+        $this->connection = null;
+
+        $adminConnection = new PDO("pgsql:host={$this->host};port={$this->port};dbname=postgres", $this->username, $this->password);
+        $adminConnection->query("DROP DATABASE IF EXISTS \"{$this->database}\"");
+        $adminConnection->query("CREATE DATABASE \"{$this->database}\" WITH OWNER \"{$this->username}\"");
+
+        $this->connect();
     }
 }

@@ -1,4 +1,21 @@
-.keypoints {
+#keypoints-map {
+    width: 100vw;
+    height: 40vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.title {
+    text-align: center;
+}
+
+.keypoints-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.hero-container {
     display: flex;
     flex-direction: column;
     align-items: center;

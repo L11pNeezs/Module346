@@ -20,6 +20,7 @@ class Restaurant extends Model
             $restaurant->id = $result['id'];
             $restaurant->name = $result['name'];
             $restaurant->address = $result['address'];
+            $restaurant->coordinates =  $result['coordinates'];
             $restaurant->description = $result['description'];
             $restaurant->image = $result['image'];
             $restaurant->price_tier = $result['price_tier'];
@@ -44,6 +45,7 @@ class Restaurant extends Model
             $restaurant->id = $result['id'];
             $restaurant->name = $result['name'];
             $restaurant->address = $result['address'];
+            $restaurant->coordinates = $result['coordinates'];
             $restaurant->description = $result['description'];
             $restaurant->image = $result['image'];
             $restaurant->price_tier = $result['price_tier'];

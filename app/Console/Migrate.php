@@ -22,6 +22,8 @@ class Migrate extends AbstractCommand
 
         $executedMigrations = $this->getDoneMigrations();
 
+        echo 'Executing migrations: '.PHP_EOL;
+
         $migrationDir = __DIR__.'/../../database/migrations';
         $migrationFiles = glob($migrationDir.'/*.php');
         foreach ($migrationFiles as $file) {
@@ -44,7 +46,11 @@ class Migrate extends AbstractCommand
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
+
+            echo "{$fileName}\t✅".PHP_EOL;
         }
+
+        echo "Migrations done !".PHP_EOL;
 
         return 0;
     }
@@ -75,7 +81,7 @@ class Migrate extends AbstractCommand
             return;
         }
 
-        echo 'Dropping all tables in the database...'.PHP_EOL;
-        Schema::dropAllTables();
+        echo 'Recreate database '.PHP_EOL;
+        Schema::resetDatabase();
     }
 }

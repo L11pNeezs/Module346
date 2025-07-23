@@ -45,4 +45,9 @@ final class DB
     {
         app('database')->dropTable($tableName);
     }
+
+    public static function resetDatabase(): void
+    {
+        app('database')->resetDatabase();
+    }
 }

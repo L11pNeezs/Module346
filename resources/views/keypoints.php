@@ -1,8 +1,10 @@
 <?php
 
-use App\Models\Restaurant;
+use App\Libraries\Core\Facades\DB;
+Use App\Models\Restaurant;
 
-$restaurant = Restaurant::getById($_GET['restaurant_id']);
+$data = request()->all();
+$restaurant = Restaurant::getById($data['restaurant_id']);
 
 ?>
 
@@ -37,3 +39,7 @@ $restaurant = Restaurant::getById($_GET['restaurant_id']);
         </div>
     </div>
 </section>
+
+<div id="keypoints-map" data-restaurants='<?= json_encode($restaurantCoordinates, JSON_HEX_APOS | JSON_HEX_TAG) ?>'></div>
+<script src="https://cdn.jsdelivr.net/npm/ol@latest/dist/ol.js"></script>
+<script src="/assets/js/keypointsMap.js"></script>
