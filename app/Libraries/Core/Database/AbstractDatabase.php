@@ -42,5 +42,5 @@ abstract class AbstractDatabase
 
     abstract public function execute(Query $query): mixed;
 
-    abstract public function createTable(string $tableName, array $columns): void;
+    abstract public function createTable(string $tableName, array $columns, array $foreignKeys): void;
 }

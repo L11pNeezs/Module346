@@ -10,9 +10,9 @@ use RuntimeException;
 
 final class DB
 {
-    public static function createTable(string $tableName, array $columns): void
+    public static function createTable(string $tableName, array $columns, array $foreignKeys): void
     {
-        app('database')->createTable($tableName, $columns);
+        app('database')->createTable($tableName, $columns, $foreignKeys);
     }
 
     public static function fromConfig(string $driver, mixed $databaseConfig): AbstractDatabase|PostgresDatabase
