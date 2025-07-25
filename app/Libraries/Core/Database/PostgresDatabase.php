@@ -19,13 +19,17 @@ final class PostgresDatabase extends AbstractDatabase
         return $this->connection->query($sql);
     }
 
-    public function createTable(string $tableName, array $columns): void
+    public function createTable(string $tableName, array $columns, array $foreignKeys): void
     {
         $sql = sprintf('CREATE TABLE IF NOT EXISTS "%s" (', $tableName);
 
         /** @var Column $column */
         foreach ($columns as $column) {
             $sql .= $column->getDefinition().',';
+        }
+
+        foreach ($foreignKeys as $fk) {
+            $sql .= $fk.',';
         }
 
         $sql = rtrim($sql, ',').');';

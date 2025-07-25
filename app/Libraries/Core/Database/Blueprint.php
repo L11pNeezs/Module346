@@ -11,6 +11,8 @@ class Blueprint
 
     private array $columns = [];
 
+    private array $commands = [];
+
     public function __construct(string $tableName)
     {
         $this->tableName = $tableName;
@@ -18,7 +20,8 @@ class Blueprint
 
     public function build(): void
     {
-        DB::createTable($this->tableName, $this->columns);
+        $foreignKeys = $this->compileForeignKeys();
+        DB::createTable($this->tableName, $this->columns, $foreignKeys);
     }
 
     public function id(): void
@@ -76,5 +79,65 @@ class Blueprint
         $this->columns[$columnName] = $columns;
 
         return $columns;
+    }
+
+    protected function addCommand($type, $parameters = []): array
+    {
+        $command = [
+            'type' => $type,
+            'parameters' => $parameters,
+        ];
+
+        $this->commands[] = $command;
+        return $command;
+    }
+
+    public function foreign(string $column): ForeignKeyDefinition
+    {
+        $command = $this->addCommand('foreign', ['column' => $column]);
+        return new ForeignKeyDefinition($command);
+    }
+
+    public function on(string $table): ForeignKeyDefinition
+    {
+        $command = $this->addCommand('on', ['table' => $table]);
+        return new ForeignKeyDefinition($comand);
+    }
+
+    public function references(string $column): ForeignKeyDefinition
+    {
+        $command =  $this->addCommand('references', ['column' => $column]);
+        return new ForeignKeyDefinition($command);
+    }
+
+    public function compileForeignKeys(): array
+    {
+        $foreignKeysSql = [];
+
+        foreach ($this->commands as $command) {
+            if ($command['type'] === 'foreign') {
+                $params = $command['parameters'];
+
+                $column = "\"{$command['parameters']['column']}\"" ?? null;
+                $reference = "\"{$command['parameters']['reference']}\"" ?? null;
+                $on = $params['on'] ?? null;
+                $onDelete = $params['onDelete'] ?? null;
+                $onUpdate = $params['onUpdate'] ?? null;
+
+                $sql = "FOREIGN KEY ($column) REFERENCES \"$on\"($reference)";
+
+                if ($onDelete) {
+                    $sql .= " ON DELETE $onDelete";
+                }
+
+                if ($onUpdate) {
+                    $sql .= " ON UPDATE $onUpdate";
+                }
+
+                $foreignKeysSql[] = $sql;
+            }
+        }
+
+        return $foreignKeysSql;
     }
 }
