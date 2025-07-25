@@ -229,6 +229,13 @@
     justify-content: center;
     padding-top: 10vh;
 }
+
+.pagination-container .current {
+    color:#fff;
+    background: #AEEA00;
+    border-radius: 5px;
+}
+
 .pages{
     border-radius:  5px;
     padding-inline: 1vw;
@@ -248,15 +255,3 @@
     padding: 6px 14px;
     text-decoration: none;
 }
-
-.pagination a.active {
-    background-color: green;
-    color: white;
-    border-radius: 5px;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
-    border-radius: 5px;
-}
-

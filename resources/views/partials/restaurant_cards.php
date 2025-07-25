@@ -47,25 +47,30 @@ $endPage = min($nbPages, $pageNumber + $adjacentNumber);
 ?>
 
 <ul class="pagination-container pagination">
-    <li><a href="javascript:;" data-page="1" class="first">&laquo;</a></li>
+    <?php if ($pageNumber > 1) { ?>
+        <li><a href="javascript:;" data-page="1" class="first">&laquo;</a></li>
+    <?php } ?>
 
     <?php if ($startPage > 1) { ?>
-
         <li><a href="javascript:;" data-page="<?= $pageNumber - 1 ?>" class="previous pagination-dots">&lsaquo;</a></li>
-        <li class ="pagination-dots"> ... </li>
-
+        <li class="pagination-dots"> ... </li>
     <?php } ?>
 
     <?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
-        <li class="pages"><a class="active" href="javascript:;" data-page="<?= $i ?>" ><?php echo $i?></a></li>
+        <li class="pages">
+            <a href="javascript:;" data-page="<?= $i ?>" class="<?= $i == $pageNumber ? 'current' : '' ?>">
+                <?= $i ?>
+            </a>
+        </li>
     <?php } ?>
 
     <?php if ($endPage < $nbPages) { ?>
-
-        <li class ="pagination-dots"> ... </li>
-        <li><a href="javascript:;" data-page="<?= $pageNumber + 1 ?>" class="next pagination-dots" >&rsaquo;</a></li>
-
+        <li class="pagination-dots"> ... </li>
+        <li><a href="javascript:;" data-page="<?= $pageNumber + 1 ?>" class="next pagination-dots">&rsaquo;</a></li>
     <?php } ?>
-    <li><a href="javascript:;" data-page="<?= $nbPages?>" class="last <?php if ($endPage < $nbPages) { ?>disabled<?php } ?>">&raquo;</a></li>
+
+    <?php if ($pageNumber < $nbPages) { ?>
+        <li><a href="javascript:;" data-page="<?= $nbPages ?>" class="last">&raquo;</a></li>
+    <?php } ?>
 </ul>
 
