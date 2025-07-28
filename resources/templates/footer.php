@@ -10,11 +10,10 @@
             <h1 class="title"><a href="/">Koa-La</a></h1>
         </div>
         <div class="footer-bar"></div>
-        <div>
+        <div class="footer-links-container">
             <ul class="flex_col gap-small" id="ul">
                 <li><a href="/">Contact Us</a></li>
                 <li><a href="/">Team</a></li>
-                <li><a href="/">Company</a></li>
             </ul>
         </div>
         <div>

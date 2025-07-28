@@ -55,7 +55,7 @@
 
 #modal-toggle:checked ~ .modal-backdrop {
     opacity: 0.5;
-    background-color: rgba(174, 234, 0, 1);
+    background-color: rgba(120, 120, 120, 1);
     z-index: 998;
     transform: scale(1);
 }
@@ -125,8 +125,7 @@
     white-space: nowrap;
     padding: 20px 0;
     text-align: center;
-    border-bottom: solid #AEEA00 5px;
-    color: #AEEA00;
+    color: #666666;
     cursor: pointer;
 }
 
@@ -135,13 +134,13 @@
 }
 
 .tabs > .table:hover {
-    color: #AEEA00;
-    background: rgba(174, 234, 0, 0.2);
+    color: #000000;
+    background: rgba(120, 120, 120, 0.2);
 }
 
 .tabs > .radio:checked + .table {
     color: #fff;
-    background: #AEEA00;
+    background: #666666;
     cursor: auto;
 }
 
@@ -197,7 +196,7 @@
     padding: 10px;
     margin: 15px 0;
     border: none;
-    border-bottom: solid 1px #AEEA00;
+    border-bottom: solid 1px #666666;
     font-size: 18px;
     letter-spacing: 1px;
     transition: 0.1s;
@@ -211,7 +210,7 @@
 .tabs > .tabs-content input[type="submit"] {
     padding: 15px 0;
     width: 100%;
-    background: #AEEA00;
+    background: #666666;
     color: #fff;
     border: none;
     font-size: 18px;
