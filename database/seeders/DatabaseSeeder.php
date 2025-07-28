@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Libraries\Core\Facades\DB;
 use App\Libraries\Core\MenuFaker;
 use App\Libraries\Core\RestaurantFaker;
+use App\Libraries\Core\ReviewFaker;
 use App\Libraries\Core\UserFaker;
 
 class DatabaseSeeder
@@ -40,6 +41,13 @@ class DatabaseSeeder
             'name' => MenuFaker::name(),
             'description' => MenuFaker::description(),
             'price' => MenuFaker::price(),
+        ]);
+
+        DB::table('reviews')->insert([
+            'restaurant_id' => ReviewFaker::restaurantId(),
+            'user_id' => ReviewFaker::userId(),
+            'rating' => ReviewFaker::rating(),
+            'comment' => ReviewFaker::comment(),
         ]);
     }
 }
