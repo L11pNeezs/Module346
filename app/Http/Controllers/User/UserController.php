@@ -10,6 +10,7 @@ class UserController extends AbstractController
 {
     public function register()
     {
+
         $validator = new UserValidator;
         $data = request()->all();
         $errors = $validator->validateData($data);
@@ -32,6 +33,13 @@ class UserController extends AbstractController
         $user->name = $data['name'];
         $user->surname = $data['surname'];
         $user->save();
+
+        if ($user) {
+            $_SESSION['id'] = $user->id;
+            self::login();
+        } else {
+            return $this->handleValidationErrors(['general' => 'Registration failed. Please try again.'], 'homepage');
+        }
 
         $this->handleAjaxSuccess();
 
