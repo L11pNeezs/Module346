@@ -18,7 +18,7 @@ if (isset($_SESSION['id'])) {
 </section>
 
 <section class="img-container flex_col align_center">
-    <div class="flex justify_center">
+    <div class="flex justify_center with-100">
         <img src="<?= $restaurant->image ?>">
     </div>
 
@@ -26,23 +26,23 @@ if (isset($_SESSION['id'])) {
             <p class="text-center"><strong><?= $restaurant->name ?></strong></p>
             <p class="text-center margin-large"><?= $restaurant->description ?></p>
             <div class="icon-box-hp flex space-around padding-small">
-                <div class="text-center flex gap-small">
-                    <?php if ($restaurant->price_tier < 15) { ?>
-                        <p><img src="/assets/images/price-green.png"</p>
-                        <p>Cheap</p>
-                    <?php } elseif ($restaurant->price_tier > 15 && $restaurant->price_tier <= 30) { ?>
-                        <p><img src="/assets/images/price-yellow.png"></p>
+                <div class="text-center flex gap-small justify_center align_center">
+                    <?php if ($restaurant->price_tier === '$'): ?>
+                        <p><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"</p>
+                        <p>Budget</p>
+                    <?php elseif ($restaurant->price_tier === '$$'): ?>
+                        <p><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"></p>
                         <p>Moderate</p>
-                    <?php } else { ?>
-                        <p><img src="/assets/images/price-red.png"</p>
+                    <?php else: ?>
+                        <p><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"</p>
                         <p>Expensive</p>
-                    <?php } ?>
+                    <?php endif; ?>
                 </div>
-                <div class="text-center flex gap-small">
-                    <p><img src="/assets/images/<?= $restaurant->concept ?>.png"></p>
+                <div class="text-center flex gap-small justify_center align_center">
+                    <p><img src="/assets/images/food-icons/<?= $restaurant->concept ?>.svg"></p>
                     <p><?= $restaurant->concept ?></p>
                 </div>
-                <div class="text-center flex gap-small">
+                <div class="text-center flex gap-small justify_center align_center">
                     <?php if ($restaurant->veggie_option) { ?>
                         <p><img src="/assets/images/vegan.png"></p>
                         <p>Vegetarian option</p>

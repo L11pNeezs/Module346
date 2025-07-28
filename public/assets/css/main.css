@@ -9,6 +9,7 @@
 @import url('components/login.css');
 @import url('components/hamburger.css');
 @import url('components/team-card.css');
+@import url('components/containers.css');
 @import url('header.css');
 @import url('footer.css');
 @import url('homepage.css');
@@ -46,7 +47,6 @@ main {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 2vw;
 }
 
 ol, ul, li {

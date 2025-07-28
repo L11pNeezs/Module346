@@ -22,6 +22,8 @@ class DatabaseSeeder
             'concept_description' => RestaurantFaker::cDescription(),
             'diet' => RestaurantFaker::diet(),
             'diet_description' => RestaurantFaker::dDescription(),
+            'vegan_option' => RestaurantFaker::veganOption(),
+            'vegan_option_description' => RestaurantFaker::veganOptionDescription(),
         ]);
 
         DB::table('users')->insert([

@@ -16,16 +16,10 @@
             <br>
             <div class="icon-container">
                 <div class="icon-box">
-                    <?php if ($restaurant->price_tier <= 15) { ?>
-                        <p class="span"><img src="/assets/images/price-green.png"></p>
-                    <?php } elseif ($restaurant->price_tier > 15 && $restaurant->price_tier < 30) { ?>
-                        <p class="span"><img src="/assets/images/price-yellow.png"></p>
-                    <?php } else { ?>
-                        <p class="span"><img src="/assets/images/price-red.png"></p>
-                    <?php } ?>
+                    <p class="span"><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"</p>
                 </div>
                 <div class="icon-box">
-                    <p class="span"><img src="/assets/images/<?= $restaurant->concept ?>.png"></p>
+                    <p class="span"><img src="/assets/images/food-icons/<?= $restaurant->concept ?>.svg"></p>
                 </div>
                 <div class="icon-box">
                     <?php if ($restaurant->veggie_option) { ?>
@@ -53,7 +47,7 @@ $endPage = min($nbPages, $pageNumber + $adjacentNumber);
 
     <?php if ($startPage > 1) { ?>
         <li><a href="javascript:;" data-page="<?= $pageNumber - 1 ?>" class="previous pagination-dots">&lsaquo;</a></li>
-        <li class="pagination-dots"> ... </li>
+        <li class="pagination-dots"> ...</li>
     <?php } ?>
 
     <?php for ($i = $startPage; $i <= $endPage; $i++) { ?>
@@ -65,7 +59,7 @@ $endPage = min($nbPages, $pageNumber + $adjacentNumber);
     <?php } ?>
 
     <?php if ($endPage < $nbPages) { ?>
-        <li class="pagination-dots"> ... </li>
+        <li class="pagination-dots"> ...</li>
         <li><a href="javascript:;" data-page="<?= $pageNumber + 1 ?>" class="next pagination-dots">&rsaquo;</a></li>
     <?php } ?>
 

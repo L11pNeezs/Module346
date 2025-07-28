@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('concept_description')->nullable(true);
             $table->string('diet');
             $table->string('diet_description')->nullable(true);
+            $table->bool('vegan_option');
+            $table->string('vegan_option_description')->nullable(true);
             $table->timestamps();
         });
     }
