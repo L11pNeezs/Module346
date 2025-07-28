@@ -13,23 +13,23 @@
         <?php if ($field['element'] === 'select') { ?>
             <select id="<?= htmlspecialchars($field['id']) ?>"
                     name="<?= htmlspecialchars($field['name']) ?>"
-                <?= ! empty($field['required']) ? 'required' : '' ?>
-                    class="<?php if (! empty($errors[$field['name']])) { ?>error<?php } ?>"
+                <?= !empty($field['required']) ? 'required' : '' ?>
+                    class="<?php if (!empty($errors[$field['name']])) { ?>error<?php } ?>"
                     onchange="<?php if ($field['name'] === 'concept' || $field['name'] === 'diet') { ?>
                         toggleOtherInput('<?= htmlspecialchars($field['name']) ?>', this.value)
                     <?php } ?>"
             >
                 <?php
                 $options = [];
-            if ($field['name'] === 'concept') {
-                $concepts = Restaurant::getConcepts();
-                $options = array_combine($concepts, $concepts);
-            } elseif ($field['name'] === 'price_tier') {
-                $options = PRICE_TIERS;
-            } elseif ($field['name'] === 'diet') {
-                $diets = Restaurant::getDiets();
-                $options = array_combine($diets, $diets);
-            } ?>
+                if ($field['name'] === 'concept') {
+                    $concepts = Restaurant::getConcepts();
+                    $options = array_combine($concepts, $concepts);
+                } elseif ($field['name'] === 'price_tier') {
+                    $options = PRICE_TIERS;
+                } elseif ($field['name'] === 'diet') {
+                    $diets = Restaurant::getDiets();
+                    $options = array_combine($diets, $diets);
+                } ?>
                 <option value="" disabled <?= empty($old[$field['name']]) ? 'selected' : '' ?>>Select an option</option>
                 <?php foreach ($options as $value => $label) { ?>
                     <option value="<?= htmlspecialchars($value) ?>"
@@ -55,27 +55,38 @@
                     name="<?= htmlspecialchars($field['name']) ?>_other"
                     placeholder="Please specify"
                     style="display:<?= (($old[$field['name']] ?? '') == '__other__') ? 'block' : 'none' ?>; margin-top:5px;"
-                    value="<?= htmlspecialchars($old[$field['name'].'_other'] ?? '') ?>"
+                    value="<?= htmlspecialchars($old[$field['name'] . '_other'] ?? '') ?>"
                 >
             <?php } ?>
         <?php } elseif ($field['element'] === 'textarea') { ?>
             <textarea id="<?= htmlspecialchars($field['id']) ?>"
-                      name="<?= htmlspecialchars($field['name']) ?>" <?= ! empty($field['required']) ? 'required' : '' ?>
-                      class="<?php if (! empty($errors[$field['name']])) { ?>error<?php } ?>"
+                      name="<?= htmlspecialchars($field['name']) ?>" <?= !empty($field['required']) ? 'required' : '' ?>
+                      class="<?php if (!empty($errors[$field['name']])) { ?>error<?php } ?>"
             ><?= htmlspecialchars($old[$field['name']] ?? '') ?></textarea>
+        <?php } elseif ($field['element'] === 'checkbox') { ?>
+            <input
+                type="checkbox"
+                id="<?= htmlspecialchars($field['id']) ?>"
+                name="<?= htmlspecialchars($field['name']) ?>"
+                <?= !empty($field['required']) ? 'required' : '' ?>
+                value="1"
+                <?php if (!empty($old[$field['name']]) && $old[$field['name']] == '1') {
+                    echo 'checked';
+                } ?>
+                class="<?php if (!empty($errors[$field['name']])) { ?>error<?php } ?>"
         <?php } else { ?>
             <input
                 type="<?= htmlspecialchars($field['type']) ?>"
                 id="<?= htmlspecialchars($field['id']) ?>"
                 name="<?= htmlspecialchars($field['name']) ?>"
-                <?= ! empty($field['required']) ? 'required' : '' ?>
+                <?= !empty($field['required']) ? 'required' : '' ?>
                 value="<?= htmlspecialchars($old[$field['name']] ?? '') ?>"
-                <?= ! empty($field['placeholder']) ? 'placeholder="'.htmlspecialchars($field['placeholder']).'"' : '' ?>
-                class="<?php if (! empty($errors[$field['name']])) { ?>error<?php } ?>"
+                <?= !empty($field['placeholder']) ? 'placeholder="' . htmlspecialchars($field['placeholder']) . '"' : '' ?>
+                class="<?php if (!empty($errors[$field['name']])) { ?>error<?php } ?>"
             >
         <?php } ?>
 
-        <?php if (! empty($errors[$field['name']])) { ?>
+        <?php if (!empty($errors[$field['name']])) { ?>
             <span class="error"><?= htmlspecialchars($errors[$field['name']]) ?></span>
         <?php } ?>
 

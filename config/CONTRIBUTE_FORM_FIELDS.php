@@ -91,4 +91,20 @@ const CONTRIBUTE_FORM_FIELDS = [
         'name' => 'diet_description',
         'id' => 'diet_description',
     ],
+    'vegan_option' => [
+        'label' => 'Veggie Option',
+        'element' => 'checkbox',
+        'required' => false,
+        'name' => 'vegan_option',
+        'id' => 'vegan_option',
+    ],
+    'vegan_option_description' => [
+        'label' => 'Veggie Option Description',
+        'element' => 'input',
+        'type' => 'text',
+        'required' => false,
+        'placeholder' => 'Enter veggie option description',
+        'name' => 'vegan_option_description',
+        'id' => 'vegan_option_description',
+    ],
 ];

@@ -69,7 +69,7 @@ class RestaurantFaker
         'Vegan',
         'Japanese',
         'Mexican',
-        'American',
+        'Hamburger',
         'Other',
     ];
 
@@ -97,6 +97,20 @@ class RestaurantFaker
         'low carb high fat rules',
         'faith-based certified meals',
         'light meals without sugars',
+    ];
+
+    private static array $veganOptions = [
+        1,
+        0
+    ];
+
+    private static array $veganOptionDescriptions = [
+        '100% plant-based menu',
+        'vegan-friendly options available',
+        'vegan dishes on request',
+        'no vegan options currently',
+        'vegan meals not offered',
+        'vegan-friendly upon request',
     ];
 
     public static function name(): string
@@ -152,5 +166,13 @@ class RestaurantFaker
     public static function dDescription(): string
     {
         return self::$dDescriptions[array_rand(self::$dDescriptions)];
+    }
+    public static function veganOption(): int
+    {
+        return self::$veganOptions[array_rand(self::$veganOptions)];
+    }
+    public static function veganOptionDescription(): string
+    {
+        return self::$veganOptionDescriptions[array_rand(self::$veganOptionDescriptions)];
     }
 }
