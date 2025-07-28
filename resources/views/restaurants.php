@@ -1,5 +1,10 @@
 <?php
 /** @var int $pageNumber */
+
+use App\Models\Restaurant;
+
+$concepts = Restaurant::getConcepts();
+$diets = Restaurant::getDiets();
 ?>
 
 <h1 class="text-subtitle text-center">Are you hungry?</h1>
@@ -12,9 +17,11 @@
             <div class="custom-select-wrapper">
                 <select class="filter" id="price-tier" name="price_tier">
                     <option value="">Price ranges</option>
-                    <option value="15" <?= isset($_GET['price_tier']) && $_GET['price_tier'] == '15' ? 'selected' : '' ?>>1 - Budget</option>
-                    <option value="30" <?= isset($_GET['price_tier']) && $_GET['price_tier'] == '30' ? 'selected' : '' ?>>2 - Moderate</option>
-                    <option value="31" <?= isset($_GET['price_tier']) && $_GET['price_tier'] == '31' ? 'selected' : '' ?>>3 - Expensive</option>
+                    <?php foreach (PRICE_TIERS as $value => $label): ?>
+                        <option value="<?= htmlspecialchars($value) ?>" <?= isset($_GET['price_tier']) && $_GET['price_tier'] == $value ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($label) ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
                 <svg class="custom-arrow" viewBox="0 0 10 6">
                     <path d="M0 0 L5 6 L10 0" fill="black"/>
@@ -24,12 +31,11 @@
             <div class="custom-select-wrapper">
                 <select class="filter" name="concept" id="concept">
                     <option value="">Types</option>
-                    <option value="Italian" <?= isset($_GET['concept']) && $_GET['concept'] == 'Italian' ? 'selected' : ''?> >Italian</option>
-                    <option value="Vegan" <?= isset($_GET['concept']) && $_GET['concept'] == 'Vegan' ? 'selected' : ''?>>Vegan</option>
-                    <option value="Asian" <?= isset($_GET['concept']) && $_GET['concept'] == 'Asian' ? 'selected' : ''?>>Asian</option>
-                    <option value="Mexican" <?= isset($_GET['concept']) && $_GET['concept'] == 'Mexican' ? 'selected' : ''?>>Mexican</option>
-                    <option value="French" <?= isset($_GET['concept']) && $_GET['concept'] == 'French' ? 'selected' : ''?>>French</option>
-                    <option value="Hamburger" <?= isset($_GET['concept']) && $_GET['concept'] == 'Hamburger' ? 'selected' : ''?>>Hamburger</option>
+                    <?php foreach ($concepts as $concept): ?>
+                        <option value="<?= htmlspecialchars($concept) ?>" <?= isset($_GET['concept']) && $_GET['concept'] == $concept ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($concept) ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
                 <svg class="custom-arrow" viewBox="0 0 10 6">
                     <path d="M0 0 L5 6 L10 0" fill="black"/>
@@ -39,10 +45,11 @@
             <div class="custom-select-wrapper">
                 <select class="filter" name="diet" id="diet">
                     <option value="">Diet</option>
-                    <option value="Vegan" <?= isset($_GET['diet']) && $_GET['diet'] == 'Vegan' ? 'selected' : ''?>>Vegan</option>
-                    <option value="Vegetarian" <?= isset($_GET['diet']) && $_GET['diet'] == 'Vegetarian' ? 'selected' : ''?>>Vegetarian</option>
-                    <option value="Gluten-Free" <?= isset($_GET['diet']) && $_GET['diet'] == 'Gluten-Free' ? 'selected' : ''?>>Gluten-Free</option>
-                    <option value="Flexitarian" <?= isset($_GET['diet']) && $_GET['diet'] == 'Flexitarian' ? 'selected' : ''?>>Flexitarian</option>
+                    <?php foreach ($diets as $diet): ?>
+                    <option value="<?= htmlspecialchars($diet) ?>" <?= isset($_GET['diet']) && $_GET['diet'] == $diet ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($diet) ?>
+                    </option>
+                    <?php endforeach; ?>
                 </select>
                 <svg class="custom-arrow" viewBox="0 0 10 6">
                     <path d="M0 0 L5 6 L10 0" fill="black"/>

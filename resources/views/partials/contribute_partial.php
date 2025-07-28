@@ -5,7 +5,9 @@
     <h1><strong>Contribute</strong></h1>
     <p><strong>Help us improve Koa-La by contributing your favorite places!</strong></p>
 
-    <?php foreach (CONTRIBUTE_FORM_FIELDS as $field) { ?>
+    <?php use App\Models\Restaurant;
+
+    foreach (CONTRIBUTE_FORM_FIELDS as $field) { ?>
         <label for="<?= htmlspecialchars($field['id']) ?>"><?= htmlspecialchars($field['label']) ?></label>
 
         <?php if ($field['element'] === 'select') { ?>
@@ -20,11 +22,13 @@
                 <?php
                 $options = [];
             if ($field['name'] === 'concept') {
-                $options = $concepts ?? [];
+                $concepts = Restaurant::getConcepts();
+                $options = array_combine($concepts, $concepts);
             } elseif ($field['name'] === 'price_tier') {
-                $options = $priceTiers ?? [];
+                $options = PRICE_TIERS;
             } elseif ($field['name'] === 'diet') {
-                $options = $diets ?? [];
+                $diets = Restaurant::getDiets();
+                $options = array_combine($diets, $diets);
             } ?>
                 <option value="" disabled <?= empty($old[$field['name']]) ? 'selected' : '' ?>>Select an option</option>
                 <?php foreach ($options as $value => $label) { ?>
