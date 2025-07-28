@@ -28,6 +28,9 @@ class Seed extends AbstractCommand
         $count = DB::table('menus')->count();
         echo "Menus inserted successfully. Total menus: $count".PHP_EOL;
 
+        $count = DB::table('reviews')->count();
+        echo "Reviews inserted successfully. Total reviews: $count".PHP_EOL;
+
         return 0;
     }
 }
