@@ -18,15 +18,15 @@ if (isset($_SESSION['id'])) {
 </section>
 
 <section class="img-container flex_col align_center">
-    <div>
+    <div class="flex justify_center">
         <img src="<?= $restaurant->image ?>">
     </div>
-    <div>
-        <div>
+
+        <div class="with-100">
             <p class="text-center"><strong><?= $restaurant->name ?></strong></p>
             <p class="text-center margin-large"><?= $restaurant->description ?></p>
             <div class="icon-box-hp flex space-around padding-small">
-                <div class="text-center">
+                <div class="text-center flex gap-small">
                     <?php if ($restaurant->price_tier < 15) { ?>
                         <p><img src="/assets/images/price-green.png"</p>
                         <p>Cheap</p>
@@ -38,11 +38,11 @@ if (isset($_SESSION['id'])) {
                         <p>Expensive</p>
                     <?php } ?>
                 </div>
-                <div class="text-center">
+                <div class="text-center flex gap-small">
                     <p><img src="/assets/images/<?= $restaurant->concept ?>.png"></p>
                     <p><?= $restaurant->concept ?></p>
                 </div>
-                <div class="text-center">
+                <div class="text-center flex gap-small">
                     <?php if ($restaurant->veggie_option) { ?>
                         <p><img src="/assets/images/vegan.png"></p>
                         <p>Vegetarian option</p>
@@ -52,7 +52,6 @@ if (isset($_SESSION['id'])) {
                     <?php } ?>
                 </div>
             </div>
-        </div>
         <div class="div-break-gap-large"></div>
         <div class="text-center">
             <label class="btn"><a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn More</a></label>
@@ -60,18 +59,11 @@ if (isset($_SESSION['id'])) {
     </div>
 </section>
 <br>
-<div class="div-break-gap-large"></div>
-<!--
-<div class="text-center">
-    <label class="btn"><a href="/restaurants/keypoints?restaurant_id=<?= $restaurant->id; ?>">Learn More</a></label>
-</div>
--->
+
 <br>
 <div class="div-break-gap-large"></div>
 <section class="text-center">
     <h2 class="sub_title">Do you want more?</h2>
-    <div class="div-break-gap-medium"></div>
     <label class="btn"><a href="/restaurants">Discover more</a></label>
 </section>
-<br>
-<br>
+<div class="div-break-gap-large"></div>
