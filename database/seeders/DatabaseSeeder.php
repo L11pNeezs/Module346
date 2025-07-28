@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Libraries\Core\Facades\DB;
+use App\Libraries\Core\MenuFaker;
 use App\Libraries\Core\RestaurantFaker;
 use App\Libraries\Core\UserFaker;
 
@@ -32,6 +33,13 @@ class DatabaseSeeder
             'name' => UserFaker::name(),
             'surname' => UserFaker::surname(),
             'email' => UserFaker::email(),
+        ]);
+
+        DB::table('menus')->insert([
+            'restaurant_id' => MenuFaker::restaurantId(),
+            'name' => MenuFaker::name(),
+            'description' => MenuFaker::description(),
+            'price' => MenuFaker::price(),
         ]);
     }
 }
