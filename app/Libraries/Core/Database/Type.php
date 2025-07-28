@@ -11,4 +11,6 @@ enum Type
     case Timestamp;
     case Bool;
     case Geometry;
+    case BigInt;
+    case Decimal;
 }

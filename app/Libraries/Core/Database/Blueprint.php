@@ -45,6 +45,28 @@ class Blueprint
         return $columns;
     }
 
+    public function int(string $columnName): Column
+    {
+        $columns = Column::fromArray([
+            'name' => $columnName,
+            'type' => Type::Int,
+        ]);
+        $this->columns[$columnName] = $columns;
+
+        return $columns;
+    }
+
+    public function decimal(string $columnName, int $precision, int $scale): Column
+    {
+        $columns = Column::fromArray([
+            'name' => $columnName,
+            'type' => Type::Decimal,
+            'typeParameters' => [$precision, $scale],
+        ]);
+        $this->columns[$columnName] = $columns;
+        return $columns;
+    }
+
     public function timestamps(): void
     {
         $this->columns['created_at'] = Column::fromArray([
@@ -94,6 +116,14 @@ class Blueprint
 
     public function foreign(string $column): ForeignKeyDefinition
     {
+        if (!isset($this->columns[$column])) {
+            $this->columns[$column] = Column::fromArray([
+                'name' => $column,
+                'type' => Type::BigInt,
+                'unsigned' => true,
+                'nullable' => false,
+            ]);
+        }
         $command = $this->addCommand('foreign', ['column' => $column]);
         return new ForeignKeyDefinition($command);
     }
@@ -118,26 +148,25 @@ class Blueprint
             if ($command['type'] === 'foreign') {
                 $params = $command['parameters'];
 
-                $column = "\"{$command['parameters']['column']}\"" ?? null;
-                $reference = "\"{$command['parameters']['reference']}\"" ?? null;
-                $on = $params['on'] ?? null;
+                $column = isset($params['column']) ? "\"{$params['column']}\"" : null;
+                $reference = isset($params['reference']) ? "\"{$params['reference']}\"" : null;
+                $on = isset($params['on']) ? "\"{$params['on']}\"" : null;
                 $onDelete = $params['onDelete'] ?? null;
                 $onUpdate = $params['onUpdate'] ?? null;
 
-                $sql = "FOREIGN KEY ($column) REFERENCES \"$on\"($reference)";
-
-                if ($onDelete) {
-                    $sql .= " ON DELETE $onDelete";
+                // Only build SQL if all required parts are present
+                if ($column && $reference && $on) {
+                    $sql = "FOREIGN KEY ($column) REFERENCES $on($reference)";
+                    if ($onDelete) {
+                        $sql .= " ON DELETE $onDelete";
+                    }
+                    if ($onUpdate) {
+                        $sql .= " ON UPDATE $onUpdate";
+                    }
+                    $foreignKeysSql[] = $sql;
                 }
-
-                if ($onUpdate) {
-                    $sql .= " ON UPDATE $onUpdate";
-                }
-
-                $foreignKeysSql[] = $sql;
             }
         }
-
         return $foreignKeysSql;
     }
 }

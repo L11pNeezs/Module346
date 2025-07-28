@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_id')->constrained('restaurants')->onDelete('cascade');
+            $table->int('restaurant_id');
             $table->string('name');
             $table->string('description')->nullable(true);
             $table->decimal('price', 10, 2);
