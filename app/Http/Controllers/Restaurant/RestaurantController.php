@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Restaurant;
 use App\Libraries\Core\Facades\DB;
 use App\Libraries\Core\Http\Controller\AbstractController;
 use App\Libraries\Core\Http\RestaurantValidator\RestaurantValidator;
+use App\Models\MenuItem;
+use App\Models\MenuItemRating;
 use App\Models\Restaurant;
 
 class RestaurantController extends AbstractController
@@ -121,7 +123,14 @@ class RestaurantController extends AbstractController
             'lat' => $rawCoordinates[0]['lat'],
         ];
 
-        return view('keypoints', ['restaurantCoordinates' => $restaurantCoordinates]);
+        $menu = MenuItem::getMenu($data['restaurant_id']);
+        $favorite = MenuItemRating::getFavoriteMenuItem($data['restaurant_id']);
+
+        return view('keypoints', [
+            'restaurantCoordinates' => $restaurantCoordinates,
+            'menu' => $menu,
+            'favorite' => $favorite,
+        ]);
     }
 
     protected function isAjaxRequest(): bool

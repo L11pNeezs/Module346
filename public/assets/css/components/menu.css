@@ -1,0 +1,24 @@
+#menu-table-container {
+    display: none;
+}
+
+.star {
+    color: #ccc;
+    font-size: 1.2em;
+}
+
+.star.filled {
+    color: #FFD700;
+}
+
+.star-rating .star {
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: color 0.2s;
+}
+
+.star-rating .star.filled,
+.star-rating .star.hovered {
+    color: #FFD700;
+}

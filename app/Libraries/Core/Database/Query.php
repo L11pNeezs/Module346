@@ -18,6 +18,12 @@ class Query
 
     protected array $orderBy = [];
 
+    protected ?string $rawSelect = null;
+
+    protected array $joins = [];
+
+    protected array $groupBy = [];
+
     public function __construct(string $tableName, ?string $type = null)
     {
         $this->tableName = $tableName;
@@ -70,9 +76,26 @@ class Query
         return $this->isSelect() && ! empty($this->orderBy);
     }
 
+    public function hasGroupBy(): bool
+    {
+        return $this->isSelect() && ! empty($this->groupBy);
+    }
+
+    public function hasJoins(): bool
+    {
+        return $this->isSelect() && ! empty($this->joins);
+    }
+
     public function orderBy(string $command): static
     {
         $this->orderBy[] = $command;
+
+        return $this;
+    }
+
+    public function groupBy(string $column): static
+    {
+        $this->groupBy[] = $column;
 
         return $this;
     }
@@ -94,6 +117,10 @@ class Query
 
     public function getColumns(): array
     {
+        if ($this->rawSelect !== null) {
+            return [$this->rawSelect];
+        }
+
         return $this->columns === [] ? ['*'] : $this->columns;
     }
 
@@ -148,6 +175,21 @@ class Query
         return $this->orderBy;
     }
 
+    public function getGroupBy(): array
+    {
+        return $this->groupBy;
+    }
+
+    public function getJoins(): array
+    {
+        return $this->joins;
+    }
+
+    public function getSelectRaw(): ?string
+    {
+        return $this->rawSelect;
+    }
+
     public function update(array $data)
     {
         $this->type = 'update';
@@ -173,6 +215,26 @@ class Query
     public function offset(int $number): static
     {
         $this->offset = $number;
+
+        return $this;
+    }
+
+    public function selectRaw(string $expression): static
+    {
+        $this->rawSelect = $expression;
+
+        return $this;
+    }
+
+    public function join(string $table, string $first, string $operator, string $second): static
+    {
+        $this->joins[] = [
+            'type' => 'INNER',
+            'table' => $table,
+            'first' => $first,
+            'operator' => $operator,
+            'second' => $second,
+        ];
 
         return $this;
     }

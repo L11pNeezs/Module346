@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Map\MapController;
+use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Restaurant\RestaurantController;
+use App\Http\Controllers\Restaurant\RestaurantReviewController;
 use App\Http\Controllers\User\UserController;
 use App\Libraries\Core\Router;
 use App\Models\Restaurant;
@@ -35,11 +37,25 @@ Router::group(['prefix' => 'restaurants'], static function () {
             'diets' => Restaurant::getDiets(),
         ]);
     });
-    Router::get('/keypoints', [RestaurantController::class, 'keypoints']);
+    Router::get('/keypoints', [RestaurantController::class, 'keypoints', MenuItemController::class, 'menu']);
+    Router::post('/menu-rate', [MenuItemController::class, 'rateItem']);
+    Router::post('/restaurant-rate', [RestaurantReviewController::class, 'rateRestaurant']);
 });
 
 Router::get('/map', [MapController::class, 'showMap']);
 
 Router::get('/team', static function () {
     return view('team');
+});
+
+Router::group(['prefix' => 'menu_reviews'], static function () {
+    Router::get('/', [MenuItemController::class, 'reviews']);
+    Router::post('/edit_review', [MenuItemController::class, 'updateReview']);
+    Router::post('/delete_review', [MenuItemController::class, 'deleteReview']);
+});
+
+Router::group(['prefix' => 'restaurant_reviews'], static function () {
+    Router::get('/', [RestaurantReviewController::class, 'reviews']);
+    Router::post('/edit_review', [RestaurantReviewController::class, 'updateReview']);
+    Router::post('/delete_review', [RestaurantReviewController::class, 'deleteReview']);
 });

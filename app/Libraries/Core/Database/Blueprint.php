@@ -135,7 +135,7 @@ class Blueprint
     {
         $command = $this->addCommand('on', ['table' => $table]);
 
-        return new ForeignKeyDefinition($comand);
+        return new ForeignKeyDefinition($command);
     }
 
     public function references(string $column): ForeignKeyDefinition
