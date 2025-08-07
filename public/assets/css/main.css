@@ -10,6 +10,10 @@
 @import url('components/hamburger.css');
 @import url('components/team-card.css');
 @import url('components/containers.css');
+@import url('components/menu.css');
+@import url('components/modal.css');
+@import url('components/review-form.css');
+@import url('components/reviews.css');
 @import url('header.css');
 @import url('footer.css');
 @import url('homepage.css');
@@ -64,3 +68,22 @@ a {
     text-align: center;
 }
 
+table {
+    border-collapse: collapse;
+    min-width: 60%;
+    background: #fff;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.75em 1.5em;
+    text-align: center;
+}
+th {
+    background: #f5f5f5;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+}

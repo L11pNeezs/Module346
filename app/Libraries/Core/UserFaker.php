@@ -4,6 +4,10 @@ namespace App\Libraries\Core;
 
 class UserFaker
 {
+    private static array $userIds = [
+        1, 2, 3, 4, 5,
+    ];
+
     private static array $usernames = [
         'goat.dev',
         'luna.techie',
@@ -43,6 +47,11 @@ class UserFaker
         'sophie.keller@example.com',
         'leo.baumann@example.com',
     ];
+
+    public static function userId(): int
+    {
+        return self::$userIds[array_rand(self::$userIds)];
+    }
 
     public static function username(): string
     {

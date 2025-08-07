@@ -36,14 +36,21 @@ class DatabaseSeeder
             'email' => UserFaker::email(),
         ]);
 
-        DB::table('menus')->insert([
+        DB::table('menu_items')->insert([
             'restaurant_id' => MenuFaker::restaurantId(),
             'name' => MenuFaker::name(),
             'description' => MenuFaker::description(),
             'price' => MenuFaker::price(),
         ]);
 
-        DB::table('reviews')->insert([
+        DB::table('menu_item_ratings')->insert([
+            'menu_item_id' => MenuFaker::menuItemId(),
+            'user_id' => UserFaker::userId(),
+            'rating' => MenuFaker::rating(),
+            'comment' => ReviewFaker::comment(),
+        ]);
+
+        DB::table('restaurant_reviews')->insert([
             'restaurant_id' => ReviewFaker::restaurantId(),
             'user_id' => ReviewFaker::userId(),
             'rating' => ReviewFaker::rating(),

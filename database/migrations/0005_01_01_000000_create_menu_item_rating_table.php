@@ -8,12 +8,12 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('restaurant_reviews', function (Blueprint $table) {
+        Schema::create('menu_item_ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->int('rating');
-            $table->string('comment')->nullable(true);
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

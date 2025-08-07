@@ -8,11 +8,15 @@ class MenuFaker
         1, 2, 3, 4, 5,
     ];
 
+    private static array $menuItemId = [
+        1, 2, 3, 4, 5,
+    ];
+
     private static array $names = [
         'Lunch Special',
         'Dinner Delight',
         'Weekend Brunch',
-        'Happy Hour Menu',
+        'Happy Hour MenuItem',
         'Seasonal Specials',
         'Chef\'s Choice',
     ];
@@ -35,9 +39,18 @@ class MenuFaker
         22.50,
     ];
 
+    private static array $ratings = [
+        1, 2, 3, 4, 5,
+    ];
+
     public static function restaurantId(): int
     {
         return self::$restaurantId[array_rand(self::$restaurantId)];
+    }
+
+    public static function menuItemId(): int
+    {
+        return self::$menuItemId[array_rand(self::$menuItemId)];
     }
 
     public static function name(): string
@@ -53,5 +66,10 @@ class MenuFaker
     public static function price(): float
     {
         return self::$prices[array_rand(self::$prices)];
+    }
+
+    public static function rating(): int
+    {
+        return self::$ratings[array_rand(self::$ratings)];
     }
 }

@@ -95,8 +95,19 @@ final class PostgresDatabase extends AbstractDatabase
             $query->tableName,
         );
 
+        if ($query->hasJoins()) {
+            $joins = $query->getJoins();
+            foreach ($joins as $join) {
+                $sql .= ' '.$join['type'].' JOIN '.$join['table'].' ON '.$join['first'].' '.$join['operator'].' '.$join['second'];
+            }
+        }
+
         if ($query->hasWhere()) {
             $sql .= ' WHERE '.$this->getWhereProcessedConditions($query);
+        }
+
+        if ($query->hasGroupBy()) {
+            $sql .= ' GROUP BY '.implode(', ', $query->getGroupBy());
         }
 
         if ($query->hasOrderBy()) {

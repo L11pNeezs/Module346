@@ -23,10 +23,13 @@ if (isset($_SESSION['id'])) {
     <link rel="stylesheet" href="/assets/css/main.css">
 
 </head>
-
+<script>
+    window.sessionId = <?= isset($_SESSION['id']) ? (int) $_SESSION['id'] : 'null' ?>;
+</script>
 <script src="/assets/js/hamburgerMenu.js"></script>
+<script src="/assets/js/editMenuReview.js"></script>
+<script src="/assets/js/editRestaurantReview.js"></script>
 <body>
-
 <header class="flex">
     <div class="flex_row align_center">
         <img src="/assets/images/koa-la-logo.png" alt="logo">
