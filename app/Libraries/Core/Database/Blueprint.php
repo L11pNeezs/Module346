@@ -64,6 +64,7 @@ class Blueprint
             'typeParameters' => [$precision, $scale],
         ]);
         $this->columns[$columnName] = $columns;
+
         return $columns;
     }
 
@@ -111,12 +112,13 @@ class Blueprint
         ];
 
         $this->commands[] = $command;
+
         return $command;
     }
 
     public function foreign(string $column): ForeignKeyDefinition
     {
-        if (!isset($this->columns[$column])) {
+        if (! isset($this->columns[$column])) {
             $this->columns[$column] = Column::fromArray([
                 'name' => $column,
                 'type' => Type::BigInt,
@@ -125,18 +127,21 @@ class Blueprint
             ]);
         }
         $command = $this->addCommand('foreign', ['column' => $column]);
+
         return new ForeignKeyDefinition($command);
     }
 
     public function on(string $table): ForeignKeyDefinition
     {
         $command = $this->addCommand('on', ['table' => $table]);
+
         return new ForeignKeyDefinition($comand);
     }
 
     public function references(string $column): ForeignKeyDefinition
     {
-        $command =  $this->addCommand('references', ['column' => $column]);
+        $command = $this->addCommand('references', ['column' => $column]);
+
         return new ForeignKeyDefinition($command);
     }
 
@@ -167,6 +172,7 @@ class Blueprint
                 }
             }
         }
+
         return $foreignKeysSql;
     }
 }

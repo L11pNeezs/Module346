@@ -20,8 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     const contentType = response.headers.get('Content-Type');
                     if (contentType && contentType.includes('application/json')) {
                         return response.json().then(result => {
-                            alert(result.message);
-                            if (result.redirect) window.location.href = result.redirect;
+                            showModal(result.message)
+                            setTimeout(() => {
+                                const modal = document.getElementById('response-modal');
+                                if (modal) {
+                                    modal.style.display = 'none';
+                                    if (result.redirect) window.location.href = result.redirect;
+                                }
+                            }, 1500)
                         });
                     } else {
                         return response.text().then(html => {
@@ -36,3 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     attachFormHandler();
 });
+
+function showModal(message) {
+    const modal = document.getElementById('response-modal');
+    const msgSpan = document.getElementById('modal-message');
+    if (modal && msgSpan) {
+        msgSpan.style.color = 'green';
+        msgSpan.textContent = message;
+        modal.style.display = 'flex';
+    }
+}

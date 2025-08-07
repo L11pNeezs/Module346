@@ -17,13 +17,13 @@ $restaurant = Restaurant::getById($data['restaurant_id']);
 <div class="div-break-gap-large"></div>
 <section class="keypoints">
     <div class="">
-        <?php if ($restaurant->price_tier === '$'): ?>
+        <?php if ($restaurant->price_tier === '$') { ?>
             <h3 class="text-small">Budget</h3>
-        <?php elseif ($restaurant->price_tier === '$$'): ?>
+        <?php } elseif ($restaurant->price_tier === '$$') { ?>
             <h3 class="text-small">Moderate</h3>
-        <?php else: ?>
+        <?php } else { ?>
             <h3 class="text-small">Expensive</h3>
-        <?php endif; ?>
+        <?php } ?>
         <div>
             <p><?= $restaurant->price_tier_description ?></p>
         </div>
@@ -48,11 +48,11 @@ $restaurant = Restaurant::getById($data['restaurant_id']);
             <p><?= $restaurant->vegan_option_description ?></p>
         </div>
         <div>
-            <?php if ($restaurant->vegan_option === true): ?>
+            <?php if ($restaurant->vegan_option === true) { ?>
                 <img src="/assets/images/vegan.png" alt="Veggie Option" class="option-icons">
-            <?php else: ?>
+            <?php } else { ?>
                 <img src="/assets/images/vegan-red.png" alt="Veggie Option" class="option-icons">
-            <?php endif; ?>
+            <?php } ?>
         </div>
     </div>
 </section>

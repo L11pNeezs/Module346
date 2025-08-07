@@ -14,6 +14,6 @@ class RestaurantCriteriaDTO
     {
         $this->concept = $criteria['concept'] ?? null;
         $this->diet = $criteria['diet'] ?? null;
-        $this->priceTier = isset($data['price_tier']) ? (int) $data['price_tier'] : null;
+        $this->priceTier = isset($criteria['price_tier']) ? (int) $criteria['price_tier'] : null;
     }
 }

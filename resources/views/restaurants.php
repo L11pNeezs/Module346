@@ -1,6 +1,5 @@
 <?php
 /** @var int $pageNumber */
-
 use App\Models\Restaurant;
 
 $concepts = Restaurant::getConcepts();
@@ -17,11 +16,11 @@ $diets = Restaurant::getDiets();
             <div class="custom-select-wrapper">
                 <select class="filter" id="price-tier" name="price_tier">
                     <option value="">Price ranges</option>
-                    <?php foreach (PRICE_TIERS as $value => $label): ?>
+                    <?php foreach (PRICE_TIERS as $value => $label) { ?>
                         <option value="<?= htmlspecialchars($value) ?>" <?= isset($_GET['price_tier']) && $_GET['price_tier'] == $value ? 'selected' : '' ?>>
                             <?= htmlspecialchars($label) ?>
                         </option>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </select>
                 <svg class="custom-arrow" viewBox="0 0 10 6">
                     <path d="M0 0 L5 6 L10 0" fill="black"/>
@@ -31,11 +30,11 @@ $diets = Restaurant::getDiets();
             <div class="custom-select-wrapper">
                 <select class="filter" name="concept" id="concept">
                     <option value="">Types</option>
-                    <?php foreach ($concepts as $concept): ?>
+                    <?php foreach ($concepts as $concept) { ?>
                         <option value="<?= htmlspecialchars($concept) ?>" <?= isset($_GET['concept']) && $_GET['concept'] == $concept ? 'selected' : '' ?>>
                             <?= htmlspecialchars($concept) ?>
                         </option>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </select>
                 <svg class="custom-arrow" viewBox="0 0 10 6">
                     <path d="M0 0 L5 6 L10 0" fill="black"/>
@@ -45,11 +44,11 @@ $diets = Restaurant::getDiets();
             <div class="custom-select-wrapper">
                 <select class="filter" name="diet" id="diet">
                     <option value="">Diet</option>
-                    <?php foreach ($diets as $diet): ?>
+                    <?php foreach ($diets as $diet) { ?>
                     <option value="<?= htmlspecialchars($diet) ?>" <?= isset($_GET['diet']) && $_GET['diet'] == $diet ? 'selected' : '' ?>>
                         <?= htmlspecialchars($diet) ?>
                     </option>
-                    <?php endforeach; ?>
+                    <?php } ?>
                 </select>
                 <svg class="custom-arrow" viewBox="0 0 10 6">
                     <path d="M0 0 L5 6 L10 0" fill="black"/>

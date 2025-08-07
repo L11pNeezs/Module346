@@ -250,4 +250,9 @@ final class PostgresDatabase extends AbstractDatabase
 
         $this->connect();
     }
+
+    public function lastInsertId(): int
+    {
+        return (int) $this->connection->lastInsertId();
+    }
 }

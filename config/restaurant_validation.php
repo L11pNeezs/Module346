@@ -32,7 +32,7 @@ return [
         ],
     ],
     'image' => [
-        'required' => true,
+        'required' => false,
         'valid_url' => 'Image URL must be a valid URL.',
         'valid_image' => 'Image URL must point to a valid image file (jpg, jpeg, png, gif).',
         'pattern' => '/\.(jpg|jpeg|png|gif)$/i',
@@ -52,6 +52,12 @@ return [
         'required' => true,
         'messages' => [
             'required' => 'Concept is required.',
+        ],
+    ],
+    'diet' => [
+        'required' => true,
+        'messages' => [
+            'required' => 'Diet is required.',
         ],
     ],
 ];
