@@ -54,4 +54,17 @@ To exist the root container
   $ docker compose exec app php craft migrate -d
 ```
 
+## Seed the DB / Restart the app
+To seed the database with initial data, you can run the following command:
+```bash
+  $ docker compose down -v
+  $ docker compose up -d
+  $ docker build
+  $ docker compose exec app php craft migrate -d
+  $ docker compose exec app php craft seed
+```
+
+This will stop the containers, remove the volumes, rebuild the app container, and then run the migrations and seed the database with initial data.
+
+
 ### *Now we have the db and the app container running :D !!* 
