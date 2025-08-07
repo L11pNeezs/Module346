@@ -101,7 +101,7 @@ class RestaurantFaker
 
     private static array $veganOptions = [
         1,
-        0
+        0,
     ];
 
     private static array $veganOptionDescriptions = [
@@ -167,10 +167,12 @@ class RestaurantFaker
     {
         return self::$dDescriptions[array_rand(self::$dDescriptions)];
     }
+
     public static function veganOption(): int
     {
         return self::$veganOptions[array_rand(self::$veganOptions)];
     }
+
     public static function veganOptionDescription(): string
     {
         return self::$veganOptionDescriptions[array_rand(self::$veganOptionDescriptions)];

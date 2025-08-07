@@ -50,4 +50,9 @@ final class DB
     {
         app('database')->resetDatabase();
     }
+
+    public static function lastInsertId(): int
+    {
+        return app('database')->lastInsertId();
+    }
 }

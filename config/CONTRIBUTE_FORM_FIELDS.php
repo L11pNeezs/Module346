@@ -2,7 +2,7 @@
 
 const CONTRIBUTE_FORM_FIELDS = [
     'name' => [
-        'label' => 'Restaurant Name',
+        'label' => 'Restaurant Name *',
         'element' => 'input',
         'type' => 'text',
         'required' => true,
@@ -13,7 +13,7 @@ const CONTRIBUTE_FORM_FIELDS = [
         'id' => 'place-name',
     ],
     'address' => [
-        'label' => 'Address',
+        'label' => 'Address *',
         'element' => 'input',
         'type' => 'text',
         'required' => true,
@@ -24,7 +24,7 @@ const CONTRIBUTE_FORM_FIELDS = [
         'id' => 'place-location',
     ],
     'description' => [
-        'label' => 'Description',
+        'label' => 'Description *',
         'element' => 'textarea',
         'type' => 'textarea',
         'required' => true,
@@ -35,7 +35,7 @@ const CONTRIBUTE_FORM_FIELDS = [
         'id' => 'place-description',
     ],
     'image' => [
-        'label' => 'Image URL',
+        'label' => 'Image URL (Optional)',
         'element' => 'input',
         'type' => 'url',
         'required' => false,
@@ -44,14 +44,14 @@ const CONTRIBUTE_FORM_FIELDS = [
         'name' => 'image',
     ],
     'price_tier' => [
-        'label' => 'Price Tier',
+        'label' => 'Price Tier *',
         'element' => 'select',
         'required' => true,
         'name' => 'price_tier',
         'id' => 'price-tier',
     ],
     'price_tier_description' => [
-        'label' => 'Price Tier Description',
+        'label' => 'Price Tier Description (Optional)',
         'element' => 'input',
         'type' => 'text',
         'required' => false,
@@ -60,14 +60,14 @@ const CONTRIBUTE_FORM_FIELDS = [
         'id' => 'price_tier_description',
     ],
     'concept' => [
-        'label' => 'Concept',
+        'label' => 'Concept *',
         'element' => 'select',
         'required' => true,
         'name' => 'concept',
         'id' => 'concept',
     ],
     'concept_description' => [
-        'label' => 'Concept Description',
+        'label' => 'Concept Description (Optional)',
         'element' => 'input',
         'type' => 'text',
         'required' => false,
@@ -76,14 +76,14 @@ const CONTRIBUTE_FORM_FIELDS = [
         'id' => 'concept_description',
     ],
     'diet' => [
-        'label' => 'Diet',
+        'label' => 'Diet *',
         'element' => 'select',
-        'required' => false,
+        'required' => true,
         'name' => 'diet',
         'id' => 'diet',
     ],
     'diet_description' => [
-        'label' => 'Diet Description',
+        'label' => 'Diet Description (Optional)',
         'element' => 'input',
         'type' => 'text',
         'required' => false,
@@ -92,14 +92,14 @@ const CONTRIBUTE_FORM_FIELDS = [
         'id' => 'diet_description',
     ],
     'vegan_option' => [
-        'label' => 'Veggie Option',
+        'label' => 'Veggie Option (Optional)',
         'element' => 'checkbox',
         'required' => false,
         'name' => 'vegan_option',
         'id' => 'vegan_option',
     ],
     'vegan_option_description' => [
-        'label' => 'Veggie Option Description',
+        'label' => 'Veggie Option Description (Optional)',
         'element' => 'input',
         'type' => 'text',
         'required' => false,

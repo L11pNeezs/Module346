@@ -27,16 +27,16 @@ if (isset($_SESSION['id'])) {
             <p class="text-center margin-large"><?= $restaurant->description ?></p>
             <div class="icon-box-hp flex space-around padding-small">
                 <div class="text-center flex gap-small justify_center align_center">
-                    <?php if ($restaurant->price_tier === '$'): ?>
+                    <?php if ($restaurant->price_tier === '$') { ?>
                         <p><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"</p>
                         <p>Budget</p>
-                    <?php elseif ($restaurant->price_tier === '$$'): ?>
+                    <?php } elseif ($restaurant->price_tier === '$$') { ?>
                         <p><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"></p>
                         <p>Moderate</p>
-                    <?php else: ?>
+                    <?php } else { ?>
                         <p><img src="/assets/images/price-tiers/<?= $restaurant->price_tier ?>.png"</p>
                         <p>Expensive</p>
-                    <?php endif; ?>
+                    <?php } ?>
                 </div>
                 <div class="text-center flex gap-small justify_center align_center">
                     <p><img src="/assets/images/food-icons/<?= $restaurant->concept ?>.svg"></p>

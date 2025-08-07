@@ -4,8 +4,7 @@ namespace App\Libraries\Core;
 
 class ReviewFaker
 {
-
-private static array $restaurantIds = [
+    private static array $restaurantIds = [
         1, 2, 3, 4, 5,
     ];
 

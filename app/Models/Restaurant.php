@@ -113,4 +113,9 @@ class Restaurant extends Model
 
         return $diets ? array_unique(array_column($diets, 'diet')) : [];
     }
+
+    public static function getLastInsertedId(): int
+    {
+        return DB::lastInsertId();
+    }
 }

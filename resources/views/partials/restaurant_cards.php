@@ -1,7 +1,10 @@
 <?php
-/** @var \App\Models\Restaurant[] $restaurants */
+/** @var Restaurant[] $restaurants */
 /** @var int $pageNumber */
 /** @var int $nbPages */
+
+use App\Models\Restaurant;
+
 ?>
 <?php foreach ($restaurants as $restaurant) { ?>
     <div class="card">

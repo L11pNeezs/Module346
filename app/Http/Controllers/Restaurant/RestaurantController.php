@@ -93,10 +93,12 @@ class RestaurantController extends AbstractController
         $restaurant->fillFromArray($data);
 
         $restaurant->save();
+        $lastInsertedRestaurantId = $restaurant->getLastInsertedId();
+        $redirectUrl = '/restaurants/keypoints?restaurant_id='.$lastInsertedRestaurantId;
 
         if ($this->isAjaxRequest()) {
             $this->handleAjaxSuccess([
-                'redirect' => '/',
+                'redirect' => $redirectUrl,
                 'message' => 'Restaurant submitted successfully',
             ]);
 
