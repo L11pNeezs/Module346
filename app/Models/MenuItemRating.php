@@ -18,7 +18,7 @@ class MenuItemRating extends Model
         ]);
     }
 
-    public static function getFavoriteMenuItem(int $restaurantId): ?Menu_Item
+    public static function getFavoriteMenuItem(int $restaurantId): ?MenuItem
     {
         $results = DB::table('menu_items as mi')
             ->selectRaw('mi.*, AVG(mir.rating) as avg_rating')
@@ -30,7 +30,7 @@ class MenuItemRating extends Model
             ->get();
 
         if (! empty($results)) {
-            $favorite = new Menu_Item;
+            $favorite = new MenuItem;
             $favorite->fillFromArray((array) $results[0]);
 
             return $favorite;
