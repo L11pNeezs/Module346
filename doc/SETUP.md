@@ -59,7 +59,7 @@ To seed the database with initial data, you can run the following command:
 ```bash
   $ docker compose down -v
   $ docker compose up -d
-  $ docker build
+  $ docker compose build
   $ docker compose exec app php craft migrate -d
   $ docker compose exec app php craft seed
 ```
