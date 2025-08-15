@@ -15,3 +15,20 @@
 form .modal-btn {
     align-items: center;
 }
+
+.response-modal {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+.modal-message {
+    background: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: auto;
+}
