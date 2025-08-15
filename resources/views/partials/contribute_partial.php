@@ -99,7 +99,7 @@ use App\Models\Restaurant;
             <?php } ?>
 
         <?php } ?>
-        <p><strong>* Required Fields</strong></p>
+        <p>* Required Fields</p>
         <div>
             <button class="btn" type="submit">Submit</button>
         </div>

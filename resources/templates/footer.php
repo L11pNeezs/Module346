@@ -12,7 +12,7 @@
         <div class="footer-bar"></div>
         <div class="footer-links-container">
             <ul class="flex_col gap-small" id="ul">
-                <li><a href="/">Contact Us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
                 <li><a href="/team">Team</a></li>
             </ul>
         </div>
