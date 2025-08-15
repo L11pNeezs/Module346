@@ -104,8 +104,8 @@ use App\Models\Restaurant;
             <button class="btn" type="submit">Submit</button>
         </div>
     </form>
-    <div id="response-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:#fff; padding:2em; border-radius:8px; max-width:400px; margin:auto; position:relative;">
+    <div id="response-modal" class="display-none pos-fixed justify_center align_center response-modal">
+        <div class="pos-relative modal-message">
             <span id="modal-message"></span>
         </div>
     </div>
