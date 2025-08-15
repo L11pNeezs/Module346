@@ -139,3 +139,5 @@ class RestaurantController extends AbstractController
             strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
     }
 }
+
+

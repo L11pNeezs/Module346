@@ -10,6 +10,28 @@
     width: 25%;
 }
 
+.error{
+    color: red;
+    font-weight: bold;
+    margin-block: 8vh;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.success{
+    color: green;
+    font-weight: bold;
+    margin-block: 8vh;
+    font-size: 1rem;
+    text-align: center;
+}
+.success-page{
+    text-align: center;
+}
+
+
+
+
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     #filterForm {

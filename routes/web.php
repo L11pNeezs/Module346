@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Map\MapController;
 use App\Http\Controllers\Menu\MenuItemController;
 use App\Http\Controllers\Restaurant\RestaurantController;
@@ -58,4 +59,10 @@ Router::group(['prefix' => 'restaurant_reviews'], static function () {
     Router::get('/', [RestaurantReviewController::class, 'reviews']);
     Router::post('/edit_review', [RestaurantReviewController::class, 'updateReview']);
     Router::post('/delete_review', [RestaurantReviewController::class, 'deleteReview']);
+});
+
+router::group(['prefix' => 'contact'], static function () {
+    Router::get('/', [ContactController::class, 'contact']);
+    Router::post('/', [ContactController::class, 'send']);
+    Router::get('/success', [ContactController::class, 'success']);
 });
