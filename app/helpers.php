@@ -78,3 +78,21 @@ if (! function_exists('config')) {
         return Configuration::get($name, $default);
     }
 }
+
+if (! function_exists('log_verbose')) {
+    function log_verbose(string $message): void
+    {
+        if (getenv('VERBOSE') === 'ON') {
+            error_log('[VERBOSE] ' . $message);
+        }
+    }
+}
+
+if (! function_exists('log_debug')) {
+    function log_debug(string $message): void
+    {
+        if (getenv('DEBUG') === 'ON') {
+            error_log('[DEBUG] ' . $message);
+        }
+    }
+}

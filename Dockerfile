@@ -41,6 +41,11 @@ RUN chmod 600 /etc/msmtprc && chown www-data:www-data /etc/msmtprc
 
 WORKDIR /var/www/html
 
-RUN chmod 755 /var/www/html
+# 👇 IMPORTANT: Copy your full project into the Docker image
+COPY . /var/www/html
+
+# Optional but recommended: set correct permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
 CMD ["apache2-foreground"]

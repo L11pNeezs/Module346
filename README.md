@@ -36,7 +36,7 @@
 ## 👥 Contributors
 
 - **Guilherme**
-- **Bayene**
+- **Bayane**
 - **Ricardo**
 - **Arthur** – Developed and provided the custom Vanilla Framework
 

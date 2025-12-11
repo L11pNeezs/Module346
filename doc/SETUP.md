@@ -2,6 +2,7 @@
 
 ## Requirements
 - Docker 
+- PHP
 
 ## Install Docker 
 Install docker [Install Docker Engine on Fedora](https://docs.docker.com/engine/install/)
@@ -28,8 +29,13 @@ DB_PASSWORD=<value> # check docker-compose.yml file
 ```
 ## Start Docker services 
 
-- App service
-- DB Service 
+  - There are two environments :
+    - App-Dev Service
+  ```bash
+    $ docker compose --profile dev up -d
+  ```
+    - App-Prod Service
+  - DB Service
 
 ```bash
   $ docker compose up -d  
