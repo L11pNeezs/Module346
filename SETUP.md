@@ -3,18 +3,26 @@
 ## Requirements
 - Docker
 - Composer
-- PHP
 
 ## Install Docker
-Install Docker following the official guide:  
+Install Docker following the official guide :  
 https://docs.docker.com/engine/install/
+
+## Install Composer
+
+It's needed for the app to work, so in your terminal write :
+
+```bash
+composer install
+```
 
 # Start Docker Services
 
-The project supports two modes: **development (editable)** and **production (fixed code)**.  
+The project supports two environments: **development (editable)** and **production (fixed code)**.  
+
 **Both apps can be started at the same time without any problem !**
 
-## Development Mode (Editable Code)
+## Development Environment (Editable Code)
 
 Starts `app-dev` with a bind mount so code changes on your machine are reflected inside the container.
 
@@ -27,7 +35,7 @@ This starts these services on the port **8080**:
 - db
 - mailhog
 
-## Production Mode (Fixed Code - Not Editable)
+## Production Environment (Fixed Code - Not Editable)
 
 Starts `app-prod` without a bind mount so the code inside the container is fixed in the image.
 
@@ -76,19 +84,23 @@ docker compose exec app-dev php craft migrate -d
 docker compose exec app-prod php craft migrate -d
 ```
 
-## Seed the Database (Dev Mode)
+## Seed the Database
+
+### Dev
 
 ```bash
-docker compose down -v
-docker compose --profile dev up -d --build
 docker compose exec app-dev php craft migrate -d
 docker compose exec app-dev php craft seed
 ```
 
+### Prod
+
+```bash
+docker compose exec app-prod php craft migrate -d
+docker compose exec app-prod php craft seed
+```
+
 This will:
-- Stop containers
-- Remove volumes
-- Rebuild the app
 - Run migrations
 - Seed initial data
 
@@ -112,7 +124,6 @@ Edit a file locally. After doing so, refresh the browser by doing **CTRL + R** o
 ## Prod Mode
 
 ```bash
-docker compose down
 docker compose --profile prod up -d --build
 ```
 
