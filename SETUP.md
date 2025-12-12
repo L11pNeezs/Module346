@@ -2,29 +2,12 @@
 
 ## Requirements
 - Docker
+- Composer
+- PHP
 
 ## Install Docker
 Install Docker following the official guide:  
 https://docs.docker.com/engine/install/
-
-## Configure Environment
-
-Create the `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-Edit the `.env` file:
-
-```dotenv
-DB_CONNECTION=psql
-DB_HOST=db
-DB_PORT=5432
-DB_DATABASE=<value>
-DB_USERNAME=<value>
-DB_PASSWORD=<value>
-```
 
 # Start Docker Services
 
@@ -63,16 +46,34 @@ This starts these services on the port **8081**:
 
 ### Inside the container
 
+#### Dev
+
 ```bash
 docker compose exec app-dev bash
-php craft migrate
+php craft migrate -d
+exit
+```
+
+#### Prod
+
+```bash
+docker compose exec app-prod bash
+php craft migrate -d
 exit
 ```
 
 ### From your machine
 
+#### Dev
+
 ```bash
 docker compose exec app-dev php craft migrate -d
+```
+
+#### Prod
+
+```bash
+docker compose exec app-prod php craft migrate -d
 ```
 
 ## Seed the Database (Dev Mode)

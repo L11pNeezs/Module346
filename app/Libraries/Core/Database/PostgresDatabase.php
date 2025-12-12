@@ -6,6 +6,7 @@ use App\Libraries\Core\Column;
 use PDO;
 use PDOStatement;
 use RuntimeException;
+use App\Libraries\Core\Configuration;
 
 final class PostgresDatabase extends AbstractDatabase
 {
@@ -16,6 +17,9 @@ final class PostgresDatabase extends AbstractDatabase
 
     public function query(string $sql): false|PDOStatement
     {
+        if (Configuration::get('database.display_logs')) {
+            error_log($sql);
+        }
         return $this->connection->query($sql);
     }
 

@@ -12,4 +12,6 @@ return [
             'database' => env('DB_DATABASE', 'postgres'),
         ],
     ],
+
+    'display_logs' => env('VERBOSE', false) === 'true' && env('DEBUG', false) === 'true',
 ];

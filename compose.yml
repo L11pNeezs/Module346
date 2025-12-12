@@ -11,12 +11,19 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
       # Logs
-      - VERBOSE=ON
-      - DEBUG=ON
+      - VERBOSE=true
+      - DEBUG=true
       # Xdebug configuration  
       - XDEBUG_MODE=debug
       - XDEBUG_CONFIG=client_host=host.docker.internal client_port=9003
       - PHP_IDE_CONFIG=serverName=koa-la.docker.test
+      # DB Config
+      - DB_CONNECTION=psql
+      - DB_HOST=db-dev
+      - DB_PORT=5432
+      - DB_DATABASE=liip-db
+      - DB_USERNAME=liipuser
+      - DB_PASSWORD=.Liip-123
     extra_hosts:
       - "host.docker.internal:host-gateway"
   
@@ -31,27 +38,43 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
       #Logs
-      - VERBOSE=OFF
-      - DEBUG=OFF
+      - VERBOSE=false
+      - DEBUG=false
       # Xdebug configuration
       - XDEBUG_MODE=off
+      # DB Config
+      - DB_CONNECTION=psql
+      - DB_HOST=db-prod
+      - DB_PORT=5432
+      - DB_DATABASE=liip-db
+      - DB_USERNAME=liipuser
+      - DB_PASSWORD=.Liip-123
     extra_hosts:
       - "host.docker.internal:host-gateway"
   
-  db:
+  db-dev:
     image: postgis/postgis:17-master
     environment:
       POSTGRES_USER: liipuser
       POSTGRES_PASSWORD: .Liip-123
       POSTGRES_DB: liip-db
     volumes:
-      - pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+      - pgdata-dev:/var/lib/postgresql/data
+
+  db-prod:
+    image: postgis/postgis:17-master
+    environment:
+      POSTGRES_USER: liipuser
+      POSTGRES_PASSWORD: .Liip-123
+      POSTGRES_DB: liip-db
+    volumes:
+      - pgdata-prod:/var/lib/postgresql/data
+
   mailhog:
     image: mailhog/mailhog:latest
     ports:
       - '8025:8025'
 
 volumes:
-  pgdata:
+  pgdata-dev:
+  pgdata-prod:
