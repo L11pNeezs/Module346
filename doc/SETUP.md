@@ -1,76 +1,141 @@
-# Set-up Koa-La project 
+# Set-up Koa-La Project
 
 ## Requirements
-- Docker 
-- PHP
+- Docker
+- Composer
 
-## Install Docker 
-Install docker [Install Docker Engine on Fedora](https://docs.docker.com/engine/install/)
+## Install Docker
+Install Docker following the official guide :  
+https://docs.docker.com/engine/install/
 
-*don’t forget the Post-installation steps for linux for the permission issue* 
+## Install Composer
 
-
-## Configure environment
-create the .env file from .env.example : 
-
-```bash
-cp .env.example .env 
-```
-
-edit the .env file (using docker-compose.yml file) :
+It's needed for the app to work, so in your terminal write :
 
 ```bash
-DB_CONNECTION=psql
-DB_HOST=db #docker compose service name 
-DB_PORT=5432 # check docker-compose.yml file
-DB_DATABASE=<value>  # check docker-compose.yml file
-DB_USERNAME=<value> # check docker-compose.yml file
-DB_PASSWORD=<value> # check docker-compose.yml file
+composer install
 ```
-## Start Docker services 
 
-  - There are two environments :
-    - App-Dev Service
-  ```bash
-    $ docker compose --profile dev up -d
-  ```
-    - App-Prod Service
-  - DB Service
+# Start Docker Services
+
+The project supports two environments: **development (editable)** and **production (fixed code)**.  
+
+**Both apps can be started at the same time without any problem !**
+
+## Development Environment (Editable Code)
+
+Starts `app-dev` with a bind mount so code changes on your machine are reflected inside the container.
 
 ```bash
-  $ docker compose up -d  
+docker compose --profile dev up -d --build
 ```
 
-## Init DB
+This starts these services on the port **8080**:
+- app-dev
+- db
+- mailhog
 
-There’s two ways to run the migration of the database
+## Production Environment (Fixed Code - Not Editable)
 
-- 1st Way (*directly from the root of the container*) :
+Starts `app-prod` without a bind mount so the code inside the container is fixed in the image.
+
 ```bash
-  $ docker compose exec app bash (entering the container)
-  $ php craft migrate
+docker compose --profile prod up -d --build
 ```
 
-To exist the root container
+This starts these services on the port **8081**:
+- app-prod
+- db
+- mailhog
+
+# Database Initialization
+
+## Run Migrations
+
+### Inside the container
+
+#### Dev
+
 ```bash
-  $ exit  
+docker compose exec app-dev bash
+php craft migrate -d
+exit
 ```
-- 2nd Way (*directly from your engine*) :
+
+#### Prod
+
 ```bash
-  $ docker compose exec app php craft migrate -d
+docker compose exec app-prod bash
+php craft migrate -d
+exit
 ```
 
-## Seed the DB / Restart the app
-To seed the database with initial data, you can run the following command:
+### From your machine
+
+#### Dev
+
 ```bash
-  $ docker compose down -v
-  $ docker compose up -d
-  $ docker compose build
-  $ docker compose exec app php craft migrate -d
-  $ docker compose exec app php craft seed
+docker compose exec app-dev php craft migrate -d
 ```
 
-This will stop the containers, remove the volumes, rebuild the app container, and then run the migrations and seed the database with initial data.
+#### Prod
 
+```bash
+docker compose exec app-prod php craft migrate -d
+```
 
-### *Now we have the db and the app container running :D !!* 
+## Seed the Database
+
+### Dev
+
+```bash
+docker compose exec app-dev php craft migrate -d
+docker compose exec app-dev php craft seed
+```
+
+### Prod
+
+```bash
+docker compose exec app-prod php craft migrate -d
+docker compose exec app-prod php craft seed
+```
+
+This will:
+- Run migrations
+- Seed initial data
+
+# Dev vs Prod Summary
+
+| Mode | Service  | Editable |
+|------|-----------|----------|
+| Dev  | app-dev   | Yes      |
+| Prod | app-prod  | No       |
+
+# Verification
+
+## Dev Mode
+
+```bash
+docker compose --profile dev up -d --build
+```
+
+Edit a file locally. After doing so, refresh the browser by doing **CTRL + R** or pressing **f5**: the change appears.
+
+## Prod Mode
+
+```bash
+docker compose --profile prod up -d --build
+```
+
+Edit the same file locally, refresh the browser: the change does not appear.
+
+## File to Edit Sugestion
+
+Go to public/index.php and right below "<?php", write:
+
+```bash
+echo "DEV TEST CHANGE"
+```
+
+- Once you do this, refresh the page and you will see that in the DEV Environment, the changes appear...
+- On the other hand if you do this and then refresh the page in the PROD Environment, no changes will be done !
