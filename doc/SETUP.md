@@ -130,7 +130,7 @@ docker compose --profile prod up -d --build
 
 Edit the same file locally, refresh the browser: the change does not appear.
 
-## File to Edit Sugestion
+## File to Edit Suggestion
 
 Go to public/index.php and right below "<?php", write:
 
@@ -143,7 +143,7 @@ echo "DEV TEST CHANGE"
 
 # COMMENTS (TO DELETE BEFORE SENDING)
 
-installation php avec xampp/mamp/wamp (plus facile) (installer la version la plus récente pour éviter des soucis)
+installation php avec xampp/mamp/wamp (plus facile) (installer la version la plus récente pour éviter des soucis) (au lieu d'installer php pour le composer, lancer la commande, composer install --ignore-platform-req=ext-xml)
 
 documenter la partie des logs
 
