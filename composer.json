@@ -3,8 +3,7 @@
     "description": "description tbd",
     "type": "project",
     "require-dev": {
-        "phpstan/phpstan": "^2.1",
-        "laravel/pint": "^1.22"
+        "phpstan/phpstan": "^2.1"
     },
     "scripts": {
         "tests": [

@@ -3,6 +3,7 @@
 ## Requirements
 - Docker
 - Composer
+- PHP
 
 ## Install Docker
 Install Docker following the official guide :  
@@ -139,3 +140,11 @@ echo "DEV TEST CHANGE"
 
 - Once you do this, refresh the page and you will see that in the DEV Environment, the changes appear...
 - On the other hand if you do this and then refresh the page in the PROD Environment, no changes will be done !
+
+# COMMENTS (TO DELETE BEFORE SENDING)
+
+installation php avec xampp/mamp/wamp (plus facile) (installer la version la plus récente pour éviter des soucis)
+
+documenter la partie des logs
+
+
