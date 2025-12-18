@@ -3,9 +3,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    profiles: ["dev"]
+    profiles: ["dev", "all"]
     volumes:
       - ./:/var/www/html
+    depends_on:
+      db-dev:
+        condition: service_healthy
+        restart: true
     ports:
       - "8080:80"
     environment:
@@ -31,8 +35,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    profiles: ["prod"]
+    profiles: ["prod", "all"]
     # NO volumes here = not editable
+    depends_on:
+      db-prod:
+        condition: service_healthy
+        restart: true
     ports:
       - "8081:80"
     environment:
@@ -60,6 +68,12 @@ services:
       POSTGRES_DB: liip-db
     volumes:
       - pgdata-dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
 
   db-prod:
     image: postgis/postgis:17-master
@@ -69,6 +83,12 @@ services:
       POSTGRES_DB: liip-db
     volumes:
       - pgdata-prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
 
   mailhog:
     image: mailhog/mailhog:latest

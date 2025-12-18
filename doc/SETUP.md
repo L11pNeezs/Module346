@@ -17,6 +17,12 @@ It's needed for the app to work, so in your terminal write :
 composer install
 ```
 
+If it doesn't work because you're lacking php extensions, just write this instead :  
+
+```bash
+composer install --ignore-platform-req=ext-xml
+```
+
 # Start Docker Services
 
 The project supports two environments: **development (editable)** and **production (fixed code)**.  
@@ -49,72 +55,36 @@ This starts these services on the port **8081**:
 - db
 - mailhog
 
-# Database Initialization
+## Both Environments At Once
 
-## Run Migrations
-
-### Inside the container
-
-#### Dev
+In case you are lazy and only want to run one command once, do this instead :  
 
 ```bash
-docker compose exec app-dev bash
-php craft migrate -d
-exit
+docker compose --profile all up -d --build
 ```
 
-#### Prod
+This starts `app-dev` and `app-prod` at the same time, together with all the other services:  
+ - `db`:
+    - `db-dev`
+    - `db-prod`
+ - `mailhog`
 
-```bash
-docker compose exec app-prod bash
-php craft migrate -d
-exit
-```
-
-### From your machine
-
-#### Dev
-
-```bash
-docker compose exec app-dev php craft migrate -d
-```
-
-#### Prod
-
-```bash
-docker compose exec app-prod php craft migrate -d
-```
-
-## Seed the Database
-
-### Dev
-
-```bash
-docker compose exec app-dev php craft migrate -d
-docker compose exec app-dev php craft seed
-```
-
-### Prod
-
-```bash
-docker compose exec app-prod php craft migrate -d
-docker compose exec app-prod php craft seed
-```
-
-This will:
-- Run migrations
-- Seed initial data
+They are still in different containers !!
 
 # Dev vs Prod Summary
 
-| Mode | Service  | Editable |
-|------|-----------|----------|
-| Dev  | app-dev   | Yes      |
-| Prod | app-prod  | No       |
+| Mode | Service  | Editable | Logs |
+|------|-----------|----------|-----|
+| Dev  | app-dev   | Yes      | Yes |
+| Prod | app-prod  | No       | No  |
 
 # Verification
 
-## Dev Mode
+## Edit Verification
+
+### Dev Mode
+
+#### If you haven't ran this command yet do it, otherwhise just proceed to the next line :
 
 ```bash
 docker compose --profile dev up -d --build
@@ -122,7 +92,9 @@ docker compose --profile dev up -d --build
 
 Edit a file locally. After doing so, refresh the browser by doing **CTRL + R** or pressing **f5**: the change appears.
 
-## Prod Mode
+### Prod Mode
+
+#### If you haven't ran this command yet do it, otherwhise just proceed to the next line :
 
 ```bash
 docker compose --profile prod up -d --build
@@ -130,21 +102,30 @@ docker compose --profile prod up -d --build
 
 Edit the same file locally, refresh the browser: the change does not appear.
 
-## File to Edit Suggestion
+### File to Edit Suggestion
 
-Go to public/index.php and right below "<?php", write:
+#### Go to public/index.php, where a space specially reserved for test purposes is available and write :
 
 ```bash
 echo "DEV TEST CHANGE"
 ```
 
-- Once you do this, refresh the page and you will see that in the DEV Environment, the changes appear...
-- On the other hand if you do this and then refresh the page in the PROD Environment, no changes will be done !
+## Logs Verification
 
-# COMMENTS (TO DELETE BEFORE SENDING)
+#### Combined with the commands below, just randomly use the site features and sql logs will appear !!
 
-installation php avec xampp/mamp/wamp (plus facile) (installer la version la plus récente pour éviter des soucis) (au lieu d'installer php pour le composer, lancer la commande, composer install --ignore-platform-req=ext-xml)
+### Dev Mode
 
-documenter la partie des logs
+```bash
+docker compose logs -f app-dev
+```
 
+### Prod Mode
 
+```bash
+docker compose logs -f app-prod
+```
+
+# COMMENTS (DELETE BEFORE SENDING)
+
+Avant d'enlever ça, s'assurer que toute la documentation est correcte et prête à envoyer !!!!!!!!
