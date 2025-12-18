@@ -23,11 +23,22 @@ If it doesn't work because you're lacking php extensions, just write this instea
 composer install --ignore-platform-req=ext-xml
 ```
 
+# Chosen Characteristics
+
+### 1 - Code Loading
+ - Dev Env -> Source code can be modified
+ - Prod Env -> Fixed source code
+
+### 2 - Environment Variables (Logs)
+ - Dev Env -> VERBOSE=true, DEBUG=true
+ - Prod Env -> VERBOSE=false, DEBUG=false
+
 # Start Docker Services
 
 The project supports two environments: **development (editable)** and **production (fixed code)**.  
 
 **Both apps can be started at the same time without any problem !**
+
 
 ## Development Environment (Editable Code)
 
