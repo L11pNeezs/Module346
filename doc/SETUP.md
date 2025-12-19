@@ -118,7 +118,7 @@ Edit the same file locally, refresh the browser: the change does not appear.
 #### Go to public/index.php, where a space specially reserved for test purposes is available and write :
 
 ```bash
-echo "DEV TEST CHANGE"
+echo "DEV TEST CHANGE";
 ```
 
 ## Logs Verification
